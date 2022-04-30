@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         CalculateFieldHealth();
         CalculateCropValues();
         CalculateFinances();
+        //Invoke GC
     }
 
     void TogglePlayerControls()
