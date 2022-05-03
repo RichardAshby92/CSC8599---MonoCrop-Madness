@@ -7,21 +7,18 @@ public class CameraMovement : MonoBehaviour
     public int cameraSpeed;
 
     public Vector3 cameraMovement;
-    public float currentX;
-    public float currentY;
-
 
     private void FixedUpdate()
     {
-
         cameraMovement = GetInput();
         if(cameraMovement.sqrMagnitude > 0)
         {
             cameraMovement = cameraMovement * cameraSpeed;
             transform.Translate(cameraMovement, Space.World);
         }
-        //currentX += Input.GetAxis("Mouse X") * sensivity;
-        //currentY += Input.GetAxis("Mouse Y") * sensivity;
+
+
+
     }
 
     Vector3 GetInput()
