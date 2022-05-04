@@ -5,42 +5,32 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public int cameraSpeed;
+    public int zoomSpeed;
+    public int minZoom;
+    public int maxZoom;
 
-    public Vector3 cameraMovement;
+    private float cameraZoom;
+    private float moveX;
+    private float moveZ;
+
+    private Vector3 cameraMovement;
 
     private void FixedUpdate()
     {
-        cameraMovement = GetInput();
-        if(cameraMovement.sqrMagnitude > 0)
-        {
-            cameraMovement = cameraMovement * cameraSpeed;
-            transform.Translate(cameraMovement, Space.World);
-        }
+        //Zoom Code
+        cameraZoom = transform.localPosition.y;
+        cameraZoom += Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        cameraZoom = Mathf.Clamp(cameraZoom, minZoom, maxZoom);
+        transform.localPosition = new Vector3(transform.localPosition.x, cameraZoom, transform.localPosition.z);
 
-
-
+        //Translation
+        moveX = Input.GetAxisRaw("Horizontal");
+        moveZ = Input.GetAxisRaw("Vertical");
+        cameraMovement = new Vector3(moveX, 0, moveZ);
+        cameraMovement.Normalize();
+        cameraMovement *= cameraSpeed;
+        transform.Translate(cameraMovement, Space.World);
     }
 
-    Vector3 GetInput()
-    {
-        Vector3 inputVec = new Vector3();
-        if (Input.GetKey(KeyCode.W))
-        {
-            inputVec += new Vector3(0, 0, 1);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            inputVec += new Vector3(0, 0, -1);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            inputVec += new Vector3(-1, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            inputVec += new Vector3(1, 0, 0);
-        }
 
-        return inputVec;
-    }
 }

@@ -5,53 +5,51 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager inst;
+
     public int turnNum;
+    public int remainingActions;
+
+    public GameObject[] fields;
+
+    public int rain;
+    public int totalWaterUsed;
+
+    public int cash; //Amount
+    public int waterLevel; //1 - 100 Percentage
+    public int numPollinators; //1 - 100 Percentage
+    public int pests; //1 - 100 Percentage
 
     private void Awake()
     {
-        //Check Singleton
+        inst = this;
     }
 
-    void EndTurn()
+    public void EndTurn()
     {
         turnNum++; //Add Listener for Game Elasped
-        TogglePlayerControls();
-        //Coroutine while waiting
+        //Coroutine while waiting?
+
+        //Loan Repayment
+        cash -= 50;
+        print(cash);
 
         CalculateNewWaterLevel();
-        CalculateRisks();
         CalculateFieldHealth();
-        CalculateCropValues();
-        CalculateFinances();
         //Invoke GC
     }
 
-    void TogglePlayerControls()
-    {
-
-    }
     void CalculateNewWaterLevel()
     {
+        totalWaterUsed = fields[0].GetComponent<FieldProperties>().waterUsed + fields[1].GetComponent<FieldProperties>().waterUsed +
+            fields[2].GetComponent<FieldProperties>().waterUsed + fields[3].GetComponent<FieldProperties>().waterUsed;
+        waterLevel += rain - totalWaterUsed;
         //Set Lake Height
-    }
-
-    void CalculateRisks()
-    {
-
     }
 
     void CalculateFieldHealth()
     {
-
+        fields[0].GetComponent<FieldProperties>().CalculateFieldHealth();
     }
 
-    void CalculateCropValues()
-    {
-
-    }
-
-    void CalculateFinances()
-    {
-
-    }
 }
