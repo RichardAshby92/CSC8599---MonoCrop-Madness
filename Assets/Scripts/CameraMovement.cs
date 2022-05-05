@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public int cameraSpeed;
-    public int zoomSpeed;
-    public int minZoom;
-    public int maxZoom;
-
+    [SerializeField]
+    private int cameraSpeed;
+    [SerializeField]
+    private int zoomSpeed;
+    [SerializeField]
+    private int minZoom;
+    [SerializeField]
+    private int maxZoom;
+    [SerializeField]
     private float cameraZoom;
+    [SerializeField]
     private float moveX;
+    [SerializeField]
     private float moveZ;
 
     private Vector3 cameraMovement;

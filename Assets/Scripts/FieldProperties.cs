@@ -7,7 +7,7 @@ public class FieldProperties : MonoBehaviour
     public int soilQuality; //1 - 100 Percentage
     public int size;
     public float fieldHealth;
-    public int waterUsed;
+    public int leaching;
 
     private int lackOfwater = 0;
 
@@ -28,11 +28,32 @@ public class FieldProperties : MonoBehaviour
             lackOfwater = 0;
         }
 
+        //only do Calc if field isnt barren
         fieldHealth -= (localPests + lackOfwater);
+        print(fieldHealth);
         fieldHealth *= localPollinators / 100;
-        fieldHealth *= (float)(1.25 / Mathf.Exp(10 / soilQuality));
+        fieldHealth *= (float)(1.1 / Mathf.Exp(5 / soilQuality));
+        print(fieldHealth);
 
-        Mathf.Clamp(fieldHealth, 0, 100);
+        fieldHealth = Mathf.Clamp(fieldHealth, 0, 100);
+
+        if(fieldHealth < 1) //Crop Dies
+        {
+            //Change Field Type to Barren
+            crop = Resources.Load<CropPreset>("ScriptableObjects/CropPresets/Barren");
+        }
+    }
+
+    public void CalculateSoilQuality()
+    {
+        soilQuality += (crop.soilChange - leaching);
+        soilQuality = Mathf.Clamp(soilQuality, 1, 1000);
+        //Change Soil Texture
+    }
+
+    public void PlantCrop(CropPreset newCrop)
+    {
+        crop = Resources.Load<CropPreset>(newCrop.displayName);
     }
 
     public int HarvestField()

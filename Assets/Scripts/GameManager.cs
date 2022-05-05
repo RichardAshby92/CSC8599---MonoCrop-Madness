@@ -31,14 +31,13 @@ public class GameManager : MonoBehaviour
         //Coroutine while waiting?
         //Disable User during Turn Ending
 
-
         //Loan Repayment
         cash -= 50; //Add Listener for Game Elasped
 
         CalculateSeason();
         CalculateRainfall();
         CalculateNewWaterLevel();
-        //soil Leaching
+        CalculateSoilQuality();
         CalculateFieldHealth();
         remainingActions = 5;
         //Update Stats Text
@@ -51,12 +50,13 @@ public class GameManager : MonoBehaviour
     {
         int season = turnNum % 12;
 
-        if(season < 4 || season > 10)
+        if(season < 4 || season > 10) //Check Realworld Data
         {
             DrySeason = true;
         }
         else
         {
+            //enable rain Effect
             DrySeason = false;
         }
     }
@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
         else
         {
             rain = Random.Range(5, 10);
-            //enable rain Effect
         }
     }
 
@@ -82,8 +81,17 @@ public class GameManager : MonoBehaviour
             totalWaterUsed += field.GetComponent<FieldProperties>().crop.waterUsedPerTurn;
         }
 
-        waterLevel = rain - totalWaterUsed;
+        waterLevel += (rain - totalWaterUsed);
+        waterLevel = Mathf.Clamp(waterLevel, 1, 100);
         //Set Lake Height Transform
+    }
+
+    void CalculateSoilQuality()
+    {
+        foreach(GameObject field in fields)
+        {
+            field.GetComponent<FieldProperties>().CalculateSoilQuality();
+        }
     }
 
     void CalculateFieldHealth()
