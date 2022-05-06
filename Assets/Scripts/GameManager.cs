@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class GameManager : MonoBehaviour
     public int pests; //1 - 100 Percentage
 
     public TMPro.TextMeshProUGUI statsText;
+
+    public UnityEvent onBankrupt;
+    public UnityEvent onTurnsElasped;
+    public UnityEvent actionsElasped;
+
         
     private void Awake()
     {
@@ -27,22 +33,32 @@ public class GameManager : MonoBehaviour
 
     public void EndTurn()
     {
-        turnNum++; //Add Listener for Game Elasped
+        turnNum++;
+        if(turnNum > 120)
+        {
+            onTurnsElasped.Invoke();
+        }
         //Coroutine while waiting?
         //Disable User during Turn Ending
 
         //Loan Repayment
-        cash -= 50; //Add Listener for Game Elasped
+        cash -= 50;
+        if(cash <= 0)
+        {
+            onBankrupt.Invoke();
+        }
 
         CalculateSeason();
         CalculateRainfall();
         CalculateNewWaterLevel();
         CalculateSoilQuality();
         CalculateFieldHealth();
+        //Grow Crops
+        //ResetAction()
         remainingActions = 5;
         //Update Stats Text
-        //Invoke GC
 
+        System.GC.Collect();
         //Reenable user
     }
 
@@ -100,5 +116,23 @@ public class GameManager : MonoBehaviour
         {
             field.GetComponent<FieldProperties>().CalculateFieldHealth();
         }      
+    }
+
+    void GrowCrops()
+    {
+        foreach(GameObject field in fields)
+        {
+            //GrowCropFunction
+        }
+    }
+
+    public void ActionRemaining()
+    {
+        remainingActions--;
+
+        if (remainingActions <= 0)
+        {
+            actionsElasped.Invoke();
+        }
     }
 }

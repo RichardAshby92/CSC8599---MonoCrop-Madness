@@ -27,15 +27,21 @@ public class CameraMovement : MonoBehaviour
         cameraZoom = transform.localPosition.y;
         cameraZoom += Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
         cameraZoom = Mathf.Clamp(cameraZoom, minZoom, maxZoom);
-        transform.localPosition = new Vector3(transform.localPosition.x, cameraZoom, transform.localPosition.z);
 
         //Translation
-        moveX = Input.GetAxisRaw("Horizontal");
-        moveZ = Input.GetAxisRaw("Vertical");
-        cameraMovement = new Vector3(moveX, 0, moveZ);
-        cameraMovement.Normalize();
-        cameraMovement *= cameraSpeed;
-        transform.Translate(cameraMovement, Space.World);
+        moveX = transform.position.x;
+        moveZ = transform.position.z;
+        moveX += Input.GetAxisRaw("Horizontal") * cameraSpeed;
+        moveZ += Input.GetAxisRaw("Vertical") * cameraSpeed;
+        moveX = Mathf.Clamp(moveX, -500, 500);
+        moveZ = Mathf.Clamp(moveZ, -1000, 500);
+
+        cameraMovement = new Vector3(moveX, cameraZoom, moveZ);
+        transform.position = cameraMovement;
+
+        //cameraMovement *= cameraSpeed;
+        //cameraMovement.Normalize();
+        //transform.Translate(cameraMovement, Space.World);
     }
 
 

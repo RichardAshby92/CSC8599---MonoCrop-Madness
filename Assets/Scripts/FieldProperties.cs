@@ -16,10 +16,12 @@ public class FieldProperties : MonoBehaviour
 
     public void CalculateFieldHealth()
     {
+        //only do Calc if field isnt barren
+
         int localPollinators = gameManager.GetComponent<GameManager>().numPollinators;
         int localPests = gameManager.GetComponent<GameManager>().pests;
         
-        if(gameManager.GetComponent<GameManager>().waterLevel < 0)
+        if(gameManager.GetComponent<GameManager>().waterLevel <= 1)
         {
             lackOfwater = 20;
         }
@@ -28,7 +30,7 @@ public class FieldProperties : MonoBehaviour
             lackOfwater = 0;
         }
 
-        //only do Calc if field isnt barren
+        
         fieldHealth -= (localPests + lackOfwater);
         print(fieldHealth);
         fieldHealth *= localPollinators / 100;
@@ -40,7 +42,7 @@ public class FieldProperties : MonoBehaviour
         if(fieldHealth < 1) //Crop Dies
         {
             //Change Field Type to Barren
-            crop = Resources.Load<CropPreset>("ScriptableObjects/CropPresets/Barren");
+            crop = Resources.Load<CropPreset>("CropPresets/Barren");
         }
     }
 
