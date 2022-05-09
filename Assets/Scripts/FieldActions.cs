@@ -102,7 +102,7 @@ public class FieldActions : MonoBehaviour
             gameManager.ActionRemaining(); //Add Tool Check for action amount
             int AmountHarvested = crop.size * (int)crop.fieldHealth;
             AmountHarvested *= economyManager.currentCropPrices[crop.crop.idNum];
-            gameManager.cash = AmountHarvested;
+            gameManager.cash += AmountHarvested;
 
             crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
         }
