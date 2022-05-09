@@ -6,29 +6,37 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     public static GameManager inst;
+    private UIManager uIManager;
+    private EconomyManager economyManager;
+    private GameSceneManager gameSceneManager;
+
+    public GameObject[] fields;
+    public FieldProperties[] fieldProperties;
 
     public int turnNum;
     public int remainingActions;
-
-    public GameObject[] fields;
 
     public bool DrySeason;
     public int rain;
     public int cash; //Amount
     public int waterLevel; //1 - 100 Percentage
     public int numPollinators; //1 - 100 Percentage
-    public int pests; //1 - 100 Percentage
+    public int numPests; //1 - 100 Percentage
 
     public TMPro.TextMeshProUGUI statsText;
-
-    public UnityEvent onBankrupt;
-    public UnityEvent onTurnsElasped;
-    public UnityEvent actionsElasped;
-
         
     private void Awake()
     {
         inst = this;
+        uIManager = GetComponent<UIManager>();
+        economyManager = GetComponent<EconomyManager>();
+        gameSceneManager = GetComponent<GameSceneManager>();
+
+        for(int i = 0; i < fields.Length; i++)
+        {
+            fieldProperties[i] = fields[i].GetComponent<FieldProperties>();
+        }
+
     }
 
     public void EndTurn()
@@ -36,7 +44,7 @@ public class GameManager : MonoBehaviour
         turnNum++;
         if(turnNum > 120)
         {
-            onTurnsElasped.Invoke();
+            gameSceneManager.LoadEndGame();
         }
         //Coroutine while waiting?
         //Disable User during Turn Ending
@@ -45,7 +53,7 @@ public class GameManager : MonoBehaviour
         cash -= 50;
         if(cash <= 0)
         {
-            onBankrupt.Invoke();
+            gameSceneManager.LoadEndGame();
         }
 
         CalculateSeason();
@@ -53,9 +61,9 @@ public class GameManager : MonoBehaviour
         CalculateNewWaterLevel();
         CalculateSoilQuality();
         CalculateFieldHealth();
-        //Grow Crops
-        //ResetAction()
-        remainingActions = 5;
+        GrowCrops();
+        SimulateEconomy();
+        ResetActions();
         //Update Stats Text
 
         System.GC.Collect();
@@ -68,6 +76,7 @@ public class GameManager : MonoBehaviour
 
         if(season < 4 || season > 10) //Check Realworld Data
         {
+            //disable rain effect
             DrySeason = true;
         }
         else
@@ -92,9 +101,10 @@ public class GameManager : MonoBehaviour
     void CalculateNewWaterLevel()
     {
         int totalWaterUsed = 0;
-        foreach (GameObject field in fields)
+
+        foreach(FieldProperties fieldProperty in fieldProperties)
         {
-            totalWaterUsed += field.GetComponent<FieldProperties>().crop.waterUsedPerTurn;
+            totalWaterUsed += fieldProperty.crop.waterUsedPerTurn;
         }
 
         waterLevel += (rain - totalWaterUsed);
@@ -104,26 +114,37 @@ public class GameManager : MonoBehaviour
 
     void CalculateSoilQuality()
     {
-        foreach(GameObject field in fields)
+        foreach(FieldProperties fieldProperty in fieldProperties)
         {
-            field.GetComponent<FieldProperties>().CalculateSoilQuality();
+            fieldProperty.CalculateSoilQuality();
         }
     }
 
     void CalculateFieldHealth()
     {
-        foreach(GameObject field in fields)
+        foreach(FieldProperties fieldProperty in fieldProperties)
         {
-            field.GetComponent<FieldProperties>().CalculateFieldHealth();
+            fieldProperty.CalculateFieldHealth();
         }      
     }
 
     void GrowCrops()
     {
-        foreach(GameObject field in fields)
+        foreach(FieldProperties fieldProperty in fieldProperties)
         {
-            //GrowCropFunction
+            fieldProperty.GrowCrops();
         }
+    }
+
+    void SimulateEconomy()
+    {
+        economyManager.SimulateEnconomy();
+    }
+
+    void ResetActions()
+    {
+        remainingActions = 5;
+        uIManager.ReenableActionButtons();
     }
 
     public void ActionRemaining()
@@ -132,7 +153,7 @@ public class GameManager : MonoBehaviour
 
         if (remainingActions <= 0)
         {
-            actionsElasped.Invoke();
+            uIManager.DisableActionButtons();
         }
     }
 }

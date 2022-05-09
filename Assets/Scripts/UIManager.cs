@@ -5,27 +5,40 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager inst;
+
     public GameObject CommunityMenu;
     public GameObject MarketMenu;
     public GameObject NewspaperMenu;
     public GameObject ActionMenu;
+    public GameObject CropMenu;
 
     public Button[] actionButtons;
+    public Button[] cropMenuButtons;
 
-    private void Awake()
-    {
-        var turnsElsasped = GetComponent<GameManager>().actionsElasped;
-        turnsElsasped.AddListener(DisableActionButtons);
+     public void Awake()
+     {
+        inst = this;
+
         DisableMenus();
-
         actionButtons = ActionMenu.GetComponentsInChildren<Button>();
-    }
+        cropMenuButtons = CropMenu.GetComponentsInChildren<Button>();
+     }
 
     public void Update()
     {
         if(Input.GetMouseButton(1))
         {
             DisableMenus();
+            for(int i = 0; i < actionButtons.Length; i++)
+            {
+                actionButtons[i].onClick.RemoveAllListeners();
+            }
+
+            for (int i = 0; i < cropMenuButtons.Length; i++)
+            {
+                cropMenuButtons[i].onClick.RemoveAllListeners();
+            }
         }
     }
 
@@ -35,9 +48,10 @@ public class UIManager : MonoBehaviour
         MarketMenu.SetActive(false);
         NewspaperMenu.SetActive(false);
         ActionMenu.SetActive(false);
+        CropMenu.SetActive(false);
     }
 
-    void DisableActionButtons()
+    public void DisableActionButtons()
     {
         foreach(Button child in actionButtons)
         {
@@ -45,7 +59,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void ReeableActionButtons()
+    public void ReenableActionButtons()
     {
         foreach (Button child in actionButtons)
         {

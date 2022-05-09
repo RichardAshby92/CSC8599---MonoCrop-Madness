@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240431e4447e7664daaff61b41f6b1f7, type: 3}
   m_Name: SugarCane
   m_EditorClassIdentifier: 
-  displayName: 
+  displayName: Sugarcane
+  idNum: 3
   cost: 0
   waterUsedPerTurn: 5
   turnsToGrow: 8

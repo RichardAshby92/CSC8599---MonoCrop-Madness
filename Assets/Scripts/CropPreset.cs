@@ -7,6 +7,7 @@ using UnityEditor;
 public class CropPreset : ScriptableObject
 {
     public string displayName;
+    public int idNum;
     public int cost;
 
     public int waterUsedPerTurn;

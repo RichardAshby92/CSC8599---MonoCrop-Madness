@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tomatoes
   m_EditorClassIdentifier: 
   displayName: 
+  idNum: 5
   cost: 0
   waterUsedPerTurn: 0
   turnsToGrow: 0

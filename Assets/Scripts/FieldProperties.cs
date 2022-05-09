@@ -8,20 +8,30 @@ public class FieldProperties : MonoBehaviour
     public int size;
     public float fieldHealth;
     public int leaching;
+    public int cropAge;
+    public bool isCropRipe;
 
     private int lackOfwater = 0;
 
-    public GameObject gameManager;
+    public GameObject gameManagerObject;
+    private GameManager gameManager;
     public CropPreset crop;
+
+    private void Awake()
+    {
+        gameManager = gameManagerObject.GetComponent<GameManager>();
+    }
 
     public void CalculateFieldHealth()
     {
-        //only do Calc if field isnt barren
-
-        int localPollinators = gameManager.GetComponent<GameManager>().numPollinators;
-        int localPests = gameManager.GetComponent<GameManager>().pests;
+        //Skip Calc if field is barren. 
+        if(crop.idNum == 0)
+        {
+            return;
+        }
         
-        if(gameManager.GetComponent<GameManager>().waterLevel <= 1)
+        //Check if Crops get water
+        if(gameManager.waterLevel <= 1)
         {
             lackOfwater = 20;
         }
@@ -31,9 +41,9 @@ public class FieldProperties : MonoBehaviour
         }
 
         
-        fieldHealth -= (localPests + lackOfwater);
+        fieldHealth -= (gameManager.numPests + lackOfwater);
         print(fieldHealth);
-        fieldHealth *= localPollinators / 100;
+        fieldHealth *= gameManager.numPollinators / 100;
         fieldHealth *= (float)(1.1 / Mathf.Exp(5 / soilQuality));
         print(fieldHealth);
 
@@ -51,6 +61,22 @@ public class FieldProperties : MonoBehaviour
         soilQuality += (crop.soilChange - leaching);
         soilQuality = Mathf.Clamp(soilQuality, 1, 1000);
         //Change Soil Texture
+    }
+
+    public void GrowCrops()
+    {
+        if(crop.displayName == "Barren")
+        {
+            return;
+        }
+        else
+        {
+            cropAge++;
+            if(cropAge == crop.turnsToGrow)
+            {
+                isCropRipe = true;
+            }
+        }
     }
 
     public void PlantCrop(CropPreset newCrop)
