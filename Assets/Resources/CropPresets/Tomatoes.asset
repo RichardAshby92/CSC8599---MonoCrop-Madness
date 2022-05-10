@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240431e4447e7664daaff61b41f6b1f7, type: 3}
   m_Name: Tomatoes
   m_EditorClassIdentifier: 
-  displayName: 
-  idNum: 5
+  displayName: Tomatoes
+  idNum: 10
   cost: 0
   waterUsedPerTurn: 0
   turnsToGrow: 0

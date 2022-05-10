@@ -58,7 +58,13 @@ public class FieldProperties : MonoBehaviour
 
     public void CalculateSoilQuality()
     {
-        soilQuality += (crop.soilChange - leaching);
+        int naturalRecovery = 0;
+        if(crop.idNum == 0)
+        {
+            naturalRecovery = 10;
+        }
+
+        soilQuality += (naturalRecovery + crop.soilChange - leaching); //Scale leaching with rain
         soilQuality = Mathf.Clamp(soilQuality, 1, 1000);
         //Change Soil Texture
     }

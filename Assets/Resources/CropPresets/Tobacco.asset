@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240431e4447e7664daaff61b41f6b1f7, type: 3}
   m_Name: Tobacco
   m_EditorClassIdentifier: 
-  displayName: 
-  idNum: 4
+  displayName: Tobacco
+  idNum: 9
   cost: 0
   waterUsedPerTurn: 0
   turnsToGrow: 0

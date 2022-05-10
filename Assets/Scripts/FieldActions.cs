@@ -56,9 +56,9 @@ public class FieldActions : MonoBehaviour
 
         for (int i =0; i < uIManager.cropMenuButtons.Length; i++)
         {
-            uIManager.cropMenuButtons[i].onClick.AddListener(delegate { PlantCrop(i); });
+            int tempNum = i + 1; //Needed for C#
+            uIManager.cropMenuButtons[i].onClick.AddListener(delegate { PlantCrop(tempNum); });
         }
-
     }
 
     public void PlantField()
@@ -69,17 +69,47 @@ public class FieldActions : MonoBehaviour
 
     public void PlantCrop(int x)
     {
+        print(x);
+
         gameManager.ActionRemaining();
         switch (x)
         {
             case 1:
-                print("Printed Sugar Cane");
+                crop.crop = Resources.Load<CropPreset>("CropPresets/Carnations");
+                break;
+            case 2:
+                crop.crop = Resources.Load<CropPreset>("CropPresets/Cassava");
+                break;
+            case 3:
+                crop.crop = Resources.Load<CropPreset>("CropPresets/Cotton");
+                break;
+            case 4:
+                crop.crop = Resources.Load<CropPreset>("CropPresets/Maize");
+                break;
+            case 5:
+                crop.crop = Resources.Load<CropPreset>("CropPresets/RedVelvetBean");
+                break;
+            case 6:
+                crop.crop = Resources.Load<CropPreset>("CropPresets/Rice");
+                break;
+            case 7:
+                crop.crop = Resources.Load<CropPreset>("CropPresets/Sorghum");
+                break;
+            case 8:
                 crop.crop = Resources.Load<CropPreset>("CropPresets/SugarCane");
+                break;
+            case 9:
+                crop.crop = Resources.Load<CropPreset>("CropPresets/Tobacco");
+                break;
+            case 10:
+                crop.crop = Resources.Load<CropPreset>("CropPresets/Tomatoes");
                 break;
             default:
                 crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
                 break;
         }
+
+        gameManager.cash -= crop.crop.cost;
     }
 
     public void AddFertiliser()

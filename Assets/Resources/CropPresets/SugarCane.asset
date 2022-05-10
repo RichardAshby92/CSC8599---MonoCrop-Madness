@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SugarCane
   m_EditorClassIdentifier: 
   displayName: Sugarcane
-  idNum: 3
+  idNum: 8
   cost: 0
-  waterUsedPerTurn: 5
+  waterUsedPerTurn: 4
   turnsToGrow: 8
   soilChange: -5
   prefab: {fileID: 0}
