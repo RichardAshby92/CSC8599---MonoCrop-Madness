@@ -54,24 +54,31 @@ public class FieldActions : MonoBehaviour
             uIManager.actionButtons[1].interactable = true;
         }
 
-        for (int i =0; i < uIManager.cropMenuButtons.Length; i++)
+        /*for (int i =0; i < uIManager.cropMenuButtons.Length; i++)
         {
             int tempNum = i + 1; //Needed for C#
             uIManager.cropMenuButtons[i].onClick.AddListener(delegate { PlantCrop(tempNum); });
-        }
+        }*/
     }
 
     public void PlantField()
     {
+        print(gameManager.remainingActions);
         //Enable Menu of Crops
+        for (int i = 0; i < uIManager.cropMenuButtons.Length; i++)
+        {
+            int tempNum = i + 1; //Needed for C#
+            uIManager.cropMenuButtons[i].onClick.AddListener(delegate { PlantCrop(tempNum); });
+        }
+
+        print(gameManager.remainingActions);
         uIManager.CropMenu.SetActive(true);
     }
 
     public void PlantCrop(int x)
     {
-        print(x);
-
         gameManager.ActionRemaining();
+
         switch (x)
         {
             case 1:
@@ -110,6 +117,7 @@ public class FieldActions : MonoBehaviour
         }
 
         gameManager.cash -= crop.crop.cost;
+        uIManager.UpdateUIText();
     }
 
     public void AddFertiliser()
@@ -123,11 +131,12 @@ public class FieldActions : MonoBehaviour
             uIManager.actionButtons[1].interactable = false;
         }
         //RainForest Damage Function
+        uIManager.UpdateUIText();
     }
 
     public void HarvestField()
     {
-        if(GetComponent<FieldProperties>().isCropRipe) //Probably not needed, checked twice
+        if (GetComponent<FieldProperties>().isCropRipe) //Probably not needed, checked twice
         {
             gameManager.ActionRemaining(); //Add Tool Check for action amount
             int AmountHarvested = crop.size * (int)crop.fieldHealth;
@@ -135,6 +144,7 @@ public class FieldActions : MonoBehaviour
             gameManager.cash += AmountHarvested;
 
             crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
+            uIManager.UpdateUIText();
         }
     }   
 }

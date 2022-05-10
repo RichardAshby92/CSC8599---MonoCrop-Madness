@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager inst;
     private UIManager uIManager;
+    private Inventory inventory;
+
     private EconomyManager economyManager;
     private GameSceneManager gameSceneManager;
 
@@ -22,8 +24,6 @@ public class GameManager : MonoBehaviour
     public int waterLevel; //1 - 100 Percentage
     public int numPollinators; //1 - 100 Percentage
     public int numPests; //1 - 100 Percentage
-
-    public TMPro.TextMeshProUGUI statsText;
         
     private void Awake()
     {
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         uIManager = GetComponent<UIManager>();
         economyManager = GetComponent<EconomyManager>();
         gameSceneManager = GetComponent<GameSceneManager>();
+        inventory = GetComponent<Inventory>();
 
         for(int i = 0; i < fields.Length; i++)
         {
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
         GrowCrops();
         SimulateEconomy();
         ResetActions();
+        uIManager.UpdateUIText();
         //Update Stats Text
 
         System.GC.Collect();

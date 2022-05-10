@@ -85,17 +85,6 @@ public class FieldProperties : MonoBehaviour
         }
     }
 
-    public void PlantCrop(CropPreset newCrop)
-    {
-        crop = Resources.Load<CropPreset>(newCrop.displayName);
-    }
-
-    public int HarvestField()
-    {
-        int amount = size * (int)fieldHealth;
-        return amount;
-    }
-
 }
 
 

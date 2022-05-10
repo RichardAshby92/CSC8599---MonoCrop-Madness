@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField]
-    private int fertilizer = 0;
-    [SerializeField]
-    private int pesticide = 0;
+    
+    public int fertilizer = 0;
+    public int pesticide = 0;
 
     public bool isThereFertilizer = false;
     public bool[] tools;
