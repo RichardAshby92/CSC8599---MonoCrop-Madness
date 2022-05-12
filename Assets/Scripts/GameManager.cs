@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private EconomyManager economyManager;
     private GameSceneManager gameSceneManager;
 
+    public GameObject Lake;
     public GameObject[] fields;
     public FieldProperties[] fieldProperties;
 
@@ -92,11 +93,11 @@ public class GameManager : MonoBehaviour
     {
         if(DrySeason)
         {
-            rain = Random.Range(1, 4);
+            rain = Random.Range(1, 10);
         }
         else
         {
-            rain = Random.Range(5, 10);
+            rain = Random.Range(8, 20);
         }
     }
 
@@ -111,6 +112,10 @@ public class GameManager : MonoBehaviour
 
         waterLevel += (rain - totalWaterUsed);
         waterLevel = Mathf.Clamp(waterLevel, 1, 100);
+        Vector3 waterHeight = Lake.transform.position;
+        waterHeight.y = waterLevel;
+
+        Lake.transform.position = waterHeight;
         //Set Lake Height Transform
     }
 
@@ -145,7 +150,7 @@ public class GameManager : MonoBehaviour
 
     void ResetActions()
     {
-        remainingActions = 5;
+        remainingActions = 4;
         uIManager.ReenableActionButtons();
     }
 

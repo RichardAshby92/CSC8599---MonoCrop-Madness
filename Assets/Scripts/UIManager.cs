@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void DisableMenus()
+    public void DisableMenus()
     {
         CommunityMenu.SetActive(false);
         MarketMenu.SetActive(false);
@@ -109,7 +109,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateUIText()
     {
-        cashValueText.text = "Cash: " + gameManager.cash.ToString();
+        cashValueText.text = "Cash: $" + gameManager.cash.ToString();
         turnValueText.text = "Turn Number: " + gameManager.turnNum.ToString();
         seasonValueText.text = "Season: ";
         fertiliserValueText.text = "Fertiliser Left: " + inventory.fertilizer.ToString();

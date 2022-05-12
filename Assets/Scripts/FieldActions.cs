@@ -70,8 +70,6 @@ public class FieldActions : MonoBehaviour
             int tempNum = i + 1; //Needed for C#
             uIManager.cropMenuButtons[i].onClick.AddListener(delegate { PlantCrop(tempNum); });
         }
-
-        print(gameManager.remainingActions);
         uIManager.CropMenu.SetActive(true);
     }
 
@@ -117,6 +115,7 @@ public class FieldActions : MonoBehaviour
         }
 
         gameManager.cash -= crop.crop.cost;
+        crop.cropAge = 0;
         uIManager.UpdateUIText();
     }
 
@@ -139,12 +138,15 @@ public class FieldActions : MonoBehaviour
         if (GetComponent<FieldProperties>().isCropRipe) //Probably not needed, checked twice
         {
             gameManager.ActionRemaining(); //Add Tool Check for action amount
-            int AmountHarvested = crop.size * (int)crop.fieldHealth;
+            float AmountHarvested = crop.size * crop.fieldHealth;
             AmountHarvested *= economyManager.currentCropPrices[crop.crop.idNum];
-            gameManager.cash += AmountHarvested;
+            gameManager.cash += (int) AmountHarvested;
 
             crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
             uIManager.UpdateUIText();
+
+            crop.isCropRipe = false;
         }
     }   
 }
+    
