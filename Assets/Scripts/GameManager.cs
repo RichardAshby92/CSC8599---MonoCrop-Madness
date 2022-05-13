@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public int cash; //Amount
     public int waterLevel; //1 - 100 Percentage
     public int numPollinators; //1 - 100 Percentage
-    public int numPests; //1 - 100 Percentage
+    public int[] numPests; //1 - 100 Percentage
         
     private void Awake()
     {
@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
         economyManager = GetComponent<EconomyManager>();
         gameSceneManager = GetComponent<GameSceneManager>();
         inventory = GetComponent<Inventory>();
+
+        numPests = new int[11];
 
         for(int i = 0; i < fields.Length; i++)
         {
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
         CalculateSoilQuality();
         CalculateFieldHealth();
         GrowCrops();
+        CalculatePests();
         SimulateEconomy();
         ResetActions();
         uIManager.UpdateUIText();
@@ -140,6 +143,14 @@ public class GameManager : MonoBehaviour
         foreach(FieldProperties fieldProperty in fieldProperties)
         {
             fieldProperty.GrowCrops();
+        }
+    }
+
+    void CalculatePests()
+    {
+        foreach(FieldProperties fieldProperty in fieldProperties)
+        {
+            fieldProperty.CalculatePests();
         }
     }
 

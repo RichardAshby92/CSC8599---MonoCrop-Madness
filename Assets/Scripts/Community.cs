@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Community : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject gameManagerObject;
+
+    private GameManager gameManager;
+    private UIManager uIManager;
+    private LoadText loadText;
+
+    private void Awake()
     {
-        
+        gameManager = gameManagerObject.GetComponent<GameManager>();
+        uIManager = gameManagerObject.GetComponent<UIManager>();
+        //loadText = gameManagerObject.GetComponent<LoadText>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AccessMenu()
     {
-        
+        uIManager.DisableMenus();
+        gameObject.SetActive(true);
     }
 }

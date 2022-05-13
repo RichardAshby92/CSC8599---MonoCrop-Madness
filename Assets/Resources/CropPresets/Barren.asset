@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Barren
   m_EditorClassIdentifier: 
   displayName: Barren
+  idNum: 0
   cost: 0
   waterUsedPerTurn: 0
   turnsToGrow: 0
   soilChange: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 8209775890509911002, guid: c4fa87cd4eff4ae4ba4c8d1ad48df5f7, type: 3}

@@ -21,6 +21,7 @@ public class FieldActions : MonoBehaviour
         economyManager = gameManagerObject.GetComponent<EconomyManager>();
         inventory = gameManagerObject.GetComponent<Inventory>();
         crop = GetComponent<FieldProperties>();
+        Instantiate(crop.crop.prefab, this.transform);
     }
 
     private void OnMouseDown()
@@ -30,6 +31,7 @@ public class FieldActions : MonoBehaviour
             return;
         }
 
+        uIManager.DisableMenus();
         uIManager.ActionMenu.SetActive(true);
 
         uIManager.actionButtons[0].onClick.AddListener(PlantField);
@@ -63,7 +65,6 @@ public class FieldActions : MonoBehaviour
 
     public void PlantField()
     {
-        print(gameManager.remainingActions);
         //Enable Menu of Crops
         for (int i = 0; i < uIManager.cropMenuButtons.Length; i++)
         {
@@ -116,6 +117,8 @@ public class FieldActions : MonoBehaviour
 
         gameManager.cash -= crop.crop.cost;
         crop.cropAge = 0;
+        crop.timesPlanted[crop.crop.idNum]++;
+        Instantiate(crop.crop.prefab, this.transform);
         uIManager.UpdateUIText();
     }
 
@@ -146,6 +149,7 @@ public class FieldActions : MonoBehaviour
             uIManager.UpdateUIText();
 
             crop.isCropRipe = false;
+            Instantiate(crop.crop.prefab, this.transform);
         }
     }   
 }

@@ -10,6 +10,7 @@ public class FieldProperties : MonoBehaviour
     public int leaching;
     public int cropAge;
     public bool isCropRipe;
+    public int[] timesPlanted;
 
     private int lackOfwater = 0;
 
@@ -20,6 +21,7 @@ public class FieldProperties : MonoBehaviour
     private void Awake()
     {
         gameManager = gameManagerObject.GetComponent<GameManager>();
+        timesPlanted = new int[11];
     }
 
     public void CalculateFieldHealth()
@@ -41,7 +43,7 @@ public class FieldProperties : MonoBehaviour
         }
 
         
-        fieldHealth -= (gameManager.numPests + lackOfwater);
+        fieldHealth -= (gameManager.numPests[crop.idNum] + lackOfwater);
         print(fieldHealth);
         fieldHealth *= gameManager.numPollinators / 100;
         fieldHealth *= (float)(1.1 / Mathf.Exp(5 / soilQuality));
@@ -85,8 +87,16 @@ public class FieldProperties : MonoBehaviour
         }
     }
 
-
-
+    public void CalculatePests()
+    {
+        for(int i = 0; i < timesPlanted.Length; i++)
+        {
+            if((float)timesPlanted[i] / ((float)gameManager.turnNum + 2) > 3)
+            {
+                gameManager.numPests[i] += 5;
+            }
+        }
+    }
 }
 
 

@@ -8,6 +8,7 @@ public class EconomyManager : MonoBehaviour
 
     public int[] baseCropPrices;
     public float[] currentCropPrices;
+    public int[] marketShocks;
 
     private void Awake()
     {
@@ -25,11 +26,11 @@ public class EconomyManager : MonoBehaviour
         if(shockChance < 5)
         {
             //Market Shock
-            //Needs Messages
+            //Needs Messages takes from loadTexts Array
+            //if(true) then pick event form list
         }
-        //if(true) then pick event form list
 
-        for(int i = 0; i < currentCropPrices.Length; i++)
+        for (int i = 0; i < currentCropPrices.Length; i++)
         {
             float changeFactor = Random.Range(75, 150);;
             currentCropPrices[i] *= 100/changeFactor;            

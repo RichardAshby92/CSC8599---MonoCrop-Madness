@@ -7,7 +7,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public static UIManager inst;
-    public GameManager gameManager;
+    private GameManager gameManager;
     private Inventory inventory;
 
     public GameObject CommunityMenu;
@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
         gameManager = GetComponent<GameManager>();
         inventory = GetComponent<Inventory>();
 
-        DisableMenus();
+        //DisableMenus();
         actionButtons = ActionMenu.GetComponentsInChildren<Button>();
         cropMenuButtons = CropMenu.GetComponentsInChildren<Button>();
 
@@ -54,6 +54,11 @@ public class UIManager : MonoBehaviour
 
         UpdateUIText();
      }
+
+    public void Start()
+    {
+        DisableMenus();
+    }
 
     public void Update()
     {
