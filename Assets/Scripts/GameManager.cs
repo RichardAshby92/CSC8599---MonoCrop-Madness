@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private GameSceneManager gameSceneManager;
 
     public GameObject Lake;
+    public GameObject Information;
     public GameObject[] fields;
     public FieldProperties[] fieldProperties;
 
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
         SimulateEconomy();
         ResetActions();
         uIManager.UpdateUIText();
+        Information.SetActive(true);
         //Update Stats Text
 
         System.GC.Collect();

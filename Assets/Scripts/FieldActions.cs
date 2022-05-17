@@ -55,12 +55,6 @@ public class FieldActions : MonoBehaviour
         {
             uIManager.actionButtons[1].interactable = true;
         }
-
-        /*for (int i =0; i < uIManager.cropMenuButtons.Length; i++)
-        {
-            int tempNum = i + 1; //Needed for C#
-            uIManager.cropMenuButtons[i].onClick.AddListener(delegate { PlantCrop(tempNum); });
-        }*/
     }
 
     public void PlantField()
@@ -118,7 +112,9 @@ public class FieldActions : MonoBehaviour
         gameManager.cash -= crop.crop.cost;
         crop.cropAge = 0;
         crop.timesPlanted[crop.crop.idNum]++;
+        Destroy(transform.GetChild(0).gameObject);
         Instantiate(crop.crop.prefab, this.transform);
+        
         uIManager.UpdateUIText();
     }
 
@@ -149,6 +145,7 @@ public class FieldActions : MonoBehaviour
             uIManager.UpdateUIText();
 
             crop.isCropRipe = false;
+            Destroy(transform.GetChild(0).gameObject);
             Instantiate(crop.crop.prefab, this.transform);
         }
     }   
