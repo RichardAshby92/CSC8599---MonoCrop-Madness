@@ -18,4 +18,4 @@ MonoBehaviour:
   waterUsedPerTurn: 0
   turnsToGrow: 0
   soilChange: 0
-  prefab: {fileID: 8209775890509911002, guid: c4fa87cd4eff4ae4ba4c8d1ad48df5f7, type: 3}
+  prefab: {fileID: 8661405600781301488, guid: 9fd335138cf411e4e964a2b55d7f86b3, type: 3}
