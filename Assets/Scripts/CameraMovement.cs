@@ -33,8 +33,8 @@ public class CameraMovement : MonoBehaviour
         moveZ = transform.position.z;
         moveX += Input.GetAxisRaw("Horizontal") * cameraSpeed;
         moveZ += Input.GetAxisRaw("Vertical") * cameraSpeed;
-        moveX = Mathf.Clamp(moveX, -500, 500);
-        moveZ = Mathf.Clamp(moveZ, -1000, 500);
+        moveX = Mathf.Clamp(moveX, -250, 250);
+        moveZ = Mathf.Clamp(moveZ, -500, 300);
 
         cameraMovement = new Vector3(moveX, cameraZoom, moveZ);
         transform.position = cameraMovement;
