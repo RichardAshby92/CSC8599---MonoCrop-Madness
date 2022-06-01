@@ -21,7 +21,6 @@ public class FieldActions : MonoBehaviour
         economyManager = gameManagerObject.GetComponent<EconomyManager>();
         inventory = gameManagerObject.GetComponent<Inventory>();
         crop = GetComponent<FieldProperties>();
-        Instantiate(crop.crop.prefab, this.transform);
     }
 
     private void OnMouseDown()
@@ -90,7 +89,7 @@ public class FieldActions : MonoBehaviour
                 crop.crop = Resources.Load<CropPreset>("CropPresets/RedVelvetBean");
                 break;
             case 6:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Rice");
+                crop.crop = Resources.Load<CropPreset>("CropPresets/Wheat");
                 break;
             case 7:
                 crop.crop = Resources.Load<CropPreset>("CropPresets/Sorghum");

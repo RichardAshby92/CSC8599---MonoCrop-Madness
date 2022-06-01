@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Sorghum
   idNum: 7
-  cost: 0
-  waterUsedPerTurn: 0
-  turnsToGrow: 0
+  cost: 5
+  waterUsedPerTurn: 1
+  turnsToGrow: 4
   soilChange: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 4606573363414729299, guid: e6fc2407b04f7bc4298f4fe59d220dda, type: 3}

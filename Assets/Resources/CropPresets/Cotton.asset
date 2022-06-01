@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Cotton
   idNum: 3
-  cost: 0
-  waterUsedPerTurn: 0
-  turnsToGrow: 0
-  soilChange: 0
-  prefab: {fileID: 0}
+  cost: 20
+  waterUsedPerTurn: 4
+  turnsToGrow: 4
+  soilChange: -3
+  prefab: {fileID: 6937860555571184994, guid: 4e7211ff5e5531940b74ae862a5760c7, type: 3}

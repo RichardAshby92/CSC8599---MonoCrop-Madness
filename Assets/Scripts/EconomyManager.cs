@@ -18,6 +18,8 @@ public class EconomyManager : MonoBehaviour
         {
             currentCropPrices[i] = baseCropPrices[i];
         }
+
+        //Load Market Shocks from .csv File 
     }
 
     public void SimulateEnconomy()

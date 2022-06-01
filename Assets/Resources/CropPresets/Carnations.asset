@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Carnations
   idNum: 1
-  cost: 0
-  waterUsedPerTurn: 0
-  turnsToGrow: 0
-  soilChange: 0
-  prefab: {fileID: 0}
+  cost: 10
+  waterUsedPerTurn: 4
+  turnsToGrow: 4
+  soilChange: -2
+  prefab: {fileID: 2039142108349684619, guid: 1f1e2dc49719fe34b82c4d2c18becbfb, type: 3}

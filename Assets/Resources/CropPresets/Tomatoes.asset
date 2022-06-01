@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Tomatoes
   idNum: 10
-  cost: 0
-  waterUsedPerTurn: 0
-  turnsToGrow: 0
-  soilChange: 0
-  prefab: {fileID: 0}
+  cost: 20
+  waterUsedPerTurn: 2
+  turnsToGrow: 3
+  soilChange: -3
+  prefab: {fileID: 2252914464754007835, guid: 326b8cfc45bff6046ad536606c64f05c, type: 3}

@@ -17,5 +17,5 @@ MonoBehaviour:
   cost: 0
   waterUsedPerTurn: 0
   turnsToGrow: 0
-  soilChange: 0
+  soilChange: 5
   prefab: {fileID: 8661405600781301488, guid: 9fd335138cf411e4e964a2b55d7f86b3, type: 3}

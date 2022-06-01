@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Cassava
   idNum: 2
-  cost: 0
-  waterUsedPerTurn: 0
-  turnsToGrow: 0
-  soilChange: 0
-  prefab: {fileID: 0}
+  cost: 5
+  waterUsedPerTurn: 2
+  turnsToGrow: 12
+  soilChange: -1
+  prefab: {fileID: 4874025961044867249, guid: 7c9c243512763fd43a720d32aa211be2, type: 3}

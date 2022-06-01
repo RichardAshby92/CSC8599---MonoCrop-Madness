@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Tobacco
   idNum: 9
-  cost: 0
-  waterUsedPerTurn: 0
-  turnsToGrow: 0
-  soilChange: 0
-  prefab: {fileID: 0}
+  cost: 20
+  waterUsedPerTurn: 3
+  turnsToGrow: 4
+  soilChange: -4
+  prefab: {fileID: 3176091892977102661, guid: 11125f17fee454e4898e036690548b18, type: 3}

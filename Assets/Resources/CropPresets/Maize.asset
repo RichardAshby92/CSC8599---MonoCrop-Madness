@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Maize
   idNum: 4
-  cost: 0
-  waterUsedPerTurn: 0
-  turnsToGrow: 0
-  soilChange: 0
-  prefab: {fileID: 4470779871426026661, guid: 34fef62e4738e5d42ad0cfa70f9191dd, type: 3}
+  cost: 10
+  waterUsedPerTurn: 2
+  turnsToGrow: 4
+  soilChange: -2
+  prefab: {fileID: 1493941637610972278, guid: 39ea6ee9e6ad3294fbebc0828c11f048, type: 3}
