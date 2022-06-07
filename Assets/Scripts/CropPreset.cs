@@ -13,6 +13,8 @@ public class CropPreset : ScriptableObject
     public int waterUsedPerTurn;
     public int turnsToGrow;
     public int soilChange;
+    public bool foodCrop;
 
-    public GameObject prefab;
+    public GameObject ripePrefab;
+    public GameObject unripePrefab;
 }

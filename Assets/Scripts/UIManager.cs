@@ -120,6 +120,5 @@ public class UIManager : MonoBehaviour
         fertiliserValueText.text = "Fertiliser Left: " + inventory.fertilizer.ToString();
         pesticideValueText.text = "Pesticides Left: " + inventory.pesticide.ToString();
         actionRemainingValueText.text = "Actions Remaining: " + gameManager.remainingActions.ToString();
-}
-
+    }
 }

@@ -10,6 +10,9 @@ public class Market : MonoBehaviour
     private UIManager uIManager;
     private Inventory inventory;
 
+    public int fertiliserPrice;
+    public int pesticidePrice;
+
     private void Awake()
     {
         gameManager = gameManagerObject.GetComponent<GameManager>();

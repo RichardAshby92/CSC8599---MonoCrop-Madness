@@ -112,7 +112,7 @@ public class FieldActions : MonoBehaviour
         crop.cropAge = 0;
         crop.timesPlanted[crop.crop.idNum]++;
         Destroy(transform.GetChild(0).gameObject);
-        Instantiate(crop.crop.prefab, this.transform);
+        Instantiate(crop.crop.ripePrefab, this.transform);
         
         uIManager.UpdateUIText();
     }
@@ -145,7 +145,7 @@ public class FieldActions : MonoBehaviour
 
             crop.isCropRipe = false;
             Destroy(transform.GetChild(0).gameObject);
-            Instantiate(crop.crop.prefab, this.transform);
+            Instantiate(crop.crop.ripePrefab, this.transform);
         }
     }   
 }

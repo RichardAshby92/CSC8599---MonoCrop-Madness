@@ -2025,6 +2025,7 @@ GameObject:
   - component: {fileID: 493119317}
   - component: {fileID: 493119318}
   - component: {fileID: 493119319}
+  - component: {fileID: 493119320}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2103,8 +2104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6834cf052d8cbc64db2ef67ce9527146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fertilizer: 0
-  pesticide: 0
+  fertilizer: 50
+  pesticide: 100
   isThereFertilizer: 0
   tools: 
 --- !u!114 &493119317
@@ -2144,8 +2145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97012e5f7e316cd4d89306721691a7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCropPrices: 080000000200000006000000040000000200000004000000040000000a0000000800000006000000
+  baseCropPrices: 00000000080000000200000006000000040000000200000004000000040000000a0000000800000006000000
   currentCropPrices:
+  - 0
   - 0
   - 0
   - 0
@@ -2170,6 +2172,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textFile: {fileID: 4900000, guid: c7538e0dc2199694c84d55a01d897cbf, type: 3}
+--- !u!114 &493119320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493119310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 033cb822d47ba6d4bb239f7ab486197b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  communityHealth: 50
 --- !u!1 &499771555
 GameObject:
   m_ObjectHideFlags: 0
@@ -8733,6 +8748,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManagerObject: {fileID: 493119310}
+  fertiliserPrice: 0
+  pesticidePrice: 0
 --- !u!1 &2129670311
 GameObject:
   m_ObjectHideFlags: 0

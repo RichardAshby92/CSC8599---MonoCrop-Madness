@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     private EconomyManager economyManager;
     private GameSceneManager gameSceneManager;
+    private CommunityManager communityManager;
 
     public GameObject Lake;
     public GameObject Information;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
         economyManager = GetComponent<EconomyManager>();
         gameSceneManager = GetComponent<GameSceneManager>();
         inventory = GetComponent<Inventory>();
+        communityManager = GetComponent<CommunityManager>();
 
         numPests = new int[11];
 
@@ -72,6 +74,7 @@ public class GameManager : MonoBehaviour
         ResetActions();
         uIManager.UpdateUIText();
         Information.SetActive(true);
+        communityManager.CheckHealth();
         //Update Stats Text
 
         System.GC.Collect();
