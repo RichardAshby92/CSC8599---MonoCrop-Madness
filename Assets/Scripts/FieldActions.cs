@@ -54,6 +54,8 @@ public class FieldActions : MonoBehaviour
         {
             uIManager.actionButtons[1].interactable = true;
         }
+
+        //Check Planting Field Actions
     }
 
     public void PlantField()
@@ -69,7 +71,6 @@ public class FieldActions : MonoBehaviour
 
     public void PlantCrop(int x)
     {
-        gameManager.ActionRemaining();
 
         switch (x)
         {
@@ -108,44 +109,72 @@ public class FieldActions : MonoBehaviour
                 break;
         }
 
-        gameManager.cash -= crop.crop.cost;
-        crop.cropAge = 0;
-        crop.timesPlanted[crop.crop.idNum]++;
-        Destroy(transform.GetChild(0).gameObject);
-        Instantiate(crop.crop.ripePrefab, this.transform);
-        
-        uIManager.UpdateUIText();
+        int actionsNeeded = 2;
+
+        if (inventory.tools[crop.crop.idNum])
+        {
+            actionsNeeded = 1;
+        }
+
+        if(gameManager.ActionRemaining(actionsNeeded))
+        {
+            gameManager.cash -= crop.crop.cost;
+            crop.cropAge = 0;
+            crop.timesPlanted[crop.crop.idNum]++;
+            Destroy(transform.GetChild(0).gameObject);
+            Instantiate(crop.crop.unripePrefab, this.transform);
+            uIManager.UpdateUIText();
+        }
+        else
+        {
+            //Code if not enough actions remain
+            print("Not Enough Actions");
+        }
     }
 
     public void AddFertiliser()
     {
-        gameManager.ActionRemaining(); //Should it take an action?
-        inventory.SubtractFromInventory(0);
-        crop.soilQuality += 50;
-
-        if (!inventory.isThereFertilizer)
+        if (gameManager.ActionRemaining(1))  //Should it take an action?
         {
-            uIManager.actionButtons[1].interactable = false;
+            inventory.SubtractFromInventory(0);
+            crop.soilQuality += 50;
+
+            if (!inventory.isThereFertilizer)
+            {
+                uIManager.actionButtons[1].interactable = false;
+            }
+            //RainForest Damage Function
+            uIManager.UpdateUIText();
         }
-        //RainForest Damage Function
-        uIManager.UpdateUIText();
+        else
+        {
+            //Code if no actions remain
+            print("Not Enough Actions");
+        }
     }
 
     public void HarvestField()
     {
         if (GetComponent<FieldProperties>().isCropRipe) //Probably not needed, checked twice
         {
-            gameManager.ActionRemaining(); //Add Tool Check for action amount
-            float AmountHarvested = crop.size * crop.fieldHealth;
-            AmountHarvested *= economyManager.currentCropPrices[crop.crop.idNum];
-            gameManager.cash += (int) AmountHarvested;
+            if(gameManager.ActionRemaining(1))
+            {
+                float AmountHarvested = crop.size * crop.fieldHealth;
+                AmountHarvested *= economyManager.currentCropPrices[crop.crop.idNum];
+                gameManager.cash += (int)AmountHarvested;
 
-            crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
-            uIManager.UpdateUIText();
+                crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
+                uIManager.UpdateUIText();
 
-            crop.isCropRipe = false;
-            Destroy(transform.GetChild(0).gameObject);
-            Instantiate(crop.crop.ripePrefab, this.transform);
+                crop.isCropRipe = false;
+                Destroy(transform.GetChild(0).gameObject);
+                Instantiate(crop.crop.unripePrefab, this.transform);
+            }
+            else
+            {
+                //Code if no actions remain
+                print("Not Enough Actions");
+            }
         }
     }   
 }

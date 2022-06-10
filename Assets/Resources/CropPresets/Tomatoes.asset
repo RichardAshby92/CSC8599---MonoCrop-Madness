@@ -20,4 +20,4 @@ MonoBehaviour:
   soilChange: -3
   foodCrop: 1
   ripePrefab: {fileID: 2252914464754007835, guid: 326b8cfc45bff6046ad536606c64f05c, type: 3}
-  unripePrefab: {fileID: 0}
+  unripePrefab: {fileID: 5644002945254127645, guid: f26e9e7d0ade454458612b5d7bc8051a, type: 3}

@@ -18,6 +18,14 @@ public class Market : MonoBehaviour
         gameManager = gameManagerObject.GetComponent<GameManager>();
         uIManager = gameManagerObject.GetComponent<UIManager>();
         inventory = gameManagerObject.GetComponent<Inventory>();
+
+        for (int i = 0; i < uIManager.toolsButtons.Length; i++)
+        {
+            int tempNum = i; //Needed for C#
+            uIManager.toolsButtons[i].onClick.AddListener(delegate { BuyTools(tempNum); });
+        }
+
+        uIManager.DisableToolButton(7);
     }
 
     public void AccessMenu()
@@ -26,9 +34,20 @@ public class Market : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public void BuyTools()
+    public void BuyToolsMenu()
     {
         //enable tools list
+        uIManager.toolsMenu.SetActive(true);
+
+        //Does it disable
+    }
+
+    public void BuyTools(int idnum)
+    {
+        inventory.tools[idnum] = true;
+        uIManager.DisableToolButton(idnum);
+        gameManager.cash -= 200;
+        uIManager.UpdateUIText();
     }
 
     public void BuyFertiliser()

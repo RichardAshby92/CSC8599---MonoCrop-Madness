@@ -48,19 +48,22 @@ public class GameManager : MonoBehaviour
 
     public void EndTurn()
     {
+        //Coroutine while waiting?
+        //Disable User during Turn Ending?
+
         turnNum++;
         if(turnNum > 120)
         {
             gameSceneManager.LoadEndGame();
+            return;
         }
-        //Coroutine while waiting?
-        //Disable User during Turn Ending
 
         //Loan Repayment
         cash -= 50;
         if(cash <= 0)
         {
             gameSceneManager.LoadEndGame();
+            return;
         }
 
         CalculateSeason();
@@ -170,13 +173,30 @@ public class GameManager : MonoBehaviour
         uIManager.ReenableActionButtons();
     }
 
-    public void ActionRemaining()
+    public bool ActionRemaining(int actionsTaken)
     {
-        remainingActions--;
+        if((remainingActions - actionsTaken) < 0)
+        {
+            return false;
+        }
+
+        remainingActions = remainingActions - actionsTaken;
 
         if (remainingActions <= 0)
         {
             uIManager.DisableActionButtons();
         }
+
+        return true;
+    }
+
+    public void SubstractCash(int amount)
+    {
+        cash =- amount;
+    }
+
+    public void AddCash(int amount)
+    {
+        cash =+ amount;
     }
 }

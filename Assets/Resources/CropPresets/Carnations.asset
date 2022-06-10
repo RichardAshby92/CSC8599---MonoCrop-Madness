@@ -18,5 +18,6 @@ MonoBehaviour:
   waterUsedPerTurn: 4
   turnsToGrow: 4
   soilChange: -2
+  foodCrop: 0
   ripePrefab: {fileID: 2039142108349684619, guid: 1f1e2dc49719fe34b82c4d2c18becbfb, type: 3}
-  unripePrefab: {fileID: 0}
+  unripePrefab: {fileID: 5644002945254127645, guid: f26e9e7d0ade454458612b5d7bc8051a, type: 3}

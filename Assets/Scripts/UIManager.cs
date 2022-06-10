@@ -15,9 +15,11 @@ public class UIManager : MonoBehaviour
     public GameObject NewspaperMenu;
     public GameObject ActionMenu;
     public GameObject CropMenu;
+    public GameObject toolsMenu;
 
     public Button[] actionButtons;
     public Button[] cropMenuButtons;
+    public Button[] toolsButtons;
 
     public GameObject cashUIObject;
     public GameObject turnValueUIObject;
@@ -44,6 +46,7 @@ public class UIManager : MonoBehaviour
         //DisableMenus();
         actionButtons = ActionMenu.GetComponentsInChildren<Button>();
         cropMenuButtons = CropMenu.GetComponentsInChildren<Button>();
+        toolsButtons = toolsMenu.GetComponentsInChildren<Button>();
 
         cashValueText = cashUIObject.GetComponent<TextMeshProUGUI>();
         turnValueText = turnValueUIObject.GetComponent<TextMeshProUGUI>();
@@ -84,6 +87,7 @@ public class UIManager : MonoBehaviour
         NewspaperMenu.SetActive(false);
         ActionMenu.SetActive(false);
         CropMenu.SetActive(false);
+        toolsMenu.SetActive(false);
     }
 
     public void DisableActionButtons()
@@ -120,5 +124,10 @@ public class UIManager : MonoBehaviour
         fertiliserValueText.text = "Fertiliser Left: " + inventory.fertilizer.ToString();
         pesticideValueText.text = "Pesticides Left: " + inventory.pesticide.ToString();
         actionRemainingValueText.text = "Actions Remaining: " + gameManager.remainingActions.ToString();
+    }
+
+    public void DisableToolButton(int i)
+    {
+        toolsButtons[i].interactable = false;
     }
 }

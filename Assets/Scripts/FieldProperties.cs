@@ -56,7 +56,7 @@ public class FieldProperties : MonoBehaviour
             //Change Field Type to Barren
             crop = Resources.Load<CropPreset>("CropPresets/Barren");
             Destroy(transform.GetChild(0).gameObject);
-            Instantiate(crop.ripePrefab, this.transform);
+            Instantiate(crop.unripePrefab, this.transform);
         }
     }
 
@@ -85,6 +85,8 @@ public class FieldProperties : MonoBehaviour
             if(cropAge == crop.turnsToGrow)
             {
                 isCropRipe = true;
+                Destroy(transform.GetChild(0).gameObject);
+                Instantiate(crop.ripePrefab, this.transform);
             }
         }
     }
