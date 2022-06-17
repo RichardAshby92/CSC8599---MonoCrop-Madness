@@ -120,10 +120,18 @@ public class UIManager : MonoBehaviour
     {
         cashValueText.text = "Cash: $" + gameManager.cash.ToString();
         turnValueText.text = "Turn Number: " + gameManager.turnNum.ToString();
-        seasonValueText.text = "Season: ";
         fertiliserValueText.text = "Fertiliser Left: " + inventory.fertilizer.ToString();
         pesticideValueText.text = "Pesticides Left: " + inventory.pesticide.ToString();
         actionRemainingValueText.text = "Actions Remaining: " + gameManager.remainingActions.ToString();
+
+        if(gameManager.DrySeason)
+        {
+            seasonValueText.text = "Season: Dry";
+        }
+        else
+        {
+            seasonValueText.text = "Season: Rainy";
+        }
     }
 
     public void DisableToolButton(int i)

@@ -20,7 +20,6 @@ public class ScoreDisplay : MonoBehaviour
 
     private void Start()
     {
-        print(score);
         scoreText.text = "Final Score: " + score.ToString();
     }
 }

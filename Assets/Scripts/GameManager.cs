@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     public int waterLevel; //1 - 100 Percentage
     public int numPollinators; //1 - 100 Percentage
     public int[] numPests; //1 - 100 Percentage
+
+    [SerializeField]
+    private int loanRepayment;
         
     private void Awake()
     {
@@ -37,13 +40,10 @@ public class GameManager : MonoBehaviour
         inventory = GetComponent<Inventory>();
         communityManager = GetComponent<CommunityManager>();
 
-        numPests = new int[11];
-
         for(int i = 0; i < fields.Length; i++)
         {
             fieldProperties[i] = fields[i].GetComponent<FieldProperties>();
         }
-
     }
 
     public void EndTurn()
@@ -59,7 +59,8 @@ public class GameManager : MonoBehaviour
         }
 
         //Loan Repayment
-        cash -= 50;
+        SubstractCash(loanRepayment);
+        //Move to getter
         if(cash <= 0)
         {
             gameSceneManager.LoadEndGame();
@@ -192,7 +193,15 @@ public class GameManager : MonoBehaviour
 
     public void SubstractCash(int amount)
     {
-        cash =- amount;
+        int test = 4000;
+        test =- amount;
+        print("test: " + test);
+
+        int test2 = cash - amount;
+        print("test2: " + test2);
+
+        cash = cash - amount;
+        //Bankrupt Code Here
     }
 
     public void AddCash(int amount)

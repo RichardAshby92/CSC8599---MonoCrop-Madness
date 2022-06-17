@@ -18,12 +18,11 @@ public class GameSceneManager : MonoBehaviour
         inst = this;
         gameManager = GetComponent<GameManager>();
         communityManager = GetComponent<CommunityManager>();
-        
-
     }
 
     public void StartGame()
     {
+        finalScore = 0;
         SceneManager.LoadScene("Main Scene");
     }
 
@@ -31,12 +30,14 @@ public class GameSceneManager : MonoBehaviour
     {
         CalculateScore();
         SceneManager.LoadScene("EndGame Scene");
-        print(finalScore);
     }
 
     private void CalculateScore()
     {
-        finalScore = gameManager.turnNum + gameManager.cash + communityManager.communityHealth;
+        int turnNumScore = Mathf.Clamp(gameManager.turnNum, 0, 100);
+        int cashNumScore = gameManager.cash; //Add Scaling Function;
+
+        finalScore = turnNumScore + cashNumScore + communityManager.communityHealth;
         //Community Health + Money (Scaled) + turnNum (Clamped 100) 
     }
 }

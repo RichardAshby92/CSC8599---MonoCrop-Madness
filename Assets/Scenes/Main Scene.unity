@@ -2876,7 +2876,8 @@ MonoBehaviour:
   cash: 4000
   waterLevel: 100
   numPollinators: 100
-  numPests: 
+  numPests: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  loanRepayment: 0
 --- !u!114 &493119315
 MonoBehaviour:
   m_ObjectHideFlags: 0
