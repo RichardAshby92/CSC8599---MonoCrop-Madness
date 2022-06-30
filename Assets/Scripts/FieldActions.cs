@@ -123,6 +123,7 @@ public class FieldActions : MonoBehaviour
             crop.timesPlanted[crop.crop.idNum]++;
             Destroy(transform.GetChild(0).gameObject);
             Instantiate(crop.crop.unripePrefab, this.transform);
+            crop.CalculateMaterial();
             uIManager.UpdateUIText();
         }
         else
@@ -138,6 +139,7 @@ public class FieldActions : MonoBehaviour
         {
             inventory.SubtractFromInventory(0);
             crop.soilQuality += 50;
+            crop.CalculateSoilQuality();
 
             if (!inventory.isThereFertilizer)
             {
@@ -161,7 +163,7 @@ public class FieldActions : MonoBehaviour
             {
                 float AmountHarvested = crop.size * crop.fieldHealth;
                 AmountHarvested *= economyManager.currentCropPrices[crop.crop.idNum];
-                gameManager.cash += (int)AmountHarvested;
+                gameManager.AddCash((int)AmountHarvested);
 
                 crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
                 uIManager.UpdateUIText();
@@ -169,6 +171,7 @@ public class FieldActions : MonoBehaviour
                 crop.isCropRipe = false;
                 Destroy(transform.GetChild(0).gameObject);
                 Instantiate(crop.crop.unripePrefab, this.transform);
+                crop.CalculateMaterial();
             }
             else
             {

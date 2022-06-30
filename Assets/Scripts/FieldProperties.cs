@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class FieldProperties : MonoBehaviour
 {
+    [SerializeField]
     public int soilQuality; //1 - 100 Percentage
-    public int size;
+    [SerializeField]
+    public int size { get; set; }
     public float fieldHealth;
     public int leaching;
     public int cropAge;
@@ -16,11 +18,20 @@ public class FieldProperties : MonoBehaviour
 
     public GameObject gameManagerObject;
     private GameManager gameManager;
+
+    [SerializeField]
+    private Material goodSoilMaterial;
+    [SerializeField]
+    private Material averageSoilMaterial;
+    [SerializeField]
+    private Material badSoilMaterial;
+
     public CropPreset crop;
 
     private void Awake()
     {
         gameManager = gameManagerObject.GetComponent<GameManager>();
+
         timesPlanted = new int[11];
     }
 
@@ -41,7 +52,6 @@ public class FieldProperties : MonoBehaviour
         {
             lackOfwater = 0;
         }
-
         
         fieldHealth -= (gameManager.numPests[crop.idNum] + lackOfwater);
         print(fieldHealth);
@@ -57,6 +67,7 @@ public class FieldProperties : MonoBehaviour
             crop = Resources.Load<CropPreset>("CropPresets/Barren");
             Destroy(transform.GetChild(0).gameObject);
             Instantiate(crop.unripePrefab, this.transform);
+            CalculateMaterial();
         }
     }
 
@@ -70,7 +81,7 @@ public class FieldProperties : MonoBehaviour
 
         soilQuality += (naturalRecovery + crop.soilChange - leaching); //Scale leaching with rain
         soilQuality = Mathf.Clamp(soilQuality, 1, 1000);
-        //Change Soil Texture
+        CalculateMaterial();
     }
 
     public void GrowCrops()
@@ -99,6 +110,22 @@ public class FieldProperties : MonoBehaviour
             {
                 gameManager.numPests[i] += 5;
             }
+        }
+    }
+
+    public void CalculateMaterial()
+    {
+        if (soilQuality >= 200)
+        {
+            GetComponentInChildren<MeshRenderer>().material = goodSoilMaterial;
+        }
+        else if (soilQuality < 200 && soilQuality > 100)
+        {
+            GetComponentInChildren<MeshRenderer>().material = averageSoilMaterial;
+        }
+        else
+        {
+            GetComponentInChildren<MeshRenderer>().material = badSoilMaterial;
         }
     }
 }

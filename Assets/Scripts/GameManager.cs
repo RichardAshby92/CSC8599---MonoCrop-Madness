@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
         //Loan Repayment
         SubstractCash(loanRepayment);
-        //Move to getter
+
         if(cash <= 0)
         {
             gameSceneManager.LoadEndGame();
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     {
         int season = turnNum % 12;
 
-        if(season < 4 || season > 10) //Check Realworld Data
+        if(season < 4 || season > 10)
         {
             //disable rain effect
             DrySeason = true;
@@ -193,19 +193,12 @@ public class GameManager : MonoBehaviour
 
     public void SubstractCash(int amount)
     {
-        int test = 4000;
-        test =- amount;
-        print("test: " + test);
-
-        int test2 = cash - amount;
-        print("test2: " + test2);
-
-        cash = cash - amount;
+        cash -= amount;
         //Bankrupt Code Here
     }
 
     public void AddCash(int amount)
     {
-        cash =+ amount;
+        cash += amount;
     }
 }

@@ -46,7 +46,7 @@ public class Market : MonoBehaviour
     {
         inventory.tools[idnum] = true;
         uIManager.DisableToolButton(idnum);
-        gameManager.cash -= 200;
+        gameManager.SubstractCash(200);
         uIManager.UpdateUIText();
     }
 

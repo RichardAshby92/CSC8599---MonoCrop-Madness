@@ -8,12 +8,12 @@ public class CommunityManager : MonoBehaviour
 
     public int communityHealth;
 
+    private int TopLimit { get; set; }
+
     // Start is called before the first frame update
     void Awake()
     {
         inst = this;
-
-
     }
 
     public void CheckHealth()
@@ -25,7 +25,7 @@ public class CommunityManager : MonoBehaviour
         //Houses
 
         communityHealth++;
-        communityHealth = Mathf.Clamp(communityHealth, 0, 100);
+        communityHealth = Mathf.Clamp(communityHealth, 0, TopLimit);
     }
 
 }
