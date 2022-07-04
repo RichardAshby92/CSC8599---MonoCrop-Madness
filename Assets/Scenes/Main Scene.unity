@@ -2458,7 +2458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2785552c348f4e8d2d4c979795a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewField: {fileID: 7824965466239892557, guid: a5ef1320693fda3498f4f60f0b947743, type: 3}
+  NewFieldPrefab: {fileID: 7824965466239892557, guid: a5ef1320693fda3498f4f60f0b947743, type: 3}
   GameManagerObject: {fileID: 493119310}
 --- !u!4 &405639306
 Transform:
@@ -2918,19 +2918,14 @@ MonoBehaviour:
   - {fileID: 2036804493}
   - {fileID: 1684496461}
   - {fileID: 69777104}
-  fieldProperties:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  turnNum: 1
-  remainingActions: 4
-  DrySeason: 0
-  rain: 5
-  cash: 4000
-  waterLevel: 100
-  numPollinators: 100
-  numPests: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  <turnNum>k__BackingField: 1
+  <remainingActions>k__BackingField: 4
+  <DrySeason>k__BackingField: 0
+  <rain>k__BackingField: 0
+  <cash>k__BackingField: 1000
+  <waterLevel>k__BackingField: 100
+  <numPollinators>k__BackingField: 100
+  <numPests>k__BackingField: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   loanRepayment: 100
 --- !u!114 &493119315
 MonoBehaviour:
@@ -5658,7 +5653,7 @@ GameObject:
   - component: {fileID: 986916927}
   - component: {fileID: 986916929}
   m_Layer: 5
-  m_Name: Research
+  m_Name: Information
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8762,7 +8757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2785552c348f4e8d2d4c979795a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewField: {fileID: 7824965466239892557, guid: a5ef1320693fda3498f4f60f0b947743, type: 3}
+  NewFieldPrefab: {fileID: 7824965466239892557, guid: a5ef1320693fda3498f4f60f0b947743, type: 3}
   GameManagerObject: {fileID: 493119310}
 --- !u!23 &1649254878
 MeshRenderer:
@@ -11935,6 +11930,7 @@ MonoBehaviour:
   gameManagerObject: {fileID: 493119310}
   fertiliserPrice: 0
   pesticidePrice: 0
+  toolCost: 0
 --- !u!1 &2129670311
 GameObject:
   m_ObjectHideFlags: 0

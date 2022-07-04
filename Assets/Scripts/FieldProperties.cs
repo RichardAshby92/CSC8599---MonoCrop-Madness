@@ -30,9 +30,19 @@ public class FieldProperties : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = gameManagerObject.GetComponent<GameManager>();
-
+        if(gameManagerObject)
+        {
+            gameManager = gameManagerObject.GetComponent<GameManager>();
+        }
         timesPlanted = new int[11];
+    }
+
+    public void Intialise()
+    {
+        if (gameManagerObject)
+        {
+            gameManager = gameManagerObject.GetComponent<GameManager>();
+        }
     }
 
     public void CalculateFieldHealth()
@@ -97,6 +107,7 @@ public class FieldProperties : MonoBehaviour
             {
                 isCropRipe = true;
                 Destroy(transform.GetChild(0).gameObject);
+                //Material Check Needed
                 Instantiate(crop.ripePrefab, this.transform);
             }
         }

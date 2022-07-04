@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class SlashAndBurn : MonoBehaviour
 {
     [SerializeField]
-    private GameObject NewField;
+    private GameObject NewFieldPrefab;
     [SerializeField]
     private GameObject GameManagerObject;
 
@@ -19,8 +19,6 @@ public class SlashAndBurn : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        fieldProperties = NewField.GetComponent<FieldProperties>();
-        fieldActions = NewField.GetComponent<FieldActions>();
         CommunityManager = GameManagerObject.GetComponent<CommunityManager>();
         uIManager = GameManagerObject.GetComponent<UIManager>();
         gameManager = GameManagerObject.GetComponent<GameManager>();
@@ -44,16 +42,17 @@ public class SlashAndBurn : MonoBehaviour
         CommunityManager.TopLimit -= 20;
 
         //Burn Effect
-        //Takes 4 actions
-        fieldProperties.gameManagerObject = GameManagerObject;
-        fieldActions.gameManagerObject = GameManagerObject;
-        Transform test = gameObject.transform;
+        gameManager.remainingActions -= 4;
 
-        Instantiate(NewField, transform.position, transform.rotation);
-        //gameManager.fields[].
-        
+        NewFieldPrefab = Instantiate(NewFieldPrefab, transform.position, transform.rotation);
 
-        //Add into field Loops
+        NewFieldPrefab.GetComponent<FieldProperties>().gameManagerObject = GameManagerObject;
+        NewFieldPrefab.GetComponent<FieldActions>().gameManagerObject = GameManagerObject;
+
+        NewFieldPrefab.GetComponent<FieldProperties>().Intialise();
+        NewFieldPrefab.GetComponent<FieldActions>().Intialise();
+
+        gameManager.AddField(NewFieldPrefab);
 
         Destroy(gameObject);
     }

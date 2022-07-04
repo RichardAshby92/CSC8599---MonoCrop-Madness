@@ -8,32 +8,37 @@ public class GameManager : MonoBehaviour
     public static GameManager inst;
     private UIManager uIManager;
     private Inventory inventory;
-
     private EconomyManager economyManager;
     private GameSceneManager gameSceneManager;
     private CommunityManager communityManager;
+    private List<FieldProperties> fieldProperties;
 
-    public GameObject Lake;
-    public GameObject Information;
-    public GameObject[] fields;
-    public FieldProperties[] fieldProperties;
-    public List<FieldProperties> fieldPropertiesTest;
+    [SerializeField]
+    private GameObject Lake;
+    [SerializeField]
+    private GameObject Information; //Wrong PLace
+    [SerializeField]
+    private GameObject[] fields;
 
-    public int turnNum;
-    public int remainingActions;
-
-    public bool DrySeason;
-    public int rain;
-    [field: SerializeField]
+    [field:SerializeField]
+    public int turnNum { set;  get; }
+    [field:SerializeField]
+    public int remainingActions { set; get; }
+    [field:SerializeField]
+    public bool DrySeason { set; get; }
+    [field:SerializeField]
+    public int rain { set;  get; }
+    [field:SerializeField]
     public int cash { get; set; }
-    public int waterLevel; //1 - 100 Percentage
-    public int numPollinators; //1 - 100 Percentage
-    public int[] numPests; //1 - 100 Percentage
+    [field:SerializeField]
+    public int waterLevel { get; set; } //1 - 100 Percentage
+    [field:SerializeField]
+    public int numPollinators { get; set; } //1 - 100 Percentage
+    [field:SerializeField]
+    public int[] numPests { get; set; } //1 - 100 Percentage
 
     [SerializeField]
     private int loanRepayment;
-
-    public List<string> myList = new List<string>();
 
     private void Awake()
     {
@@ -44,12 +49,11 @@ public class GameManager : MonoBehaviour
         inventory = GetComponent<Inventory>();
         communityManager = GetComponent<CommunityManager>();
 
-        fieldPropertiesTest = new List<FieldProperties>();
+        fieldProperties = new List<FieldProperties>();
 
         for (int i = 0; i < fields.Length; i++)
         {
-            fieldProperties[i] = fields[i].GetComponent<FieldProperties>();
-            fieldPropertiesTest.Add(fields[i].GetComponent<FieldProperties>());
+            fieldProperties.Add(fields[i].GetComponent<FieldProperties>());
         }
     }
        
@@ -66,8 +70,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        //Loan Repayment
-        SubstractCash(loanRepayment);
+        cash -= loanRepayment;
 
         if(cash <= 0)
         {
@@ -199,20 +202,9 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    public void SubstractCash(int amount)
-    {
-        cash -= amount;
-        //Bankrupt Code Here
-    }
-
-    public void AddCash(int amount)
-    {
-        cash += amount;
-    }
-
     public void AddField(GameObject newField)
     {
-        //fieldProperties[i] = newField.GetComponent<FieldProperties>();
+        fieldProperties.Add(newField.GetComponent<FieldProperties>());
     }
 
 }

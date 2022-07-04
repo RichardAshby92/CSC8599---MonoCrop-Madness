@@ -22,13 +22,19 @@ public class UIManager : MonoBehaviour
     public Button[] cropMenuButtons;
     public Button[] toolsButtons;
     public Button newFieldButton;
-
-    public GameObject cashUIObject;
-    public GameObject turnValueUIObject;
-    public GameObject seasonValueUIObject;
-    public GameObject fertilserUIObject;
-    public GameObject pesticideUIObject;
-    public GameObject actionRemainingUIObject;
+    
+    [SerializeField]
+    private GameObject cashUIObject;
+    [SerializeField]
+    private GameObject turnValueUIObject;
+    [SerializeField]
+    private GameObject seasonValueUIObject;
+    [SerializeField]
+    private GameObject fertilserUIObject;
+    [SerializeField]
+    private GameObject pesticideUIObject;
+    [SerializeField]
+    private GameObject actionRemainingUIObject;
 
     private TextMeshProUGUI cashValueText;
     private TextMeshProUGUI turnValueText;

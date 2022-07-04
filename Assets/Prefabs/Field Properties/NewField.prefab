@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barren_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 9069949409661794086, guid: 9fd335138cf411e4e964a2b55d7f86b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fd335138cf411e4e964a2b55d7f86b3, type: 3}
 --- !u!4 &459675540300115252 stripped

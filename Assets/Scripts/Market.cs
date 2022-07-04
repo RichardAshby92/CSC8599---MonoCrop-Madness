@@ -13,6 +13,9 @@ public class Market : MonoBehaviour
     public int fertiliserPrice;
     public int pesticidePrice;
 
+    [SerializeField]
+    private int toolCost;
+
     private void Awake()
     {
         gameManager = gameManagerObject.GetComponent<GameManager>();
@@ -46,7 +49,7 @@ public class Market : MonoBehaviour
     {
         inventory.tools[idnum] = true;
         uIManager.DisableToolButton(idnum);
-        gameManager.SubstractCash(200);
+        gameManager.cash -= toolCost;
         uIManager.UpdateUIText();
     }
 

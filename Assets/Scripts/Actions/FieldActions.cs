@@ -16,11 +16,26 @@ public class FieldActions : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = gameManagerObject.GetComponent<GameManager>();
-        uIManager = gameManagerObject.GetComponent<UIManager>();
-        economyManager = gameManagerObject.GetComponent<EconomyManager>();
-        inventory = gameManagerObject.GetComponent<Inventory>();
-        crop = GetComponent<FieldProperties>();
+        if(gameManagerObject)
+        {
+            gameManager = gameManagerObject.GetComponent<GameManager>();
+            uIManager = gameManagerObject.GetComponent<UIManager>();
+            economyManager = gameManagerObject.GetComponent<EconomyManager>();
+            inventory = gameManagerObject.GetComponent<Inventory>();
+            crop = GetComponent<FieldProperties>();
+        }
+    }
+
+    public void Intialise()
+    {
+        if (gameManagerObject)
+        {
+            gameManager = gameManagerObject.GetComponent<GameManager>();
+            uIManager = gameManagerObject.GetComponent<UIManager>();
+            economyManager = gameManagerObject.GetComponent<EconomyManager>();
+            inventory = gameManagerObject.GetComponent<Inventory>();
+            crop = GetComponent<FieldProperties>();
+        }
     }
 
     private void OnMouseDown()
@@ -163,7 +178,7 @@ public class FieldActions : MonoBehaviour
             {
                 float AmountHarvested = crop.size * crop.fieldHealth;
                 AmountHarvested *= economyManager.currentCropPrices[crop.crop.idNum];
-                gameManager.AddCash((int)AmountHarvested);
+                gameManager.cash -= ((int)AmountHarvested);
 
                 crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
                 uIManager.UpdateUIText();
