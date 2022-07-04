@@ -6,9 +6,10 @@ public class CommunityManager : MonoBehaviour
 {
     public static CommunityManager inst;
 
-    public int communityHealth;
-
-    private int TopLimit { get; set; }
+    [field: SerializeField]
+    public int communityHealth { get; set; }
+    [field: SerializeField]
+    public int TopLimit { get; set; }
 
     // Start is called before the first frame update
     void Awake()

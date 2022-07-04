@@ -17,20 +17,24 @@ public class GameManager : MonoBehaviour
     public GameObject Information;
     public GameObject[] fields;
     public FieldProperties[] fieldProperties;
+    public List<FieldProperties> fieldPropertiesTest;
 
     public int turnNum;
     public int remainingActions;
 
     public bool DrySeason;
     public int rain;
-    public int cash; //Amount
+    [field: SerializeField]
+    public int cash { get; set; }
     public int waterLevel; //1 - 100 Percentage
     public int numPollinators; //1 - 100 Percentage
     public int[] numPests; //1 - 100 Percentage
 
     [SerializeField]
     private int loanRepayment;
-        
+
+    public List<string> myList = new List<string>();
+
     private void Awake()
     {
         inst = this;
@@ -40,11 +44,15 @@ public class GameManager : MonoBehaviour
         inventory = GetComponent<Inventory>();
         communityManager = GetComponent<CommunityManager>();
 
-        for(int i = 0; i < fields.Length; i++)
+        fieldPropertiesTest = new List<FieldProperties>();
+
+        for (int i = 0; i < fields.Length; i++)
         {
             fieldProperties[i] = fields[i].GetComponent<FieldProperties>();
+            fieldPropertiesTest.Add(fields[i].GetComponent<FieldProperties>());
         }
     }
+       
 
     public void EndTurn()
     {
@@ -201,4 +209,10 @@ public class GameManager : MonoBehaviour
     {
         cash += amount;
     }
+
+    public void AddField(GameObject newField)
+    {
+        //fieldProperties[i] = newField.GetComponent<FieldProperties>();
+    }
+
 }

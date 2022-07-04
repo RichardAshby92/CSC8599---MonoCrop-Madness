@@ -16,10 +16,12 @@ public class UIManager : MonoBehaviour
     public GameObject ActionMenu;
     public GameObject CropMenu;
     public GameObject toolsMenu;
+    public GameObject newFieldMenu;
 
     public Button[] actionButtons;
     public Button[] cropMenuButtons;
     public Button[] toolsButtons;
+    public Button newFieldButton;
 
     public GameObject cashUIObject;
     public GameObject turnValueUIObject;
@@ -77,6 +79,8 @@ public class UIManager : MonoBehaviour
             {
                 cropMenuButtons[i].onClick.RemoveAllListeners();
             }
+
+            newFieldButton.onClick.RemoveAllListeners();
         }
     }
 
@@ -88,6 +92,7 @@ public class UIManager : MonoBehaviour
         ActionMenu.SetActive(false);
         CropMenu.SetActive(false);
         toolsMenu.SetActive(false);
+        newFieldMenu.SetActive(false);
     }
 
     public void DisableActionButtons()
