@@ -194,6 +194,14 @@ public class FieldActions : MonoBehaviour
                 print("Not Enough Actions");
             }
         }
-    }   
+    }
+    
+    public void InSpectPlant()
+    {
+        //Take Action
+        //enable Image
+        //Update UI Management
+        //Add Listeners in the right PLace
+    }
 }
     

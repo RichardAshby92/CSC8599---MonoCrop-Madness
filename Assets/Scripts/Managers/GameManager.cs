@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
         uIManager.UpdateUIText();
         Information.SetActive(true);
         communityManager.CheckHealth();
+        //research.doresearch
         //Update Stats Text
 
         System.GC.Collect();

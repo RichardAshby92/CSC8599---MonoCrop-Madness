@@ -66,4 +66,13 @@ public class Market : MonoBehaviour
         gameManager.cash -= 100;
         uIManager.UpdateUIText();
     }
+
+    public void SearchForCultivars()
+    {
+        //Subtract Cost
+        //gameManager.cash -=
+        //
+        //uIManager.cropButtons 
+    }
+
 }
