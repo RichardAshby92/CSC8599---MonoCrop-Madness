@@ -8,11 +8,18 @@ public class FieldActions : MonoBehaviour
 {
 
     public GameObject gameManagerObject;
+    [SerializeField]
+    private GameObject fieldHealthObject;
+
     private GameManager gameManager;
     private EconomyManager economyManager;
+    private CommunityManager communityManager;
     private UIManager uIManager;
     private Inventory inventory;
     private FieldProperties crop;
+    private FieldHealth fieldHealth;
+
+    private int foodCropAffect;
 
     private void Awake()
     {
@@ -22,7 +29,13 @@ public class FieldActions : MonoBehaviour
             uIManager = gameManagerObject.GetComponent<UIManager>();
             economyManager = gameManagerObject.GetComponent<EconomyManager>();
             inventory = gameManagerObject.GetComponent<Inventory>();
+            communityManager = gameManagerObject.GetComponent<CommunityManager>();
             crop = GetComponent<FieldProperties>();
+        }
+
+        if(fieldHealthObject)
+        {
+            fieldHealth = fieldHealthObject.GetComponent<FieldHealth>();
         }
     }
 
@@ -34,6 +47,7 @@ public class FieldActions : MonoBehaviour
             uIManager = gameManagerObject.GetComponent<UIManager>();
             economyManager = gameManagerObject.GetComponent<EconomyManager>();
             inventory = gameManagerObject.GetComponent<Inventory>();
+            communityManager = gameManagerObject.GetComponent<CommunityManager>();
             crop = GetComponent<FieldProperties>();
         }
     }
@@ -48,26 +62,28 @@ public class FieldActions : MonoBehaviour
         uIManager.DisableMenus();
         uIManager.ActionMenu.SetActive(true);
 
-        uIManager.actionButtons[0].onClick.AddListener(PlantField);
-        uIManager.actionButtons[1].onClick.AddListener(AddFertiliser);
-        uIManager.actionButtons[2].onClick.AddListener(HarvestField);
+        uIManager.actionButtons[0].onClick.AddListener(InspectCrop);
+        uIManager.actionButtons[1].onClick.AddListener(PlantField);
+        uIManager.actionButtons[2].onClick.AddListener(AddFertiliser);
+        uIManager.actionButtons[3].onClick.AddListener(HarvestField);
+        
 
         if (!crop.isCropRipe)
+        {
+            uIManager.actionButtons[3].interactable = false;
+        }
+        else
+        {
+            uIManager.actionButtons[3].interactable = true;
+        }
+
+        if(!inventory.isThereFertilizer)
         {
             uIManager.actionButtons[2].interactable = false;
         }
         else
         {
             uIManager.actionButtons[2].interactable = true;
-        }
-
-        if(!inventory.isThereFertilizer)
-        {
-            uIManager.actionButtons[1].interactable = false;
-        }
-        else
-        {
-            uIManager.actionButtons[1].interactable = true;
         }
 
         //Check Planting Field Actions
@@ -182,8 +198,12 @@ public class FieldActions : MonoBehaviour
 
                 crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
                 uIManager.UpdateUIText();
-
                 crop.isCropRipe = false;
+                if(crop.crop.foodCrop)
+                {
+                    communityManager.communityHealth += foodCropAffect;
+                }
+
                 Destroy(transform.GetChild(0).gameObject);
                 Instantiate(crop.crop.unripePrefab, this.transform);
                 crop.CalculateMaterial();
@@ -191,17 +211,19 @@ public class FieldActions : MonoBehaviour
             else
             {
                 //Code if no actions remain
+                //How To Telegraph
                 print("Not Enough Actions");
             }
         }
     }
-    
-    public void InSpectPlant()
+
+    public void InspectCrop()
     {
-        //Take Action
-        //enable Image
-        //Update UI Management
-        //Add Listeners in the right PLace
+        if(gameManager.ActionRemaining(1))
+        {
+            uIManager.FieldHealthMenu.SetActive(true);
+           fieldHealth.Intialise(ref crop);
+        }      
     }
 }
     

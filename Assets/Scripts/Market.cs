@@ -16,6 +16,8 @@ public class Market : MonoBehaviour
     [SerializeField]
     private int toolCost;
 
+    public MarketInventory marketInventory;
+
     private void Awake()
     {
         gameManager = gameManagerObject.GetComponent<GameManager>();
@@ -71,8 +73,17 @@ public class Market : MonoBehaviour
     {
         //Subtract Cost
         //gameManager.cash -=
-        //
+        //Related to Research?
         //uIManager.cropButtons 
     }
 
+}
+
+[System.Serializable]
+public struct MarketInventory
+{
+    public int Pesticide { get; set; }
+    public int Fertiliser { get; set; }
+    public int[] tools { get; set; }
+    public int[] cultivars { get; set; }
 }

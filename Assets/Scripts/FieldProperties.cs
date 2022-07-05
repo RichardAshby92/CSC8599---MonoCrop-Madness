@@ -9,7 +9,8 @@ public class FieldProperties : MonoBehaviour
     [SerializeField]
     public int size { get; set; }
     public float fieldHealth;
-    public int leaching;
+    [SerializeField]
+    private int leaching;
     public int cropAge;
     public bool isCropRipe;
     public int[] timesPlanted;
@@ -107,8 +108,8 @@ public class FieldProperties : MonoBehaviour
             {
                 isCropRipe = true;
                 Destroy(transform.GetChild(0).gameObject);
-                //Material Check Needed
                 Instantiate(crop.ripePrefab, this.transform);
+                CalculateMaterial();
             }
         }
     }
@@ -128,15 +129,15 @@ public class FieldProperties : MonoBehaviour
     {
         if (soilQuality >= 200)
         {
-            GetComponentInChildren<MeshRenderer>().material = goodSoilMaterial;
+            GetComponentInChildren<MeshRenderer>().sharedMaterial = goodSoilMaterial;
         }
         else if (soilQuality < 200 && soilQuality > 100)
         {
-            GetComponentInChildren<MeshRenderer>().material = averageSoilMaterial;
+            GetComponentInChildren<MeshRenderer>().sharedMaterial = averageSoilMaterial;
         }
         else
         {
-            GetComponentInChildren<MeshRenderer>().material = badSoilMaterial;
+            GetComponentInChildren<MeshRenderer>().sharedMaterial = badSoilMaterial;
         }
     }
 }

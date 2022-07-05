@@ -26,6 +26,8 @@ public class ImprovementsManager : MonoBehaviour
         gameManager = GetComponent<GameManager>();
         currentImprovement = 0;
         Improvements = new Improvement[numOfImprovements];
+        //Populate Improvements from forloop
+
         //Load Data from CSV?
         //Add Listeners to Buttons
         //Disable all buttons
@@ -68,9 +70,13 @@ public class ImprovementsManager : MonoBehaviour
 [System.Serializable]
 struct Improvement
 {
-    public int turnsRemaining;
-    public int IntialCost;
-    public bool bIsComplete;
-    //Unlock elements
+    [field: SerializeField]
+    public int id { get; set; }
+    [field: SerializeField]
+    public int turnsRemaining { get; set; }
+    [field: SerializeField]
+    public int IntialCost { get; set; }
+    [field: SerializeField]
+    public bool bIsComplete { get; set; }
 }
 

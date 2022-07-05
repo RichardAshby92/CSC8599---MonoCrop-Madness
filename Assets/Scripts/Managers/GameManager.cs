@@ -208,4 +208,13 @@ public class GameManager : MonoBehaviour
         fieldProperties.Add(newField.GetComponent<FieldProperties>());
     }
 
+    public void UsePesticide()
+    {
+        //Update UI Management
+        //Add Listeners in the right PLace
+        //Damage to local Pollinators
+        //Damage to Community
+        //communityManager.communityHealth -= pesticideAffect;
+
+    }
 }

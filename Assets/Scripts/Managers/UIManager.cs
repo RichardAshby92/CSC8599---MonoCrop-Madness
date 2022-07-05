@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject CropMenu;
     public GameObject toolsMenu;
     public GameObject newFieldMenu;
+    public GameObject FieldHealthMenu;
 
     public Button[] actionButtons;
     public Button[] cropMenuButtons;
@@ -99,6 +100,7 @@ public class UIManager : MonoBehaviour
         CropMenu.SetActive(false);
         toolsMenu.SetActive(false);
         newFieldMenu.SetActive(false);
+        FieldHealthMenu.SetActive(false);
     }
 
     public void DisableActionButtons()
