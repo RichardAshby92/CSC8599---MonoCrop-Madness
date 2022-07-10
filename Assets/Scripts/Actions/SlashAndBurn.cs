@@ -9,6 +9,8 @@ public class SlashAndBurn : MonoBehaviour
     private GameObject NewFieldPrefab;
     [SerializeField]
     private GameObject GameManagerObject;
+    [SerializeField]
+    private GameObject FieldHealthObject;
 
     private FieldProperties fieldProperties;
     private FieldActions fieldActions;
@@ -48,6 +50,7 @@ public class SlashAndBurn : MonoBehaviour
 
         NewFieldPrefab.GetComponent<FieldProperties>().gameManagerObject = GameManagerObject;
         NewFieldPrefab.GetComponent<FieldActions>().gameManagerObject = GameManagerObject;
+        NewFieldPrefab.GetComponent<FieldActions>().fieldHealthObject = FieldHealthObject; 
 
         NewFieldPrefab.GetComponent<FieldProperties>().Intialise();
         NewFieldPrefab.GetComponent<FieldActions>().Intialise();

@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager inst;
     private GameManager gameManager;
-    private Inventory inventory;
+    private Market market;
 
     public GameObject CommunityMenu;
     public GameObject MarketMenu;
@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
         inst = this;
 
         gameManager = GetComponent<GameManager>();
-        inventory = GetComponent<Inventory>();
+        market = MarketMenu.GetComponent<Market>();
 
         //DisableMenus();
         actionButtons = ActionMenu.GetComponentsInChildren<Button>();
@@ -133,8 +133,8 @@ public class UIManager : MonoBehaviour
     {
         cashValueText.text = "Cash: $" + gameManager.cash.ToString();
         turnValueText.text = "Turn Number: " + gameManager.turnNum.ToString();
-        fertiliserValueText.text = "Fertiliser Left: " + inventory.fertilizer.ToString();
-        pesticideValueText.text = "Pesticides Left: " + inventory.pesticide.ToString();
+        fertiliserValueText.text = "Fertiliser Left: " + market.marketInventory.Fertiliser.ToString();
+        pesticideValueText.text = "Pesticides Left: " + market.marketInventory.Pesticide.ToString();
         actionRemainingValueText.text = "Actions Remaining: " + gameManager.remainingActions.ToString();
 
         if(gameManager.DrySeason)

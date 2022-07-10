@@ -9,13 +9,13 @@ public class FieldActions : MonoBehaviour
 
     public GameObject gameManagerObject;
     [SerializeField]
-    private GameObject fieldHealthObject;
+    public GameObject fieldHealthObject;
 
     private GameManager gameManager;
     private EconomyManager economyManager;
     private CommunityManager communityManager;
     private UIManager uIManager;
-    private Inventory inventory;
+    private Market market;
     private FieldProperties crop;
     private FieldHealth fieldHealth;
 
@@ -23,12 +23,14 @@ public class FieldActions : MonoBehaviour
 
     private void Awake()
     {
-        if(gameManagerObject)
+        Intialise();
+        
+        /*if(gameManagerObject)
         {
             gameManager = gameManagerObject.GetComponent<GameManager>();
             uIManager = gameManagerObject.GetComponent<UIManager>();
             economyManager = gameManagerObject.GetComponent<EconomyManager>();
-            inventory = gameManagerObject.GetComponent<Inventory>();
+            market = gameManagerObject.GetComponent<Market>();
             communityManager = gameManagerObject.GetComponent<CommunityManager>();
             crop = GetComponent<FieldProperties>();
         }
@@ -36,7 +38,7 @@ public class FieldActions : MonoBehaviour
         if(fieldHealthObject)
         {
             fieldHealth = fieldHealthObject.GetComponent<FieldHealth>();
-        }
+        }*/
     }
 
     public void Intialise()
@@ -46,9 +48,14 @@ public class FieldActions : MonoBehaviour
             gameManager = gameManagerObject.GetComponent<GameManager>();
             uIManager = gameManagerObject.GetComponent<UIManager>();
             economyManager = gameManagerObject.GetComponent<EconomyManager>();
-            inventory = gameManagerObject.GetComponent<Inventory>();
+            market = gameManagerObject.GetComponent<Market>();
             communityManager = gameManagerObject.GetComponent<CommunityManager>();
             crop = GetComponent<FieldProperties>();
+        }
+
+        if (fieldHealthObject)
+        {
+            fieldHealth = fieldHealthObject.GetComponent<FieldHealth>();
         }
     }
 
@@ -77,7 +84,7 @@ public class FieldActions : MonoBehaviour
             uIManager.actionButtons[3].interactable = true;
         }
 
-        if(!inventory.isThereFertilizer)
+        if(market.marketInventory.Fertiliser > 0)
         {
             uIManager.actionButtons[2].interactable = false;
         }
@@ -142,7 +149,7 @@ public class FieldActions : MonoBehaviour
 
         int actionsNeeded = 2;
 
-        if (inventory.tools[crop.crop.idNum])
+        if (market.marketInventory.tools[crop.crop.idNum])
         {
             actionsNeeded = 1;
         }
@@ -166,17 +173,19 @@ public class FieldActions : MonoBehaviour
 
     public void AddFertiliser()
     {
-        if (gameManager.ActionRemaining(1))  //Should it take an action?
+        if (gameManager.ActionRemaining(1))
         {
-            inventory.SubtractFromInventory(0);
+            market.marketInventory.Fertiliser--;
             crop.soilQuality += 50;
             crop.CalculateSoilQuality();
 
-            if (!inventory.isThereFertilizer)
+            if (market.marketInventory.Fertiliser >= 0)
             {
                 uIManager.actionButtons[1].interactable = false;
             }
-            //RainForest Damage Function
+
+            communityManager.communityHealth--;
+            communityManager.CheckHealth();
             uIManager.UpdateUIText();
         }
         else

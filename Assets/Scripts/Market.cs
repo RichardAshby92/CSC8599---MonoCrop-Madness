@@ -8,7 +8,6 @@ public class Market : MonoBehaviour
 
     private GameManager gameManager;
     private UIManager uIManager;
-    private Inventory inventory;
 
     public int fertiliserPrice;
     public int pesticidePrice;
@@ -22,7 +21,6 @@ public class Market : MonoBehaviour
     {
         gameManager = gameManagerObject.GetComponent<GameManager>();
         uIManager = gameManagerObject.GetComponent<UIManager>();
-        inventory = gameManagerObject.GetComponent<Inventory>();
 
         for (int i = 0; i < uIManager.toolsButtons.Length; i++)
         {
@@ -49,7 +47,7 @@ public class Market : MonoBehaviour
 
     public void BuyTools(int idnum)
     {
-        inventory.tools[idnum] = true;
+        marketInventory.tools[idnum] = true;
         uIManager.DisableToolButton(idnum);
         gameManager.cash -= toolCost;
         uIManager.UpdateUIText();
@@ -57,14 +55,14 @@ public class Market : MonoBehaviour
 
     public void BuyFertiliser()
     {
-        inventory.AddToInvetory(0);
+        marketInventory.Fertiliser++;
         gameManager.cash -= 50;
         uIManager.UpdateUIText();
     }
 
     public void BuyPesticides()
     {
-        inventory.AddToInvetory(1);
+        marketInventory.Pesticide++;
         gameManager.cash -= 100;
         uIManager.UpdateUIText();
     }
@@ -84,6 +82,6 @@ public struct MarketInventory
 {
     public int Pesticide { get; set; }
     public int Fertiliser { get; set; }
-    public int[] tools { get; set; }
-    public int[] cultivars { get; set; }
+    public bool[] tools { get; set; }
+    public bool[] cultivars { get; set; }
 }

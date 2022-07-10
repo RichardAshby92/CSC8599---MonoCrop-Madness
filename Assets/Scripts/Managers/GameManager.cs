@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager inst;
     private UIManager uIManager;
-    private Inventory inventory;
+    private Market market;
     private EconomyManager economyManager;
     private GameSceneManager gameSceneManager;
     private CommunityManager communityManager;
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         uIManager = GetComponent<UIManager>();
         economyManager = GetComponent<EconomyManager>();
         gameSceneManager = GetComponent<GameSceneManager>();
-        inventory = GetComponent<Inventory>();
+        market = GetComponent<Market>();
         communityManager = GetComponent<CommunityManager>();
 
         fieldProperties = new List<FieldProperties>();
