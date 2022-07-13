@@ -60,9 +60,6 @@ public class GameManager : MonoBehaviour
 
     public void EndTurn()
     {
-        //Coroutine while waiting?
-        //Disable User during Turn Ending?
-
         turnNum++;
         if(turnNum > 120)
         {
@@ -88,13 +85,13 @@ public class GameManager : MonoBehaviour
         SimulateEconomy();
         ResetActions();
         uIManager.UpdateUIText();
+        uIManager.UpdateCropPriceDisplay();
         Information.SetActive(true);
         communityManager.CheckHealth();
         //research.doresearch
         //Update Stats Text
 
         System.GC.Collect();
-        //Reenable user
     }
 
     void CalculateSeason()

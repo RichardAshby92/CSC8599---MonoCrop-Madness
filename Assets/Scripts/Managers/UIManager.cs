@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager inst;
     private GameManager gameManager;
+    private EconomyManager economy;
     private Market market;
 
     public GameObject CommunityMenu;
@@ -23,7 +24,7 @@ public class UIManager : MonoBehaviour
     public Button[] cropMenuButtons;
     public Button[] toolsButtons;
     public Button newFieldButton;
-    
+
     [SerializeField]
     private GameObject cashUIObject;
     [SerializeField]
@@ -43,14 +44,17 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI fertiliserValueText;
     private TextMeshProUGUI pesticideValueText;
     private TextMeshProUGUI actionRemainingValueText;
+    [SerializeField]
+    private TextMeshProUGUI[] PriceText;
+    private string[] DefaultPriceText;
 
-
-     public void Awake()
-     {
+    public void Awake()
+    {
         inst = this;
 
         gameManager = GetComponent<GameManager>();
         market = MarketMenu.GetComponent<Market>();
+        economy = GetComponent<EconomyManager>();
 
         //DisableMenus();
         actionButtons = ActionMenu.GetComponentsInChildren<Button>();
@@ -65,19 +69,28 @@ public class UIManager : MonoBehaviour
         actionRemainingValueText = actionRemainingUIObject.GetComponent<TextMeshProUGUI>();
 
         UpdateUIText();
-     }
+
+        DefaultPriceText = new string[10];
+    }
 
     public void Start()
     {
         DisableMenus();
+
+        for (int i = 0; i < 10; i++)
+        {
+            DefaultPriceText[i] = PriceText[i].text;
+        }
+
+        UpdateCropPriceDisplay();
     }
 
     public void Update()
     {
-        if(Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
         {
             DisableMenus();
-            for(int i = 0; i < actionButtons.Length; i++)
+            for (int i = 0; i < actionButtons.Length; i++)
             {
                 actionButtons[i].onClick.RemoveAllListeners();
             }
@@ -105,12 +118,12 @@ public class UIManager : MonoBehaviour
 
     public void DisableActionButtons()
     {
-        foreach(Button child in actionButtons)
+        foreach (Button child in actionButtons)
         {
             child.interactable = false;
         }
 
-        foreach(Button child in cropMenuButtons)
+        foreach (Button child in cropMenuButtons)
         {
             child.interactable = false;
         }
@@ -131,13 +144,22 @@ public class UIManager : MonoBehaviour
 
     public void UpdateUIText()
     {
+        if(gameManager.cash > 1000)
+        {
+            cashValueText.color = Color.green;
+        }
+        if(gameManager.cash < 200)
+        {
+            cashValueText.color = Color.yellow;
+        }
+
         cashValueText.text = "Cash: $" + gameManager.cash.ToString();
         turnValueText.text = "Turn Number: " + gameManager.turnNum.ToString();
         fertiliserValueText.text = "Fertiliser Left: " + market.marketInventory.Fertiliser.ToString();
         pesticideValueText.text = "Pesticides Left: " + market.marketInventory.Pesticide.ToString();
         actionRemainingValueText.text = "Actions Remaining: " + gameManager.remainingActions.ToString();
 
-        if(gameManager.DrySeason)
+        if (gameManager.DrySeason)
         {
             seasonValueText.text = "Season: Dry";
         }
@@ -151,4 +173,14 @@ public class UIManager : MonoBehaviour
     {
         toolsButtons[i].interactable = false;
     }
+
+    public void UpdateCropPriceDisplay()
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            //Price Colour Change
+            PriceText[i].text = DefaultPriceText[i] +  economy.currentCropPrices[i].ToString("0.00");
+        }
+    }
+
 }

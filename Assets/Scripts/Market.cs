@@ -80,8 +80,12 @@ public class Market : MonoBehaviour
 [System.Serializable]
 public struct MarketInventory
 {
+    [field: SerializeField]
     public int Pesticide { get; set; }
+    [field: SerializeField]
     public int Fertiliser { get; set; }
+    [field: SerializeField]
     public bool[] tools { get; set; }
+    [field: SerializeField]
     public bool[] cultivars { get; set; }
 }

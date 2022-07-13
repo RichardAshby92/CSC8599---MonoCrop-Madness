@@ -10,6 +10,8 @@ public class FieldActions : MonoBehaviour
     public GameObject gameManagerObject;
     [SerializeField]
     public GameObject fieldHealthObject;
+    [SerializeField]
+    public GameObject MarketGameObject;
 
     private GameManager gameManager;
     private EconomyManager economyManager;
@@ -24,21 +26,6 @@ public class FieldActions : MonoBehaviour
     private void Awake()
     {
         Intialise();
-        
-        /*if(gameManagerObject)
-        {
-            gameManager = gameManagerObject.GetComponent<GameManager>();
-            uIManager = gameManagerObject.GetComponent<UIManager>();
-            economyManager = gameManagerObject.GetComponent<EconomyManager>();
-            market = gameManagerObject.GetComponent<Market>();
-            communityManager = gameManagerObject.GetComponent<CommunityManager>();
-            crop = GetComponent<FieldProperties>();
-        }
-
-        if(fieldHealthObject)
-        {
-            fieldHealth = fieldHealthObject.GetComponent<FieldHealth>();
-        }*/
     }
 
     public void Intialise()
@@ -47,8 +34,7 @@ public class FieldActions : MonoBehaviour
         {
             gameManager = gameManagerObject.GetComponent<GameManager>();
             uIManager = gameManagerObject.GetComponent<UIManager>();
-            economyManager = gameManagerObject.GetComponent<EconomyManager>();
-            market = gameManagerObject.GetComponent<Market>();
+            economyManager = gameManagerObject.GetComponent<EconomyManager>();          
             communityManager = gameManagerObject.GetComponent<CommunityManager>();
             crop = GetComponent<FieldProperties>();
         }
@@ -56,6 +42,11 @@ public class FieldActions : MonoBehaviour
         if (fieldHealthObject)
         {
             fieldHealth = fieldHealthObject.GetComponent<FieldHealth>();
+        }
+
+        if(MarketGameObject)
+        {
+            market = MarketGameObject.GetComponent<Market>();
         }
     }
 
@@ -149,7 +140,7 @@ public class FieldActions : MonoBehaviour
 
         int actionsNeeded = 2;
 
-        if (market.marketInventory.tools[crop.crop.idNum])
+        if (market.marketInventory.tools[crop.crop.idNum-1])
         {
             actionsNeeded = 1;
         }

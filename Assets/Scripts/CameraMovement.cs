@@ -7,42 +7,29 @@ public class CameraMovement : MonoBehaviour
     [SerializeField]
     private int cameraSpeed;
     [SerializeField]
-    private int zoomSpeed;
+    private float HeightY;
     [SerializeField]
-    private int minZoom;
+    private float MoveX;
     [SerializeField]
-    private int maxZoom;
-    [SerializeField]
-    private float cameraZoom;
-    [SerializeField]
-    private float moveX;
-    [SerializeField]
-    private float moveZ;
+    private float MoveZ;
 
     private Vector3 cameraMovement;
-
+    private void Awake()
+    {
+        cameraMovement = new Vector3(MoveX, HeightY, MoveZ);
+    }
     private void FixedUpdate()
     {
-        //Zoom Code
-        cameraZoom = transform.localPosition.y;
-        cameraZoom += Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-        cameraZoom = Mathf.Clamp(cameraZoom, minZoom, maxZoom);
-
         //Translation
-        moveX = transform.position.x;
-        moveZ = transform.position.z;
-        moveX += Input.GetAxisRaw("Horizontal") * cameraSpeed;
-        moveZ += Input.GetAxisRaw("Vertical") * cameraSpeed;
-        moveX = Mathf.Clamp(moveX, -250, 250);
-        moveZ = Mathf.Clamp(moveZ, -500, 300);
+        MoveX = transform.position.x;
+        MoveZ = transform.position.z;
+        MoveX += Input.GetAxisRaw("Horizontal") * cameraSpeed;
+        MoveZ += Input.GetAxisRaw("Vertical") * cameraSpeed;
+        MoveX = Mathf.Clamp(MoveX, -250, 250);
+        MoveZ = Mathf.Clamp(MoveZ, -500, 300);
 
-        cameraMovement = new Vector3(moveX, cameraZoom, moveZ);
+        cameraMovement.Set(MoveX, HeightY, MoveZ);
         transform.position = cameraMovement;
-
-        //cameraMovement *= cameraSpeed;
-        //cameraMovement.Normalize();
-        //transform.Translate(cameraMovement, Space.World);
     }
-
 
 }

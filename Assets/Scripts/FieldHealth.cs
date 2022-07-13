@@ -9,12 +9,12 @@ public class FieldHealth : MonoBehaviour
     [SerializeField]
     private GameObject gameManagerObject;
 
-    EconomyManager economyManager;
+    private EconomyManager economyManager;
+    private GameManager gameManager;
+    private UIManager uIManager;
 
     [SerializeField]
-    private GameObject GoodHealthTextObject;
-    [SerializeField]
-    private GameObject BadHealthTextObject;
+    private TextMeshProUGUI HealthTextObject;
 
     [SerializeField]
     private TextMeshProUGUI valueText;
@@ -27,6 +27,13 @@ public class FieldHealth : MonoBehaviour
     private float health;
     private int cropAge;
 
+    [SerializeField]
+    private string GoodHealthText;
+    [SerializeField]
+    private string MediumHealthText;
+    [SerializeField]
+    private string LowHealthText;
+
     //possibly Image
 
     private void Awake()
@@ -34,29 +41,30 @@ public class FieldHealth : MonoBehaviour
         if(gameManagerObject)
         {
             economyManager = gameManagerObject.GetComponent<EconomyManager>();
+            gameManager = gameManagerObject.GetComponent<GameManager>();
+            uIManager = gameManagerObject.GetComponent<UIManager>();
         }
     }
 
     public void Intialise(ref FieldProperties currentField)
     {
-        print(currentField.crop.idNum);
-
         price = economyManager.currentCropPrices[currentField.crop.idNum];
         health = currentField.fieldHealth;
 
+        gameManager.ActionRemaining(1);
+        
         valueText.text += price.ToString();
-
         cropTypeText.text += currentField.crop.displayName;
         
         if(health >= 100)
         {
-            GoodHealthTextObject.SetActive(true);
-            BadHealthTextObject.SetActive(false);
+            HealthTextObject.text = GoodHealthText;
         }
         else
         {
-            GoodHealthTextObject.SetActive(false);
-            BadHealthTextObject.SetActive(true);
+            HealthTextObject.text = MediumHealthText;
         }
+
+        uIManager.UpdateUIText();
     }
 }

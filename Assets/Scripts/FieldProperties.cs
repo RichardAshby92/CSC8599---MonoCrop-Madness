@@ -31,10 +31,6 @@ public class FieldProperties : MonoBehaviour
 
     private void Awake()
     {
-        /*if(gameManagerObject)
-        {
-            gameManager = gameManagerObject.GetComponent<GameManager>();
-        }*/
         Intialise();
         timesPlanted = new int[11];
     }
