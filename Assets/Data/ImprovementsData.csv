@@ -1,0 +1,11 @@
+﻿IdNum,Improvement Name,turnsRemaing,IntialCost,bIsComplete
+1,Diverse Cash Crops,5,100,FALSE
+2,Slash and Burn,8,200,FALSE
+3,Food Crops,8,200,FALSE
+4,Drought Resistant Crops,10,400,FALSE
+5,Slash and Mulch,12,400,FALSE
+6,Nitrogen Fixing Crops,15,600,FALSE
+7,Water Management Strategies,15,600,FALSE
+8,Local Trading Block,18,800,FALSE
+9,Companion Cropping,18,800,FALSE
+10,Expanded Trading Block,22,1000,FALSE

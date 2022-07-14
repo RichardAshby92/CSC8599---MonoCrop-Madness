@@ -8,13 +8,11 @@ public class Information : MonoBehaviour
 
     private GameManager gameManager;
     private UIManager uIManager;
-    private LoadText loadText;
 
     private void Awake()
     {
         gameManager = gameManagerObject.GetComponent<GameManager>();
         uIManager = gameManagerObject.GetComponent<UIManager>();
-        loadText = gameManagerObject.GetComponent<LoadText>();
     }
 
     public void AccessMenu()

@@ -42,7 +42,6 @@ public class Market : MonoBehaviour
         //enable tools list
         uIManager.toolsMenu.SetActive(true);
 
-        //Does it disable
     }
 
     public void BuyTools(int idnum)

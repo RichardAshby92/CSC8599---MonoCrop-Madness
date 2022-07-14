@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Community : MonoBehaviour
+public class Improvements : MonoBehaviour
 {
     public GameObject gameManagerObject;
 

@@ -10,6 +10,9 @@ public class ImprovementsManager : MonoBehaviour
     private const int numOfImprovements = 10;
 
     [SerializeField]
+    private TextAsset ImprovementData;
+
+    [SerializeField]
     private Improvement[] Improvements;
 
     private int currentImprovement;
@@ -18,24 +21,17 @@ public class ImprovementsManager : MonoBehaviour
     //References to Buttons
 
 
-    // Start is called before the first frame update
     void Awake()
     {
         inst = this;
 
         gameManager = GetComponent<GameManager>();
         currentImprovement = 0;
-        Improvements = new Improvement[numOfImprovements];
-        //Populate Improvements from forloop
-
-        //Load Data from CSV?
-        //Add Listeners to Buttons
-        //Disable all buttons
+        Improvements = LoadData.LoadImprovementsData(ImprovementData);
     }
 
-    public void Improvement()
+    public void ResearchImprovement()
     {
-        //for current improvement
         if(!Improvements[currentImprovement].bIsComplete && currentImprovement != 0)
         {
             Improvements[currentImprovement].turnsRemaining--;
@@ -43,7 +39,7 @@ public class ImprovementsManager : MonoBehaviour
             {
                 Improvements[currentImprovement].bIsComplete = true;
                 ApplyEffects(currentImprovement);
-                //enable next buttons
+                //Unlocks
             }
         }
     }
@@ -68,10 +64,12 @@ public class ImprovementsManager : MonoBehaviour
 }
 
 [System.Serializable]
-struct Improvement
+public struct Improvement
 {
     [field: SerializeField]
     public int id { get; set; }
+    [field: SerializeField]
+    public string name { get; set; }
     [field: SerializeField]
     public int turnsRemaining { get; set; }
     [field: SerializeField]

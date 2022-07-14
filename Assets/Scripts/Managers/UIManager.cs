@@ -19,11 +19,13 @@ public class UIManager : MonoBehaviour
     public GameObject toolsMenu;
     public GameObject newFieldMenu;
     public GameObject FieldHealthMenu;
+    public GameObject ImprovementsMenu;  
 
     public Button[] actionButtons;
     public Button[] cropMenuButtons;
     public Button[] toolsButtons;
     public Button newFieldButton;
+    public Button usePesticideButton;
 
     [SerializeField]
     private GameObject cashUIObject;
@@ -56,7 +58,6 @@ public class UIManager : MonoBehaviour
         market = MarketMenu.GetComponent<Market>();
         economy = GetComponent<EconomyManager>();
 
-        //DisableMenus();
         actionButtons = ActionMenu.GetComponentsInChildren<Button>();
         cropMenuButtons = CropMenu.GetComponentsInChildren<Button>();
         toolsButtons = toolsMenu.GetComponentsInChildren<Button>();
@@ -90,6 +91,7 @@ public class UIManager : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             DisableMenus();
+            //if statement to reduce work
             for (int i = 0; i < actionButtons.Length; i++)
             {
                 actionButtons[i].onClick.RemoveAllListeners();
@@ -114,6 +116,7 @@ public class UIManager : MonoBehaviour
         toolsMenu.SetActive(false);
         newFieldMenu.SetActive(false);
         FieldHealthMenu.SetActive(false);
+        ImprovementsMenu.SetActive(false);
     }
 
     public void DisableActionButtons()

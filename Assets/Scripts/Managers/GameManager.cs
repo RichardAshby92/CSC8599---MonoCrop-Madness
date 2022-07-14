@@ -7,10 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager inst;
     private UIManager uIManager;
-    private Market market;
     private EconomyManager economyManager;
     private GameSceneManager gameSceneManager;
     private CommunityManager communityManager;
+    private ImprovementsManager Improvements;
     private List<FieldProperties> fieldProperties;
 
     [SerializeField]
@@ -46,8 +46,8 @@ public class GameManager : MonoBehaviour
         uIManager = GetComponent<UIManager>();
         economyManager = GetComponent<EconomyManager>();
         gameSceneManager = GetComponent<GameSceneManager>();
-        market = GetComponent<Market>();
         communityManager = GetComponent<CommunityManager>();
+        Improvements = GetComponent<ImprovementsManager>();
 
         fieldProperties = new List<FieldProperties>();
 
@@ -82,13 +82,13 @@ public class GameManager : MonoBehaviour
         CalculateFieldHealth();
         GrowCrops();
         CalculatePests();
-        SimulateEconomy();
+        economyManager.SimulateEnconomy();
         ResetActions();
         uIManager.UpdateUIText();
         uIManager.UpdateCropPriceDisplay();
         Information.SetActive(true);
         communityManager.CheckHealth();
-        //research.doresearch
+        Improvements.ResearchImprovement();
         //Update Stats Text
 
         System.GC.Collect();
@@ -137,7 +137,6 @@ public class GameManager : MonoBehaviour
         waterHeight.y = waterLevel;
 
         Lake.transform.position = waterHeight;
-        //Set Lake Height Transform
     }
 
     void CalculateSoilQuality()
@@ -172,11 +171,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void SimulateEconomy()
-    {
-        economyManager.SimulateEnconomy();
-    }
-
     void ResetActions()
     {
         remainingActions = 4;
@@ -205,13 +199,5 @@ public class GameManager : MonoBehaviour
         fieldProperties.Add(newField.GetComponent<FieldProperties>());
     }
 
-    public void UsePesticide()
-    {
-        //Update UI Management
-        //Add Listeners in the right PLace
-        //Damage to local Pollinators
-        //Damage to Community
-        //communityManager.communityHealth -= pesticideAffect;
 
-    }
 }
