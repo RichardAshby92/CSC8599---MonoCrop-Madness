@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
         economyManager = GetComponent<EconomyManager>();
         gameSceneManager = GetComponent<GameSceneManager>();
         communityManager = GetComponent<CommunityManager>();
-        Improvements = GetComponent<ImprovementsManager>();
 
         fieldProperties = new List<FieldProperties>();
 
@@ -57,10 +56,6 @@ public class GameManager : MonoBehaviour
         {
             fieldProperties.Add(fields[i].GetComponent<FieldProperties>());
         }
-
-        ImprovementsTreeNode.LoadImprovementsTree();
-        int[] Arr = { 1, 2, 3};
-        ImprovementsTreeNode.SetUnlockedNodes(Arr);
     }
        
 
@@ -81,7 +76,7 @@ public class GameManager : MonoBehaviour
         uIManager.UpdateCropPriceDisplay();
         Information.SetActive(true);
         communityManager.CheckHealth();
-        Improvements.ResearchImprovement();
+        ImprovementsManager.ResearchImprovement();
 
         System.GC.Collect();
     }

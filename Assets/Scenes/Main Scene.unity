@@ -4245,7 +4245,6 @@ GameObject:
   - component: {fileID: 493119318}
   - component: {fileID: 493119319}
   - component: {fileID: 493119320}
-  - component: {fileID: 493119321}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4296,7 +4295,7 @@ MonoBehaviour:
   <numPollinators>k__BackingField: 100
   <numPests>k__BackingField: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   loanRepayment: 100
-  MaximumTurns: 0
+  MaximumTurns: 120
 --- !u!114 &493119315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4404,70 +4403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <communityHealth>k__BackingField: 50
   <TopLimit>k__BackingField: 100
---- !u!114 &493119321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493119310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd3d428116261b84c9fe6d48418abaf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ImprovementData: {fileID: 4900000, guid: 2df2c426fd89e4e4b8e39eb744ac7b29, type: 3}
-  Improvements:
-  - <id>k__BackingField: 0
-    <name>k__BackingField: 
-    <turnsRemaining>k__BackingField: 0
-    <IntialCost>k__BackingField: 0
-    <bIsComplete>k__BackingField: 0
-  - <id>k__BackingField: 0
-    <name>k__BackingField: 
-    <turnsRemaining>k__BackingField: 0
-    <IntialCost>k__BackingField: 0
-    <bIsComplete>k__BackingField: 0
-  - <id>k__BackingField: 0
-    <name>k__BackingField: 
-    <turnsRemaining>k__BackingField: 0
-    <IntialCost>k__BackingField: 0
-    <bIsComplete>k__BackingField: 0
-  - <id>k__BackingField: 0
-    <name>k__BackingField: 
-    <turnsRemaining>k__BackingField: 0
-    <IntialCost>k__BackingField: 0
-    <bIsComplete>k__BackingField: 0
-  - <id>k__BackingField: 0
-    <name>k__BackingField: 
-    <turnsRemaining>k__BackingField: 0
-    <IntialCost>k__BackingField: 0
-    <bIsComplete>k__BackingField: 0
-  - <id>k__BackingField: 0
-    <name>k__BackingField: 
-    <turnsRemaining>k__BackingField: 0
-    <IntialCost>k__BackingField: 0
-    <bIsComplete>k__BackingField: 0
-  - <id>k__BackingField: 0
-    <name>k__BackingField: 
-    <turnsRemaining>k__BackingField: 0
-    <IntialCost>k__BackingField: 0
-    <bIsComplete>k__BackingField: 0
-  - <id>k__BackingField: 0
-    <name>k__BackingField: 
-    <turnsRemaining>k__BackingField: 0
-    <IntialCost>k__BackingField: 0
-    <bIsComplete>k__BackingField: 0
-  - <id>k__BackingField: 0
-    <name>k__BackingField: 
-    <turnsRemaining>k__BackingField: 0
-    <IntialCost>k__BackingField: 0
-    <bIsComplete>k__BackingField: 0
-  - <id>k__BackingField: 0
-    <name>k__BackingField: 
-    <turnsRemaining>k__BackingField: 0
-    <IntialCost>k__BackingField: 0
-    <bIsComplete>k__BackingField: 0
 --- !u!1 &499771555
 GameObject:
   m_ObjectHideFlags: 0
@@ -5346,7 +5281,7 @@ GameObject:
   - component: {fileID: 601541395}
   - component: {fileID: 601541398}
   - component: {fileID: 601541397}
-  - component: {fileID: 601541396}
+  - component: {fileID: 601541399}
   m_Layer: 5
   m_Name: Improvements
   m_TagString: Untagged
@@ -5386,19 +5321,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 1200, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &601541396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601541394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540104945df510f4db5b6828cfd34727, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManagerObject: {fileID: 493119310}
 --- !u!114 &601541397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5434,6 +5356,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601541394}
   m_CullTransparentMesh: 1
+--- !u!114 &601541399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601541394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3d428116261b84c9fe6d48418abaf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManagerObject: {fileID: 493119310}
 --- !u!1 &603289368
 GameObject:
   m_ObjectHideFlags: 0
@@ -7162,7 +7097,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 768661741}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 601541394}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &768661741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11590,8 +11537,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 601541396}
-        m_TargetAssemblyTypeName: Information, Assembly-CSharp
+      - m_Target: {fileID: 601541399}
+        m_TargetAssemblyTypeName: ImprovementsManager, Assembly-CSharp
         m_MethodName: AccessMenu
         m_Mode: 1
         m_Arguments:

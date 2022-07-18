@@ -1,80 +1,96 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ImprovementsManager : MonoBehaviour
 {
     public static ImprovementsManager inst;
 
     [SerializeField]
-    private const int numOfImprovements = 10;
-
-    [SerializeField]
-    private TextAsset ImprovementData;
-
-    [SerializeField]
-    private Improvement[] Improvements;
+    private GameObject gameManagerObject;
 
     private int currentImprovement;
     private GameManager gameManager;
+    private UIManager uIManager;
 
-    //References to Buttons
+    ImprovementsTreeNode[] NodesData;
+    Button[] ImprovementButtons;
 
+    static Dictionary<int, ImprovementsTreeNode> IMPROVEMENT_NODES;
+    public static int ROOT_ID = 0;
 
     void Awake()
     {
         inst = this;
 
-        gameManager = GetComponent<GameManager>();
+        gameManager = gameManagerObject.GetComponent<GameManager>();
+        uIManager = gameManagerObject.GetComponent<UIManager>();
         currentImprovement = 0;
-        Improvements = LoadData.LoadImprovementsData(ImprovementData);
+
+        NodesData = Resources.LoadAll<ImprovementsTreeNode>("NodeData");
+        IMPROVEMENT_NODES = new Dictionary<int, ImprovementsTreeNode>();
+
+        foreach (ImprovementsTreeNode NodeData in NodesData)
+        {
+            IMPROVEMENT_NODES[NodeData.ID] = NodeData;
+        }
+
+        foreach(Button button in ImprovementButtons)
+        {
+            button.interactable = false;
+        }
+
+        //Set Root Sate Finished (Locked)
+        //Set Unlocked States
+        ImprovementsManager.SetUnlockedNodes(Arr);
+
     }
 
-    public void ResearchImprovement()
+    public void AccessMenu()
     {
-        if(!Improvements[currentImprovement].bIsComplete && currentImprovement != 0)
+        uIManager.DisableMenus();
+        gameObject.SetActive(true);
+    }
+
+    public static void SetUnlockedNodes(int UnlockedNodeIDs)
+    {
+        foreach (int ID in UnlockedNodeIDs)
+        {
+            if (IMPROVEMENT_NODES.ContainsKey(ID))
+            {
+                IMPROVEMENT_NODES[ID].unlock();
+            }
+        }
+    }
+
+    public static void ResearchImprovement()
+    {          
+        /*if(!Improvements[currentImprovement].bIsComplete && currentImprovement != 0)
         {
             Improvements[currentImprovement].turnsRemaining--;
             if(Improvements[currentImprovement].turnsRemaining == 0)
             {
                 Improvements[currentImprovement].bIsComplete = true;
                 ApplyEffects(currentImprovement);
-                //Unlocks
             }
-        }
+        }*/
+
+        //if unlock
+            //then applyeffects
     }
 
     public void StartImprovement(int index) //index Passed from Button
     {
         currentImprovement = index;
-        gameManager.cash -= Improvements[currentImprovement].IntialCost;
+        gameManager.cash -= IMPROVEMENT_NODES[currentImprovement].ImprovementCost;
+        //Change Node Colour
     }
 
     void ApplyEffects(int index)
     {
-        switch(index)
-        {
-            case 1:
-                //Effect
-                break;
-            default:
-                break;
-        }
+        ImprovementNodeActioners.Apply(index);
+        IMPROVEMENT_NODES[index].chi
     }
-}
-
-[System.Serializable]
-public struct Improvement
-{
-    [field: SerializeField]
-    public int id { get; set; }
-    [field: SerializeField]
-    public string name { get; set; }
-    [field: SerializeField]
-    public int turnsRemaining { get; set; }
-    [field: SerializeField]
-    public int IntialCost { get; set; }
-    [field: SerializeField]
-    public bool bIsComplete { get; set; }
 }
 

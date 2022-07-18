@@ -23,21 +23,4 @@ public class LoadData : MonoBehaviour
 
         return data;
     }
-
-    public static Improvement[] LoadImprovementsData(TextAsset textAsset)
-    {
-        string[,] data = LoadCSVToStringArray(textAsset); 
-
-        Improvement[] improvements =new Improvement[data.GetLength(0)-2];
-        for(int i = 0; i < improvements.Length; i++)
-        {
-            improvements[i].id = int.Parse(data[i+1, 0]);
-            improvements[i].name = data[i+1, 1];
-            improvements[i].turnsRemaining = int.Parse(data[i+1, 2]);
-            improvements[i].IntialCost = int.Parse(data[i+1, 3]);
-            improvements[i].bIsComplete = bool.Parse(data[i+1, 4]);
-        }
-        return improvements;
-    }
-
 }

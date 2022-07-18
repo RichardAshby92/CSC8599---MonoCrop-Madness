@@ -12,12 +12,8 @@ public class Improvements : MonoBehaviour
     private void Awake()
     {
         gameManager = gameManagerObject.GetComponent<GameManager>();
-        uIManager = gameManagerObject.GetComponent<UIManager>();
+
     }
 
-    public void AccessMenu()
-    {
-        uIManager.DisableMenus();
-        gameObject.SetActive(true);
-    }
+
 }
