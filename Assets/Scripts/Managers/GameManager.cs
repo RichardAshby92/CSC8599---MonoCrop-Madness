@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private int loanRepayment;
+    [SerializeField]
+    private int MaximumTurns;
 
     private void Awake()
     {
@@ -55,26 +57,17 @@ public class GameManager : MonoBehaviour
         {
             fieldProperties.Add(fields[i].GetComponent<FieldProperties>());
         }
+
+        ImprovementsTreeNode.LoadImprovementsTree();
+        int[] Arr = { 1, 2, 3};
+        ImprovementsTreeNode.SetUnlockedNodes(Arr);
     }
        
 
     public void EndTurn()
     {
-        turnNum++;
-        if(turnNum > 120)
-        {
-            gameSceneManager.LoadEndGame();
-            return;
-        }
-
-        cash -= loanRepayment;
-
-        if(cash <= 0)
-        {
-            gameSceneManager.LoadEndGame();
-            return;
-        }
-
+        CountTurn();
+        LoanRepayment();
         CalculateSeason();
         CalculateRainfall();
         CalculateNewWaterLevel();
@@ -89,9 +82,27 @@ public class GameManager : MonoBehaviour
         Information.SetActive(true);
         communityManager.CheckHealth();
         Improvements.ResearchImprovement();
-        //Update Stats Text
 
         System.GC.Collect();
+    }
+
+    void CountTurn()
+    {
+        turnNum++;
+        if (turnNum > MaximumTurns)
+        {
+            gameSceneManager.LoadEndGame();
+        }
+    }
+
+    void LoanRepayment()
+    {
+        cash -= loanRepayment;
+
+        if (cash <= 0)
+        {
+            gameSceneManager.LoadEndGame();
+        }
     }
 
     void CalculateSeason()
