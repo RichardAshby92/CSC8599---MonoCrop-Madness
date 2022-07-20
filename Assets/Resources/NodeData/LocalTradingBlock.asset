@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: LocalTradingBlock
   m_EditorClassIdentifier: 
   ID: 1
-  DisplayName: 
-  ImprovementTime: 0
-  ImprovementCost: 0
+  DisplayName: '"Local Trading Block"'
+  ImprovementCost: 800
+  IntialImprovementTime: 5
+  bIntialIsUnlock: 0
+  bIntialIsFinished: 0
+  ImprovementTime: 5
+  bIsUnlock: 0
+  bIsFinished: 0
   Children:
   - {fileID: 11400000, guid: 1ad3e244c42e3f94ebf0231ec13b2ca3, type: 2}
-  Parent: {fileID: 11400000, guid: 6042c76c00cc9144294283758cadc335, type: 2}
+  Parent: {fileID: 11400000, guid: 16c417e6abecb6b40b1b2541003eb5e0, type: 2}

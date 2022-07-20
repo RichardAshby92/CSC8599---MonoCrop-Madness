@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: CompanionCropping
   m_EditorClassIdentifier: 
   ID: 8
-  DisplayName: 
-  ImprovementTime: 0
-  ImprovementCost: 0
+  DisplayName: '"Companion Cropping"'
+  ImprovementCost: 800
+  IntialImprovementTime: 12
+  bIntialIsUnlock: 0
+  bIntialIsFinished: 0
+  ImprovementTime: 12
+  bIsUnlock: 0
+  bIsFinished: 0
   Children: []
-  Parent: {fileID: 0}
+  Parent: {fileID: 11400000, guid: 46d08158356d19249aa3fb104a24756e, type: 2}

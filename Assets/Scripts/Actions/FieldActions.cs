@@ -176,7 +176,6 @@ public class FieldActions : MonoBehaviour
             }
 
             communityManager.communityHealth--;
-            communityManager.CheckHealth();
             uIManager.UpdateUIText();
         }
         else

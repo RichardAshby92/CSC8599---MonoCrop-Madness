@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: FoodCrops
   m_EditorClassIdentifier: 
   ID: 5
-  DisplayName: 
-  ImprovementTime: 0
-  ImprovementCost: 0
-  Children: []
+  DisplayName: '"Food Crops"'
+  ImprovementCost: 200
+  IntialImprovementTime: 8
+  bIntialIsUnlock: 0
+  bIntialIsFinished: 0
+  ImprovementTime: 8
+  bIsUnlock: 0
+  bIsFinished: 0
+  Children:
+  - {fileID: 11400000, guid: b958dbea9c4feab42bb2fa4b71d4dbcf, type: 2}
   Parent: {fileID: 11400000, guid: ffd29e07d67587948b0180c745444740, type: 2}

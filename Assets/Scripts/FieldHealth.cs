@@ -50,11 +50,12 @@ public class FieldHealth : MonoBehaviour
     {
         price = economyManager.currentCropPrices[currentField.crop.idNum];
         health = currentField.fieldHealth;
-
+        cropAge = currentField.cropAge;
         gameManager.ActionRemaining(1);
         
-        valueText.text += price.ToString();
-        cropTypeText.text += currentField.crop.displayName;
+        valueText.text = "Current Price: " + price.ToString("0.00");
+        cropTypeText.text = "Crop Type: " + currentField.crop.displayName;
+        cropAgeText.text = "Crop Age: " + cropAge;
         
         if(health >= 100)
         {

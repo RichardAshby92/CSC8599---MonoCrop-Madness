@@ -15,7 +15,17 @@ public class ImprovementsManager : MonoBehaviour
     private UIManager uIManager;
 
     ImprovementsTreeNode[] NodesData;
+    [SerializeField]
     Button[] ImprovementButtons;
+
+    [SerializeField]
+    Material Finished;
+    [SerializeField]
+    Material Available;
+    [SerializeField]
+    Material InProgress;
+    [SerializeField]
+    Material Locked;
 
     static Dictionary<int, ImprovementsTreeNode> IMPROVEMENT_NODES;
     public static int ROOT_ID = 0;
@@ -34,6 +44,7 @@ public class ImprovementsManager : MonoBehaviour
         foreach (ImprovementsTreeNode NodeData in NodesData)
         {
             IMPROVEMENT_NODES[NodeData.ID] = NodeData;
+            IMPROVEMENT_NODES[NodeData.ID].ResetValues();
         }
 
         foreach(Button button in ImprovementButtons)
@@ -41,10 +52,14 @@ public class ImprovementsManager : MonoBehaviour
             button.interactable = false;
         }
 
-        //Set Root Sate Finished (Locked)
-        //Set Unlocked States
-        ImprovementsManager.SetUnlockedNodes(Arr);
+        UnlockNodes(IMPROVEMENT_NODES[ROOT_ID]);
+        ImprovementButtons[ROOT_ID].GetComponent<Image>().material = Finished;
 
+        for (int i = 0; i < ImprovementButtons.Length; i++)
+        {
+            int tempNum = i; //Needed for C#
+            ImprovementButtons[i].onClick.AddListener(delegate { StartImprovement(tempNum); });
+        }
     }
 
     public void AccessMenu()
@@ -53,44 +68,49 @@ public class ImprovementsManager : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public static void SetUnlockedNodes(int UnlockedNodeIDs)
-    {
-        foreach (int ID in UnlockedNodeIDs)
+    public void ResearchImprovement()
+    {          
+        if(IMPROVEMENT_NODES[currentImprovement].bIsUnlock && !IMPROVEMENT_NODES[currentImprovement].bIsFinished)
         {
-            if (IMPROVEMENT_NODES.ContainsKey(ID))
+            IMPROVEMENT_NODES[currentImprovement].ImprovementTime--;
+            if(IMPROVEMENT_NODES[currentImprovement].ImprovementTime == 0)
             {
-                IMPROVEMENT_NODES[ID].unlock();
+                ApplyEffects(currentImprovement);
+                UnlockNodes(IMPROVEMENT_NODES[currentImprovement]);
             }
         }
     }
 
-    public static void ResearchImprovement()
-    {          
-        /*if(!Improvements[currentImprovement].bIsComplete && currentImprovement != 0)
-        {
-            Improvements[currentImprovement].turnsRemaining--;
-            if(Improvements[currentImprovement].turnsRemaining == 0)
-            {
-                Improvements[currentImprovement].bIsComplete = true;
-                ApplyEffects(currentImprovement);
-            }
-        }*/
-
-        //if unlock
-            //then applyeffects
-    }
-
     public void StartImprovement(int index) //index Passed from Button
     {
+        foreach(ImprovementsTreeNode node in NodesData)
+        {
+            if(!node.bIsFinished && node.bIsUnlock)
+            {
+                ImprovementButtons[node.ID].GetComponent<Image>().material = Available;
+            }
+        }
+
         currentImprovement = index;
         gameManager.cash -= IMPROVEMENT_NODES[currentImprovement].ImprovementCost;
-        //Change Node Colour
+        ImprovementButtons[index].GetComponent<Image>().material = InProgress;
     }
 
     void ApplyEffects(int index)
     {
+        IMPROVEMENT_NODES[index].bIsFinished = true;
         ImprovementNodeActioners.Apply(index);
-        IMPROVEMENT_NODES[index].chi
+        ImprovementButtons[index].GetComponent<Image>().material = Finished;
+    }
+
+    void UnlockNodes(ImprovementsTreeNode Node)
+    {
+        foreach (ImprovementsTreeNode NodeData in Node.Children)
+        {
+            NodeData.bIsUnlock = true;
+            ImprovementButtons[NodeData.ID].interactable = true;
+            ImprovementButtons[NodeData.ID].GetComponent<Image>().material = Available; 
+        }
     }
 }
 

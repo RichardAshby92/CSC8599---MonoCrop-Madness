@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e260761660219484ca2f1447360546b9, type: 3}
   m_Name: SlashAndMulch
   m_EditorClassIdentifier: 
-  ID: 0
-  DisplayName: 10
-  ImprovementTime: 0
-  ImprovementCost: 0
-  Children:
-  - {fileID: 11400000, guid: 71e13d1eb88b6b543a1836cfa40272b9, type: 2}
+  ID: 10
+  DisplayName: '"Slash and Mulch"'
+  ImprovementCost: 400
+  IntialImprovementTime: 11
+  bIntialIsUnlock: 0
+  bIntialIsFinished: 0
+  ImprovementTime: 11
+  bIsUnlock: 0
+  bIsFinished: 0
+  Children: []
   Parent: {fileID: 11400000, guid: 71e13d1eb88b6b543a1836cfa40272b9, type: 2}

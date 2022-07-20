@@ -6,6 +6,10 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     public static GameManager inst;
+
+    [SerializeField]
+    GameObject ImprovementsObject;
+
     private UIManager uIManager;
     private EconomyManager economyManager;
     private GameSceneManager gameSceneManager;
@@ -49,6 +53,7 @@ public class GameManager : MonoBehaviour
         economyManager = GetComponent<EconomyManager>();
         gameSceneManager = GetComponent<GameSceneManager>();
         communityManager = GetComponent<CommunityManager>();
+        Improvements = ImprovementsObject.GetComponent<ImprovementsManager>();
 
         fieldProperties = new List<FieldProperties>();
 
@@ -76,7 +81,7 @@ public class GameManager : MonoBehaviour
         uIManager.UpdateCropPriceDisplay();
         Information.SetActive(true);
         communityManager.CheckHealth();
-        ImprovementsManager.ResearchImprovement();
+        Improvements.ResearchImprovement();
 
         System.GC.Collect();
     }
