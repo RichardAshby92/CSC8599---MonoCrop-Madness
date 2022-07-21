@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CompanionCropping
   m_EditorClassIdentifier: 
   ID: 8
-  DisplayName: '"Companion Cropping"'
+  DisplayName: Companion Cropping
   ImprovementCost: 800
   IntialImprovementTime: 12
   bIntialIsUnlock: 0

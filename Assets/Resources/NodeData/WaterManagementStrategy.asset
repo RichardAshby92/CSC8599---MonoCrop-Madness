@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: WaterManagementStrategy
   m_EditorClassIdentifier: 
   ID: 7
-  DisplayName: '"Water Management Strategy"'
+  DisplayName: Water Management Strategy
   ImprovementCost: 600
   IntialImprovementTime: 8
   bIntialIsUnlock: 0
   bIntialIsFinished: 0
-  ImprovementTime: 0
+  ImprovementTime: 8
   bIsUnlock: 0
   bIsFinished: 0
   Children:

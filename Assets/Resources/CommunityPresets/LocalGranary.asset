@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ccb99da94c31054abd8dfd2ee9dc689, type: 3}
-  m_Name: School
+  m_Name: LocalGranary
   m_EditorClassIdentifier: 
-  idNum: 1
-  DisplayName: School
+  idNum: 3
+  DisplayName: Local Granary
   cost: 400
   building: {fileID: 0}

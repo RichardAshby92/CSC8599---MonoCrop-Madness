@@ -7,9 +7,8 @@ using UnityEditor;
 
 public class CommunityPresets : ScriptableObject
 {
-    int idNum;
-    string DisplayName;
-
-    int cost;
-    GameObject building;
+    public int idNum;
+    public string DisplayName;
+    public int cost;
+    public GameObject building;
 }

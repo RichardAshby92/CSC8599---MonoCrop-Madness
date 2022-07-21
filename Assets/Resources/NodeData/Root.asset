@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Root
   m_EditorClassIdentifier: 
   ID: 0
-  DisplayName: Root
-  ImprovementTime: 0
+  DisplayName: Tropical Agriculture
   ImprovementCost: 0
+  IntialImprovementTime: 0
+  bIntialIsUnlock: 0
+  bIntialIsFinished: 0
+  ImprovementTime: 0
   bIsUnlock: 0
-  bIsFinished: 1
+  bIsFinished: 0
   Children:
   - {fileID: 11400000, guid: 2bf43c1fbc78bbd4aa37125c254915a0, type: 2}
   - {fileID: 11400000, guid: ffd29e07d67587948b0180c745444740, type: 2}

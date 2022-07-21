@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NitrogenFixingCrop
   m_EditorClassIdentifier: 
   ID: 9
-  DisplayName: '"Nitrogen Fixing Crops"'
+  DisplayName: Nitrogen Fixing Crops
   ImprovementCost: 600
   IntialImprovementTime: 10
   bIntialIsUnlock: 0

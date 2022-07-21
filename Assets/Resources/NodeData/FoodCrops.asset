@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FoodCrops
   m_EditorClassIdentifier: 
   ID: 5
-  DisplayName: '"Food Crops"'
+  DisplayName: Food Crops
   ImprovementCost: 200
   IntialImprovementTime: 8
   bIntialIsUnlock: 0

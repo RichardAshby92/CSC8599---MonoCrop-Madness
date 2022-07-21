@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlashAndMulch
   m_EditorClassIdentifier: 
   ID: 10
-  DisplayName: '"Slash and Mulch"'
+  DisplayName: Slash and Mulch
   ImprovementCost: 400
   IntialImprovementTime: 11
   bIntialIsUnlock: 0

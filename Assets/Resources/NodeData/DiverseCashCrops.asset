@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: DiverseCashCrops
   m_EditorClassIdentifier: 
   ID: 2
-  DisplayName: '"Diverse Cash Crops"'
+  DisplayName: Diverse Cash Crops
   ImprovementCost: 100
   IntialImprovementTime: 2
   bIntialIsUnlock: 1
   bIntialIsFinished: 0
-  ImprovementTime: 0
+  ImprovementTime: 2
   bIsUnlock: 1
   bIsFinished: 0
   Children:

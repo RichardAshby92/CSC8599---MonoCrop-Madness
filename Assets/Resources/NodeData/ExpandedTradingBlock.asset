@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ExpandedTradingBlock
   m_EditorClassIdentifier: 
   ID: 4
-  DisplayName: '"Expanded Trading Block"'
+  DisplayName: Expanded Trading Block
   ImprovementCost: 1000
   IntialImprovementTime: 16
   bIntialIsUnlock: 0

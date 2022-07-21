@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ImprovementsManager : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class ImprovementsManager : MonoBehaviour
     ImprovementsTreeNode[] NodesData;
     [SerializeField]
     Button[] ImprovementButtons;
+    [SerializeField]
+    TextMeshProUGUI[] ImprovementTurnText;
+    [SerializeField]
+    TextMeshProUGUI[] ImprovementCostText;
+    [SerializeField]
+    TextMeshProUGUI[] ImprovementTitle;
 
     [SerializeField]
     Material Finished;
@@ -50,6 +57,13 @@ public class ImprovementsManager : MonoBehaviour
         foreach(Button button in ImprovementButtons)
         {
             button.interactable = false;
+        }
+
+        for(int i = 0; i < ImprovementTurnText.Length; i++)
+        {
+            ImprovementTurnText[i].text = IMPROVEMENT_NODES[i].ImprovementTime.ToString();
+            ImprovementCostText[i].text = IMPROVEMENT_NODES[i].ImprovementCost.ToString();
+            ImprovementTitle[i].text = IMPROVEMENT_NODES[i].DisplayName;
         }
 
         UnlockNodes(IMPROVEMENT_NODES[ROOT_ID]);

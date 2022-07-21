@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: DroughtResistantCrops
   m_EditorClassIdentifier: 
   ID: 6
-  DisplayName: '"Drought Resistant Crops"'
+  DisplayName: Drought Resistant Crops
   ImprovementCost: 400
   IntialImprovementTime: 8
   bIntialIsUnlock: 0
   bIntialIsFinished: 0
-  ImprovementTime: 0
+  ImprovementTime: 8
   bIsUnlock: 0
   bIsFinished: 0
   Children:

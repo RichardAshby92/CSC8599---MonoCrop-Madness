@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: SlashAndBurn
   m_EditorClassIdentifier: 
   ID: 3
-  DisplayName: '"Slash and Burn"'
+  DisplayName: Slash and Burn
   ImprovementCost: 200
   IntialImprovementTime: 5
   bIntialIsUnlock: 0
   bIntialIsFinished: 0
-  ImprovementTime: 0
+  ImprovementTime: 5
   bIsUnlock: 1
   bIsFinished: 0
   Children:
