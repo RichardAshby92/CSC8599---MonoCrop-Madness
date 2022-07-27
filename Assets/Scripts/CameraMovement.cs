@@ -13,6 +13,15 @@ public class CameraMovement : MonoBehaviour
     [SerializeField]
     private float MoveZ;
 
+    [SerializeField]
+    float MinXLimit;
+    [SerializeField]
+    float MaxXLimit;
+    [SerializeField]
+    float MinZLimit;
+    [SerializeField]
+    float MaxZLimit;
+
     private Vector3 cameraMovement;
     private void Awake()
     {
@@ -25,8 +34,8 @@ public class CameraMovement : MonoBehaviour
         MoveZ = transform.position.z;
         MoveX += Input.GetAxisRaw("Horizontal") * cameraSpeed;
         MoveZ += Input.GetAxisRaw("Vertical") * cameraSpeed;
-        MoveX = Mathf.Clamp(MoveX, -250, 250);
-        MoveZ = Mathf.Clamp(MoveZ, -500, 300);
+        MoveX = Mathf.Clamp(MoveX, -MinXLimit, MaxXLimit);
+        MoveZ = Mathf.Clamp(MoveZ, -MinZLimit, MaxZLimit);
 
         cameraMovement.Set(MoveX, HeightY, MoveZ);
         transform.position = cameraMovement;

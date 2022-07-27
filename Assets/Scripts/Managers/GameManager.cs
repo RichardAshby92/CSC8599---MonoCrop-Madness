@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
     private int loanRepayment;
     [SerializeField]
     private int MaximumTurns;
+    [SerializeField]
+    private int MinLakeHeight;
+    [SerializeField]
+    private int MaxLakeheight;
 
     private void Awake()
     {
@@ -143,7 +147,7 @@ public class GameManager : MonoBehaviour
         }
 
         waterLevel += (rain - totalWaterUsed);
-        waterLevel = Mathf.Clamp(waterLevel, 1, 100);
+        waterLevel = Mathf.Clamp(waterLevel, MinLakeHeight, MaxLakeheight);
         Vector3 waterHeight = Lake.transform.position;
         waterHeight.y = waterLevel;
 
