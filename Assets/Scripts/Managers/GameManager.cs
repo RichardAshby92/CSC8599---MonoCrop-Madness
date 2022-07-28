@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int MaxLakeheight;
 
+    const int ImprovementID = 7;
+    public static bool[] UnlockedCrops { get; set; }
+
     private void Awake()
     {
         inst = this;
@@ -65,6 +68,9 @@ public class GameManager : MonoBehaviour
         {
             fieldProperties.Add(fields[i].GetComponent<FieldProperties>());
         }
+
+        UnlockedCrops = new bool[10];
+        UnlockedCrops[7] = true;
     }
        
 
@@ -139,14 +145,16 @@ public class GameManager : MonoBehaviour
 
     void CalculateNewWaterLevel()
     {
-        int totalWaterUsed = 0;
+        float totalWaterUsed = 0;
+        float ImprovementMultiplier = ImprovementNodeActioners.GetMultiplier(ImprovementID);
 
         foreach(FieldProperties fieldProperty in fieldProperties)
         {
             totalWaterUsed += fieldProperty.crop.waterUsedPerTurn;
         }
 
-        waterLevel += (rain - totalWaterUsed);
+        totalWaterUsed *= 1/ImprovementMultiplier;
+        waterLevel += (rain - (int)totalWaterUsed);
         waterLevel = Mathf.Clamp(waterLevel, MinLakeHeight, MaxLakeheight);
         Vector3 waterHeight = Lake.transform.position;
         waterHeight.y = waterLevel;

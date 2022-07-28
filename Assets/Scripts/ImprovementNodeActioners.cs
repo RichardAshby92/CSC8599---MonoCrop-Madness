@@ -7,60 +7,77 @@ public class ImprovementNodeActioners : MonoBehaviour
     static Dictionary<int, float> MULTIPLIERS = new Dictionary<int, float>();
     static Dictionary<int, System.Action> ACTIONERS = new Dictionary<int, System.Action>()
     {
-        { 1, () =>
+        { 0, () =>
             {
-                //Enables Cash Crop Buttons
+                //Unlock Cash Crops
+                GameManager.UnlockedCrops[1] = true;
+                GameManager.UnlockedCrops[2] = true;
+                GameManager.UnlockedCrops[3] = true;
             }
         },
-        {2, () =>
+        {1, () =>
             {
+                //Improve Crop Prices
                 MULTIPLIERS[2] = 1.15f;
             }
         },
-        {3, () =>
+        {2, () =>
             {
                 //Enables Slash and Burn Mechanic
             }
 
         },
+        {3, () =>
+            {
+                //Improve Crop Prices
+                MULTIPLIERS[2] = 1.25f;
+            }
+        },
         {4, () =>
             {
-                MULTIPLIERS[2] = 1.25f;
+                //Unlock Food Crops
+                GameManager.UnlockedCrops[4] = true;
+                GameManager.UnlockedCrops[6] = true;
+                GameManager.UnlockedCrops[10] = true;
             }
         },
         {5, () =>
             {
-                //Enable Food Crop Button
+                //Unlock Drought Crops
+                GameManager.UnlockedCrops[2] = true;
+                GameManager.UnlockedCrops[7] = true;
             }
         },
         {6, () =>
             {
-                //Enable drought Crop Button
-            }
-        },
-        {7, () =>
-            {
+                //Water Management
                 //Water Management Prefab Created
                 MULTIPLIERS[7] = 0.5f;
             }
         },
+        {7, () =>
+            {
+                //Increase Field Health
+               MULTIPLIERS[8] = 1.5f;
+            }
+        },
         {8, () =>
             {
-               MULTIPLIERS[8] = 1.5f;
+                //Unlock Nitrogen Fixing Crop
+                GameManager.UnlockedCrops[5] = true;
             }
         },
         {9, () =>
             {
-                //Enable bean Crop Button
-            }
-        },
-        {10, () =>
-            {
+                //Increase Soil Quality
                 MULTIPLIERS[10] = 1.2f;
             }
         },
 
+
     };
+
+   
 
     public static void Apply(int ID)
     {
@@ -82,5 +99,9 @@ public class ImprovementNodeActioners : MonoBehaviour
         {
             return 1f;
         }
+    }
+    public static bool CheckUnlocked(int ID)
+    {
+        return GameManager.UnlockedCrops[ID];
     }
 }

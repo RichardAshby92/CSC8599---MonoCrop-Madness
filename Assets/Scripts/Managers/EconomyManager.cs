@@ -13,6 +13,8 @@ public class EconomyManager : MonoBehaviour
     public int[] marketShocks;
     private int currentShock = 0;
 
+    const int ImprovementID = 2;
+
     private void Awake()
     {
         inst = this;
@@ -43,10 +45,14 @@ public class EconomyManager : MonoBehaviour
             currentShock++;
         }
 
+        float ImprovementMultplier = ImprovementNodeActioners.GetMultiplier(ImprovementID);
+
         for (int i = 0; i < currentCropPrices.Length; i++)
         {
+           
             float changeFactor = Random.Range(75, 150);;
-            currentCropPrices[i] *= 100/changeFactor;            
+            currentCropPrices[i] *= 100/changeFactor;
+            currentCropPrices[i] *= ImprovementMultplier;
         }
     }
 

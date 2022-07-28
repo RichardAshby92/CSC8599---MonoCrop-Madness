@@ -23,6 +23,7 @@ public class FieldActions : MonoBehaviour
 
     private int foodCropAffect;
 
+
     private void Awake()
     {
         Intialise();
@@ -94,8 +95,10 @@ public class FieldActions : MonoBehaviour
         {
             int tempNum = i + 1; //Needed for C#
             uIManager.cropMenuButtons[i].onClick.AddListener(delegate { PlantCrop(tempNum); });
-            //Set Researched as active only
-            //how?
+            if (!ImprovementNodeActioners.CheckUnlocked(i))
+            {
+                uIManager.cropMenuButtons[i].interactable = false;
+            }
         }
         uIManager.CropMenu.SetActive(true);
     }

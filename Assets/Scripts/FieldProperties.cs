@@ -29,6 +29,9 @@ public class FieldProperties : MonoBehaviour
 
     public CropPreset crop;
 
+    const int ImprovementID = 8;
+    const int ImprovementID2 = 10;
+
     private void Awake()
     {
         Intialise();
@@ -67,6 +70,9 @@ public class FieldProperties : MonoBehaviour
         fieldHealth *= (float)(1.1 / Mathf.Exp(5 / soilQuality));
         print(fieldHealth);
 
+        float ImprovementMultiplier = ImprovementNodeActioners.GetMultiplier(ImprovementID);
+        fieldHealth *= ImprovementMultiplier;
+
         fieldHealth = Mathf.Clamp(fieldHealth, 0, 100);
 
         if(fieldHealth < 1) //Crop Dies
@@ -81,13 +87,15 @@ public class FieldProperties : MonoBehaviour
 
     public void CalculateSoilQuality()
     {
-        int naturalRecovery = 0;
+        float naturalRecovery = 0;
+        float ImprovementMultiplier = ImprovementNodeActioners.GetMultiplier(ImprovementID2);
         if(crop.idNum == 0)
         {
             naturalRecovery = 10;
+            naturalRecovery *= ImprovementMultiplier;
         }
 
-        soilQuality += (naturalRecovery + crop.soilChange - leaching); //Scale leaching with rain
+        soilQuality += ((int)naturalRecovery + crop.soilChange - leaching); //Scale leaching with rain
         soilQuality = Mathf.Clamp(soilQuality, 1, 1000);
         CalculateMaterial();
     }
