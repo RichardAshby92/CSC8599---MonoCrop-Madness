@@ -94,6 +94,8 @@ public class FieldActions : MonoBehaviour
         {
             int tempNum = i + 1; //Needed for C#
             uIManager.cropMenuButtons[i].onClick.AddListener(delegate { PlantCrop(tempNum); });
+            //Set Researched as active only
+            //how?
         }
         uIManager.CropMenu.SetActive(true);
     }
