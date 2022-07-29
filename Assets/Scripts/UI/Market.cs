@@ -9,9 +9,10 @@ public class Market : MonoBehaviour
     private GameManager gameManager;
     private UIManager uIManager;
 
-    public int fertiliserPrice;
-    public int pesticidePrice;
-
+    [field: SerializeField]
+    public int fertiliserPrice { get; set; }
+    [field: SerializeField]
+    public int pesticidePrice { get; set; }
     [SerializeField]
     private int toolCost;
 
@@ -55,25 +56,16 @@ public class Market : MonoBehaviour
     public void BuyFertiliser()
     {
         marketInventory.Fertiliser++;
-        gameManager.cash -= 50;
+        gameManager.cash -= fertiliserPrice;
         uIManager.UpdateUIText();
     }
 
     public void BuyPesticides()
     {
         marketInventory.Pesticide++;
-        gameManager.cash -= 100;
+        gameManager.cash -= pesticidePrice;
         uIManager.UpdateUIText();
     }
-
-    public void SearchForCultivars()
-    {
-        //Subtract Cost
-        //gameManager.cash -=
-        //Related to Research?
-        //uIManager.cropButtons 
-    }
-
 }
 
 [System.Serializable]

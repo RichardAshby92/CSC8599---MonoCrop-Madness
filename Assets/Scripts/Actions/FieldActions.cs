@@ -76,7 +76,7 @@ public class FieldActions : MonoBehaviour
             uIManager.actionButtons[3].interactable = true;
         }
 
-        if(market.marketInventory.Fertiliser > 0)
+        if(market.marketInventory.Fertiliser <= 0)
         {
             uIManager.actionButtons[2].interactable = false;
         }
@@ -169,7 +169,7 @@ public class FieldActions : MonoBehaviour
 
     public void AddFertiliser()
     {
-        if (gameManager.ActionRemaining(1))
+        if (gameManager.ActionRemaining(1) && market.marketInventory.Fertiliser > 0)
         {
             market.marketInventory.Fertiliser--;
             crop.soilQuality += 50;

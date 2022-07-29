@@ -9,72 +9,71 @@ public class ImprovementNodeActioners : MonoBehaviour
     {
         { 0, () =>
             {
-                //Unlock Cash Crops
-                GameManager.UnlockedCrops[1] = true;
-                GameManager.UnlockedCrops[2] = true;
-                GameManager.UnlockedCrops[3] = true;
+                //Local Trading Block
+                MULTIPLIERS[2] = 1.15f;
             }
         },
         {1, () =>
             {
-                //Improve Crop Prices
-                MULTIPLIERS[2] = 1.15f;
+                //Diverse Cash Crop               
+                GameManager.UnlockedCrops[0] = true;
+                GameManager.UnlockedCrops[2] = true;
+                GameManager.UnlockedCrops[8] = true;
             }
         },
         {2, () =>
             {
-                //Enables Slash and Burn Mechanic
+                //Slash and Burn
+                SlashAndBurn.ImprovementUnlocked = true;
             }
 
         },
         {3, () =>
             {
-                //Improve Crop Prices
+                //Expanded Trading Block
                 MULTIPLIERS[2] = 1.25f;
             }
         },
         {4, () =>
             {
-                //Unlock Food Crops
-                GameManager.UnlockedCrops[4] = true;
-                GameManager.UnlockedCrops[6] = true;
-                GameManager.UnlockedCrops[10] = true;
+                //Food Crops
+                GameManager.UnlockedCrops[3] = true;
+                GameManager.UnlockedCrops[5] = true;
+                GameManager.UnlockedCrops[9] = true;
             }
         },
         {5, () =>
             {
                 //Unlock Drought Crops
-                GameManager.UnlockedCrops[2] = true;
-                GameManager.UnlockedCrops[7] = true;
+                GameManager.UnlockedCrops[1] = true;
+                GameManager.UnlockedCrops[6] = true;
             }
         },
         {6, () =>
             {
-                //Water Management
+                //Water Management Strategies
                 //Water Management Prefab Created
                 MULTIPLIERS[7] = 0.5f;
             }
         },
         {7, () =>
             {
-                //Increase Field Health
+                //Companion Cropping
                MULTIPLIERS[8] = 1.5f;
             }
         },
         {8, () =>
             {
-                //Unlock Nitrogen Fixing Crop
-                GameManager.UnlockedCrops[5] = true;
+                //Nitrogen Fixing Crop
+                GameManager.UnlockedCrops[4] = true;
             }
         },
         {9, () =>
             {
-                //Increase Soil Quality
+                //Slash and Mulch
                 MULTIPLIERS[10] = 1.2f;
             }
         },
-
-
     };
 
    

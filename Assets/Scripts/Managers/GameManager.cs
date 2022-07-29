@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.VFX;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     GameObject ImprovementsObject;
+    [SerializeField]
+    GameObject RainEmitter;
 
     private UIManager uIManager;
     private EconomyManager economyManager;
@@ -16,6 +19,7 @@ public class GameManager : MonoBehaviour
     private CommunityManager communityManager;
     private ImprovementsManager Improvements;
     private List<FieldProperties> fieldProperties;
+    private VisualEffect RainEffect;
 
     [SerializeField]
     private GameObject Lake;
@@ -61,6 +65,7 @@ public class GameManager : MonoBehaviour
         gameSceneManager = GetComponent<GameSceneManager>();
         communityManager = GetComponent<CommunityManager>();
         Improvements = ImprovementsObject.GetComponent<ImprovementsManager>();
+        RainEffect = RainEmitter.GetComponent<VisualEffect>();
 
         fieldProperties = new List<FieldProperties>();
 
@@ -121,12 +126,12 @@ public class GameManager : MonoBehaviour
 
         if(season < 4 || season > 10)
         {
-            //disable rain effect
+            RainEffect.Stop();
             DrySeason = true;
         }
         else
         {
-            //enable rain Effect
+            RainEffect.Play();
             DrySeason = false;
         }
     }

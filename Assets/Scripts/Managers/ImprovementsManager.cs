@@ -113,7 +113,7 @@ public class ImprovementsManager : MonoBehaviour
     void ApplyEffects(int index)
     {
         IMPROVEMENT_NODES[index].bIsFinished = true;
-        ImprovementNodeActioners.Apply(index);
+        ImprovementNodeActioners.Apply(index-1);
         ImprovementButtons[index].GetComponent<Image>().material = Finished;
     }
 

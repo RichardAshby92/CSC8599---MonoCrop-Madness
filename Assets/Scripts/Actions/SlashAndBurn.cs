@@ -11,6 +11,8 @@ public class SlashAndBurn : MonoBehaviour
     private GameObject GameManagerObject;
     [SerializeField]
     private GameObject FieldHealthObject;
+    [SerializeField]
+    private GameObject MarketGameObject;
 
     private FieldProperties fieldProperties;
     private FieldActions fieldActions;
@@ -18,7 +20,7 @@ public class SlashAndBurn : MonoBehaviour
     private UIManager uIManager;
     private GameManager gameManager;
 
-    // Start is called before the first frame update
+    public static bool ImprovementUnlocked { get; set; }
     void Awake()
     {
         CommunityManager = GameManagerObject.GetComponent<CommunityManager>();
@@ -35,6 +37,16 @@ public class SlashAndBurn : MonoBehaviour
 
         uIManager.DisableMenus();
         uIManager.newFieldMenu.SetActive(true);
+        if (!ImprovementUnlocked)
+        {
+            uIManager.newFieldButton.interactable = false;
+            return;
+        }
+        else
+        {
+            uIManager.newFieldButton.interactable = true;
+        }
+
         uIManager.newFieldButton.onClick.AddListener(BurnField);
     }
 
@@ -50,7 +62,8 @@ public class SlashAndBurn : MonoBehaviour
 
         NewFieldPrefab.GetComponent<FieldProperties>().gameManagerObject = GameManagerObject;
         NewFieldPrefab.GetComponent<FieldActions>().gameManagerObject = GameManagerObject;
-        NewFieldPrefab.GetComponent<FieldActions>().fieldHealthObject = FieldHealthObject; 
+        NewFieldPrefab.GetComponent<FieldActions>().fieldHealthObject = FieldHealthObject;
+        NewFieldPrefab.GetComponent<FieldActions>().MarketGameObject = MarketGameObject;
 
         NewFieldPrefab.GetComponent<FieldProperties>().Intialise();
         NewFieldPrefab.GetComponent<FieldActions>().Intialise();
