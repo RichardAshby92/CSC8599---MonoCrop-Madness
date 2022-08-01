@@ -77,6 +77,4 @@ public struct MarketInventory
     public int Fertiliser { get; set; }
     [field: SerializeField]
     public bool[] tools { get; set; }
-    [field: SerializeField]
-    public bool[] cultivars { get; set; }
 }

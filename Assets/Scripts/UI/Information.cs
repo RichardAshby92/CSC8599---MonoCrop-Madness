@@ -9,10 +9,16 @@ public class Information : MonoBehaviour
     private GameManager gameManager;
     private UIManager uIManager;
 
+    List<InformationNode> informationNodes;
+
     private void Awake()
     {
         gameManager = gameManagerObject.GetComponent<GameManager>();
         uIManager = gameManagerObject.GetComponent<UIManager>();
+
+        informationNodes = new List<InformationNode>(18);
+        //Populate Structs
+        //Load tips from CSV
     }
 
     public void AccessMenu()
@@ -21,8 +27,12 @@ public class Information : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    private void PopulatePage()
+    private void BuyTip()
     {
-
+        //Child Bool is Unlockable
+        //String equal to load text array
+        //Change Button Colour
+        //Button is no longer interactable
     }
 }
+
