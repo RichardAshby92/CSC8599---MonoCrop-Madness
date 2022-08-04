@@ -94,7 +94,6 @@ public class GameManager : MonoBehaviour
         ResetActions();
         uIManager.UpdateUIText();
         uIManager.UpdateCropPriceDisplay();
-        Information.SetActive(true);
         communityManager.CheckHealth();
         Improvements.ResearchImprovement();
 
