@@ -55,7 +55,7 @@ public class SlashAndBurn : MonoBehaviour
         CommunityManager.communityHealth -= 20;
         CommunityManager.TopLimit -= 20;
 
-        //Burn Effect
+        //Add Burn Effect
         gameManager.remainingActions -= 4;
 
         NewFieldPrefab = Instantiate(NewFieldPrefab, transform.position, transform.rotation);

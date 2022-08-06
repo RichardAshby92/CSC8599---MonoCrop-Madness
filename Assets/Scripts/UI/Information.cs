@@ -16,6 +16,7 @@ public class Information : MonoBehaviour
     private string[,] _tipString;
 
     private InformationNode[] _informationNodes;
+    [SerializeField]
     private Button[] _tipButtons;
 
     [SerializeField]
@@ -33,15 +34,14 @@ public class Information : MonoBehaviour
         uIManager = gameManagerObject.GetComponent<UIManager>();
 
         _tipString = LoadData.LoadCSVToStringArray(_tipFile);
-        _tipButtons = GetComponentsInChildren<Button>();
 
         _informationNodes = GetComponentsInChildren<InformationNode>();
 
-        int buttonNumber = 0;
-        foreach(Button button in _tipButtons)
+        for (int i = 0; i < _tipButtons.Length; i++)
         {
-            button.interactable = false;
-            button.onClick.AddListener(delegate { BuyTip(buttonNumber); });
+            int tempNum = i; //Needed for C#
+            _tipButtons[i].interactable = false;
+            _tipButtons[i].onClick.AddListener(delegate { BuyTip(tempNum); });
         }
         _tipButtons[0].interactable = true;
 
@@ -54,6 +54,8 @@ public class Information : MonoBehaviour
             node.BodyText = _tipString[counter, 3];
             counter++;
         }
+
+        transform.GetChild(transform.childCount - 1).gameObject.SetActive(false);
     }
 
     public void AccessMenu()
@@ -71,17 +73,18 @@ public class Information : MonoBehaviour
             _tipButtons[iD].GetComponent<Image>().material = _unlockedColour;
 
             //Unlock Next Button
-            _tipButtons[iD + 1].interactable = false;
-            //What if its the last button
+            if(iD + 1 == _tipButtons.Length)
+            {
+                return;
+            }
+            _tipButtons[iD + 1].interactable = true;
+            uIManager.UpdateUIText();
         }
 
-        _tipImage.active = true;
+        _tipImage.SetActive(true);
+        uIManager._level2Menu = true;
         _TitleText.text = _tipString[iD + 1, 2];
         _BodyText.text = _tipString[iD + 2, 3];
-
-
-        //_informationNodes[iD].Child.
-        //Child Bool is Unlockable
     }
 }
 

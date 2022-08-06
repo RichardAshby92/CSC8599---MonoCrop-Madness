@@ -19,7 +19,8 @@ public class UIManager : MonoBehaviour
     public GameObject toolsMenu;
     public GameObject newFieldMenu;
     public GameObject FieldHealthMenu;
-    public GameObject ImprovementsMenu;  
+    public GameObject ImprovementsMenu;
+    public GameObject _tipImageObject;
 
     public Button[] actionButtons;
     public Button[] cropMenuButtons;
@@ -50,6 +51,8 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI[] PriceText;
     private string[] DefaultPriceText;
 
+    public bool _level2Menu { get; set; }
+
     public void Awake()
     {
         inst = this;
@@ -72,6 +75,8 @@ public class UIManager : MonoBehaviour
         UpdateUIText();
 
         DefaultPriceText = new string[10];
+
+        _level2Menu = false;
     }
 
     public void Start()
@@ -88,9 +93,18 @@ public class UIManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
-            DisableMenus();
+            if(_level2Menu)
+            {
+                _tipImageObject.SetActive(false);
+                _level2Menu = false;
+            }
+            else
+            {
+                DisableMenus();
+            }           
+
             //if statement to reduce work
             for (int i = 0; i < actionButtons.Length; i++)
             {
