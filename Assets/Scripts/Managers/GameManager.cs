@@ -47,8 +47,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private int loanRepayment;
-    [SerializeField]
-    private int MaximumTurns;
+    public static int MaximumTurns { get; set; }
     [SerializeField]
     private int MinLakeHeight;
     [SerializeField]
@@ -76,6 +75,8 @@ public class GameManager : MonoBehaviour
 
         UnlockedCrops = new bool[10];
         UnlockedCrops[7] = true;
+
+        MaximumTurns = 120;
     }
        
 

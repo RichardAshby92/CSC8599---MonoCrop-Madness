@@ -1396,6 +1396,7 @@ MonoBehaviour:
   cropAge: 8
   isCropRipe: 1
   timesPlanted: 
+  _maximumSoilQuality: 200
   gameManagerObject: {fileID: 493119310}
   goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
   averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
@@ -11444,7 +11445,6 @@ MonoBehaviour:
   <numPollinators>k__BackingField: 100
   <numPests>k__BackingField: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   loanRepayment: 100
-  MaximumTurns: 120
   MinLakeHeight: 5
   MaxLakeheight: 90
 --- !u!114 &493119315
@@ -28464,6 +28464,7 @@ MonoBehaviour:
   cropAge: 8
   isCropRipe: 1
   timesPlanted: 
+  _maximumSoilQuality: 200
   gameManagerObject: {fileID: 493119310}
   goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
   averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
@@ -37449,6 +37450,7 @@ MonoBehaviour:
   cropAge: 8
   isCropRipe: 1
   timesPlanted: 
+  _maximumSoilQuality: 200
   gameManagerObject: {fileID: 493119310}
   goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
   averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
@@ -42514,6 +42516,7 @@ MonoBehaviour:
   cropAge: 8
   isCropRipe: 1
   timesPlanted: 
+  _maximumSoilQuality: 200
   gameManagerObject: {fileID: 493119310}
   goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
   averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}

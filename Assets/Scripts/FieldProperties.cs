@@ -16,6 +16,8 @@ public class FieldProperties : MonoBehaviour
     public int[] timesPlanted;
 
     private int lackOfwater = 0;
+    [SerializeField]
+    private int _maximumSoilQuality;
 
     public GameObject gameManagerObject;
     private GameManager gameManager;
@@ -95,8 +97,8 @@ public class FieldProperties : MonoBehaviour
             naturalRecovery *= ImprovementMultiplier;
         }
 
-        soilQuality += ((int)naturalRecovery + crop.soilChange - leaching); //Scale leaching with rain
-        soilQuality = Mathf.Clamp(soilQuality, 1, 1000);
+        soilQuality += ((int)naturalRecovery + crop.soilChange - leaching);
+        soilQuality = Mathf.Clamp(soilQuality, 1, _maximumSoilQuality);
         CalculateMaterial();
     }
 
