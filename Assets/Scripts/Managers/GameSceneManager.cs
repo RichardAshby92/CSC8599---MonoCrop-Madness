@@ -8,7 +8,10 @@ public class GameSceneManager : MonoBehaviour
 {
     public static GameSceneManager inst;
 
-    public static int finalScore;
+    public static int FinalScore;
+    public static int TurnNumScore;
+    public static int CashNumScore;
+    public static int CommunityNumScore;
 
     private GameManager gameManager;
     private CommunityManager communityManager;
@@ -22,7 +25,10 @@ public class GameSceneManager : MonoBehaviour
 
     public void StartGame()
     {
-        finalScore = 0;
+        FinalScore = 0;
+        TurnNumScore = 0;
+        CashNumScore = 0;
+        CommunityNumScore = 0;
         SceneManager.LoadScene("Main Scene");
     }
 
@@ -34,10 +40,11 @@ public class GameSceneManager : MonoBehaviour
 
     private void CalculateScore()
     {
-        int turnNumScore = Mathf.Clamp(gameManager.turnNum, 0, 100);
-        int cashNumScore = gameManager.cash; //Add Scaling Function;
+        TurnNumScore = Mathf.Clamp(gameManager.turnNum, 0, 100);
+        CashNumScore = gameManager.cash; //Add Scaling Function;
+        CommunityNumScore = communityManager.communityHealth;
 
-        finalScore = turnNumScore + cashNumScore + communityManager.communityHealth;
+        FinalScore = TurnNumScore + CashNumScore + CommunityNumScore;
         //Community Health + Money (Scaled) + turnNum (Clamped 100) 
     }
 }

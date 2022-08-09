@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ccb99da94c31054abd8dfd2ee9dc689, type: 3}
-  m_Name: SolarPanels
+  m_Name: Windmill
   m_EditorClassIdentifier: 
-  idNum: 2
-  DisplayName: Solar Panels
-  cost: 400
-  building: {fileID: 0}
+  <idNum>k__BackingField: 2
+  <DisplayName>k__BackingField: Windmill
+  <cost>k__BackingField: 400
+  <building>k__BackingField: {fileID: 6892615195314960650, guid: 0cf21a727592e8c4cb43d4fab04b7d67, type: 3}
+  <Position>k__BackingField: {x: 30, y: 10, z: -350}

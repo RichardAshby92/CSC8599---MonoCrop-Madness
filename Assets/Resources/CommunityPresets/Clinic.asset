@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ccb99da94c31054abd8dfd2ee9dc689, type: 3}
   m_Name: Clinic
   m_EditorClassIdentifier: 
-  idNum: 5
-  DisplayName: Clinic
-  cost: 400
-  building: {fileID: 0}
+  <idNum>k__BackingField: 5
+  <DisplayName>k__BackingField: Clinic
+  <cost>k__BackingField: 400
+  <building>k__BackingField: {fileID: 3426911332528167285, guid: 021daaaf39409ce4aa8e8d984a97aa0f, type: 3}
+  <Position>k__BackingField: {x: -450, y: 10, z: -350}
