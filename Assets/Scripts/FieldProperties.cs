@@ -67,7 +67,6 @@ public class FieldProperties : MonoBehaviour
         }
         
         fieldHealth -= (gameManager.numPests[crop.idNum] + lackOfwater);
-        print(fieldHealth);
         fieldHealth *= gameManager.numPollinators / 100;
         fieldHealth *= (float)(1.1 / Mathf.Exp(5 / soilQuality));
         print(fieldHealth);

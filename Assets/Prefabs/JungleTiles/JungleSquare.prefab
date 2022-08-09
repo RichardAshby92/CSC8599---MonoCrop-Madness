@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4971149878005340081}
   m_Layer: 0
-  m_Name: JungleTile
+  m_Name: JungleSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
