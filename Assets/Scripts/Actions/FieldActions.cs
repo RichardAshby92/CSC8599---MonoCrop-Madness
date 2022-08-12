@@ -196,9 +196,9 @@ public class FieldActions : MonoBehaviour
         {
             if(gameManager.ActionRemaining(1))
             {
-                float AmountHarvested = crop.size * crop.fieldHealth;
+                float AmountHarvested =  crop.fieldHealth;
                 AmountHarvested *= economyManager.currentCropPrices[crop.crop.idNum];
-                gameManager.cash -= ((int)AmountHarvested);
+                gameManager.cash += ((int)AmountHarvested);
 
                 crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
                 uIManager.UpdateUIText();

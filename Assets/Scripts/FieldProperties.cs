@@ -7,7 +7,7 @@ public class FieldProperties : MonoBehaviour
     [SerializeField]
     public int soilQuality; //1 - 100 Percentage
     [SerializeField]
-    public int size { get; set; }
+    //public int size { get; set; }
     public float fieldHealth;
     [SerializeField]
     private int leaching;
