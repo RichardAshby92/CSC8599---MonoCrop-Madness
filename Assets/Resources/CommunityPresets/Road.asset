@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ccb99da94c31054abd8dfd2ee9dc689, type: 3}
   m_Name: Road
   m_EditorClassIdentifier: 
-  <idNum>k__BackingField: 4
+  <IdNum>k__BackingField: 3
   <DisplayName>k__BackingField: Roads
-  <cost>k__BackingField: 400
-  <building>k__BackingField: {fileID: 6486871353515379653, guid: 11d343ccee5d24b419d8effb268d3635, type: 3}
+  <Cost>k__BackingField: 400
+  <Building>k__BackingField: {fileID: 6486871353515379653, guid: 11d343ccee5d24b419d8effb268d3635, type: 3}
   <Position>k__BackingField: {x: 50, y: 10, z: -190}

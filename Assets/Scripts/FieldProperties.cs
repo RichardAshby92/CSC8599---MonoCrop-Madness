@@ -4,84 +4,82 @@ using UnityEngine;
 
 public class FieldProperties : MonoBehaviour
 {
-    [SerializeField]
-    public int soilQuality; //1 - 100 Percentage
-    [SerializeField]
-    //public int size { get; set; }
-    public float fieldHealth;
-    [SerializeField]
-    private int leaching;
-    public int cropAge;
-    public bool isCropRipe;
-    public int[] timesPlanted;
-
-    private int lackOfwater = 0;
-    [SerializeField]
-    private int _maximumSoilQuality;
-
-    public GameObject gameManagerObject;
-    private GameManager gameManager;
-
-    [SerializeField]
-    private Material goodSoilMaterial;
-    [SerializeField]
-    private Material averageSoilMaterial;
-    [SerializeField]
-    private Material badSoilMaterial;
+    public GameObject GameManagerObject;
+    private GameManager _gameManager;
 
     public CropPreset crop;
 
-    const int ImprovementID = 8;
-    const int ImprovementID2 = 10;
+    [field:SerializeField]
+    public float FieldHealth { get; set; }
+    [field:SerializeField]
+    public bool IsCropRipe { get; set; }
+    [field: SerializeField]
+    public int CropAge { get; set; }
+    [field: SerializeField]
+    public int[] TimesPlanted { get; set; }
+    [field:SerializeField]
+    public int _soilQuality { get; set; }
+
+    [SerializeField]
+    private int _leaching;
+    [SerializeField]
+    private int _maximumSoilQuality;
+    [SerializeField]
+    private Material _goodSoilMaterial;
+    [SerializeField]
+    private Material _averageSoilMaterial;
+    [SerializeField]
+    private Material _badSoilMaterial;
+
+    private int _lackOfwater = 0;
+    private const int _improvementID = 8;
+    private const int _improvementID2 = 10;
 
     private void Awake()
     {
         Intialise();
-        timesPlanted = new int[11];
+        TimesPlanted = new int[11];
     }
 
     public void Intialise()
     {
-        if (gameManagerObject)
+        if (GameManagerObject)
         {
-            gameManager = gameManagerObject.GetComponent<GameManager>();
+            _gameManager = GameManagerObject.GetComponent<GameManager>();
         }
     }
 
     public void CalculateFieldHealth()
     {
-        //Skip Calc if field is barren. 
-        if(crop.idNum == 0)
+        if(crop.IdNum == 0)
         {
             return;
         }
-        
-        //Check if Crops get water
-        if(gameManager.waterLevel <= 1)
+        if(_gameManager.WaterLevel <= 1)
         {
-            lackOfwater = 20;
+            _lackOfwater = 20;
         }
         else
         {
-            lackOfwater = 0;
+            _lackOfwater = 0;
         }
         
-        fieldHealth -= (gameManager.numPests[crop.idNum] + lackOfwater);
-        fieldHealth *= gameManager.numPollinators / 100;
-        fieldHealth *= (float)(1.1 / Mathf.Exp(5 / soilQuality));
-        print(fieldHealth);
+        FieldHealth -= (_gameManager.NumPests[crop.IdNum] + _lackOfwater);
+        FieldHealth *= _gameManager.NumPollinators / 100;
+        FieldHealth *= (float)(1.1 / Mathf.Exp(5 / _soilQuality));
+        print(FieldHealth);
 
-        float ImprovementMultiplier = ImprovementNodeActioners.GetMultiplier(ImprovementID);
-        fieldHealth *= ImprovementMultiplier;
+        float ImprovementMultiplier = ImprovementNodeActioners.GetMultiplier(_improvementID);
+        FieldHealth *= ImprovementMultiplier;
 
-        fieldHealth = Mathf.Clamp(fieldHealth, 0, 100);
+        FieldHealth = Mathf.Clamp(FieldHealth, 0, 100);
 
-        if(fieldHealth < 1) //Crop Dies
+        if(FieldHealth < 1) //Crop Dies
         {
             //Change Field Type to Barren
             crop = Resources.Load<CropPreset>("CropPresets/Barren");
             Destroy(transform.GetChild(0).gameObject);
-            Instantiate(crop.unripePrefab, this.transform);
+            Instantiate(crop.UnripePrefab, this.transform);
             CalculateMaterial();
         }
     }
@@ -89,32 +87,32 @@ public class FieldProperties : MonoBehaviour
     public void CalculateSoilQuality()
     {
         float naturalRecovery = 0;
-        float ImprovementMultiplier = ImprovementNodeActioners.GetMultiplier(ImprovementID2);
-        if(crop.idNum == 0)
+        float ImprovementMultiplier = ImprovementNodeActioners.GetMultiplier(_improvementID2);
+        if(crop.IdNum == 0)
         {
             naturalRecovery = 10;
             naturalRecovery *= ImprovementMultiplier;
         }
 
-        soilQuality += ((int)naturalRecovery + crop.soilChange - leaching);
-        soilQuality = Mathf.Clamp(soilQuality, 1, _maximumSoilQuality);
+        _soilQuality += ((int)naturalRecovery + crop.SoilChange - _leaching);
+        _soilQuality = Mathf.Clamp(_soilQuality, 1, _maximumSoilQuality);
         CalculateMaterial();
     }
 
     public void GrowCrops()
     {
-        if(crop.displayName == "Barren")
+        if(crop.DisplayName == "Barren")
         {
             return;
         }
         else
         {
-            cropAge++;
-            if(cropAge == crop.turnsToGrow)
+            CropAge++;
+            if(CropAge == crop.TurnsToGrow)
             {
-                isCropRipe = true;
+                IsCropRipe = true;
                 Destroy(transform.GetChild(0).gameObject);
-                Instantiate(crop.ripePrefab, this.transform);
+                Instantiate(crop.RipePrefab, this.transform);
                 CalculateMaterial();
             }
         }
@@ -122,28 +120,28 @@ public class FieldProperties : MonoBehaviour
 
     public void CalculatePests()
     {
-        for(int i = 0; i < timesPlanted.Length; i++)
+        for(int i = 0; i < TimesPlanted.Length; i++)
         {
-            if((float)timesPlanted[i] / ((float)gameManager.turnNum + 2) > 3)
+            if((float)TimesPlanted[i] / ((float)_gameManager.TurnNum + 2) > 3)
             {
-                gameManager.numPests[i] += 5;
+                _gameManager.NumPests[i] += 5;
             }
         }
     }
 
     public void CalculateMaterial()
     {
-        if (soilQuality >= 200)
+        if (_soilQuality >= 200)
         {
-            GetComponentInChildren<MeshRenderer>().sharedMaterial = goodSoilMaterial;
+            GetComponentInChildren<MeshRenderer>().sharedMaterial = _goodSoilMaterial;
         }
-        else if (soilQuality < 200 && soilQuality > 100)
+        else if (_soilQuality < 200 && _soilQuality > 100)
         {
-            GetComponentInChildren<MeshRenderer>().sharedMaterial = averageSoilMaterial;
+            GetComponentInChildren<MeshRenderer>().sharedMaterial = _averageSoilMaterial;
         }
         else
         {
-            GetComponentInChildren<MeshRenderer>().sharedMaterial = badSoilMaterial;
+            GetComponentInChildren<MeshRenderer>().sharedMaterial = _badSoilMaterial;
         }
     }
 }

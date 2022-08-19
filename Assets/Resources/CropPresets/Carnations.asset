@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240431e4447e7664daaff61b41f6b1f7, type: 3}
   m_Name: Carnations
   m_EditorClassIdentifier: 
-  displayName: Carnations
-  idNum: 1
-  cost: 10
-  waterUsedPerTurn: 4
-  turnsToGrow: 4
-  soilChange: -2
-  foodCrop: 0
-  ripePrefab: {fileID: 2039142108349684619, guid: 1f1e2dc49719fe34b82c4d2c18becbfb, type: 3}
-  unripePrefab: {fileID: 5644002945254127645, guid: f26e9e7d0ade454458612b5d7bc8051a, type: 3}
+  <DisplayName>k__BackingField: Carnations
+  <IdNum>k__BackingField: 1
+  <Cost>k__BackingField: 800
+  <WaterUsedPerTurn>k__BackingField: 2
+  <TurnsToGrow>k__BackingField: 4
+  <SoilChange>k__BackingField: -2
+  <FoodCrop>k__BackingField: 0
+  <RipePrefab>k__BackingField: {fileID: 2039142108349684619, guid: 1f1e2dc49719fe34b82c4d2c18becbfb, type: 3}
+  <UnripePrefab>k__BackingField: {fileID: 5644002945254127645, guid: f26e9e7d0ade454458612b5d7bc8051a, type: 3}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ccb99da94c31054abd8dfd2ee9dc689, type: 3}
   m_Name: School
   m_EditorClassIdentifier: 
-  <idNum>k__BackingField: 1
+  <IdNum>k__BackingField: 0
   <DisplayName>k__BackingField: School
-  <cost>k__BackingField: 400
-  <building>k__BackingField: {fileID: 3150378363968388078, guid: 3664a37e7da5106418cd0a4d4a7d96c9, type: 3}
+  <Cost>k__BackingField: 400
+  <Building>k__BackingField: {fileID: 3150378363968388078, guid: 3664a37e7da5106418cd0a4d4a7d96c9, type: 3}
   <Position>k__BackingField: {x: -475, y: 0, z: 0}

@@ -4,32 +4,35 @@ using UnityEngine;
 
 public class EconomyManager : MonoBehaviour
 {
-    public static EconomyManager inst;
-    private GameManager gameManager;
-    private Market market;
+    public static EconomyManager S_inst;
+    private GameManager _gameManager;
+    private Market _market;
 
-    public int[] baseCropPrices;
-    public float[] currentCropPrices;
-    public int[] marketShocks;
-    private int currentShock = 0;
+    [SerializeField]
+    private int[] _baseCropPrices;
+    private int[] _marketShocks;
+    private int _currentShock = 0;
 
-    const int ImprovementID = 2;
+    [field:SerializeField]
+    public float[] CurrentCropPrices { get; set; }
+
+    const int _improvementID = 2;
 
     private void Awake()
     {
-        inst = this;
-        gameManager = GetComponent<GameManager>();
-        market = GetComponent<Market>();
-        marketShocks = new int[6];
+        S_inst = this;
+        _gameManager = GetComponent<GameManager>();
+        _market = GetComponent<Market>();
+        _marketShocks = new int[6];
 
-        for (int i = 0; i < baseCropPrices.Length; i++)
+        for (int i = 0; i < _baseCropPrices.Length; i++)
         {
-            currentCropPrices[i] = baseCropPrices[i];
+            CurrentCropPrices[i] = _baseCropPrices[i];
         }
 
         for(int i =1; i <= 6; i++)
         {
-            marketShocks[i-1] = Random.Range((20*(i-1) +1), 20 *i);
+            _marketShocks[i-1] = Random.Range((20*(i-1) +1), 20 *i);
         }
 
         //Load Market Shocks from .csv File? 
@@ -37,22 +40,22 @@ public class EconomyManager : MonoBehaviour
 
     public void SimulateEnconomy()
     {
-        if(marketShocks[currentShock] == gameManager.turnNum)
+        if(_marketShocks[_currentShock] == _gameManager.TurnNum)
         {
             print("Market Shock");
-            EconomicShock(currentShock);
+            EconomicShock(_currentShock);
             //Needs Messages takes from loadTexts Array
-            currentShock++;
+            _currentShock++;
         }
 
-        float ImprovementMultplier = ImprovementNodeActioners.GetMultiplier(ImprovementID);
+        float ImprovementMultplier = ImprovementNodeActioners.GetMultiplier(_improvementID);
 
-        for (int i = 0; i < currentCropPrices.Length; i++)
+        for (int i = 0; i < CurrentCropPrices.Length; i++)
         {
            
             float changeFactor = Random.Range(75, 150);;
-            currentCropPrices[i] *= 100/changeFactor;
-            currentCropPrices[i] *= ImprovementMultplier;
+            CurrentCropPrices[i] *= 100/changeFactor;
+            CurrentCropPrices[i] *= ImprovementMultplier;
         }
     }
 
@@ -63,36 +66,36 @@ public class EconomyManager : MonoBehaviour
             case 0:
                 //Demand for Sorghum
                 //Increase Sorghum Price
-                currentCropPrices[7] *= 2;
+                CurrentCropPrices[7] *= 2;
                 //Load Text on Information
                 break;
             case 1:
                 //Sugar Price Crash
                 //Decrease Sugar Price
-                currentCropPrices[8] *= 0.75f;
+                CurrentCropPrices[8] *= 0.75f;
                 //Load Text on Information
                 break;
             case 2:
                 //Fertiliser Shortage
-                market.fertiliserPrice *= 2;
+                _market.FertiliserPrice *= 2;
                 //Load Text on Information
                 break;
             case 3:
                 //Pesticide Shortage
-                market.pesticidePrice *= 2;
+                _market.PesticidePrice *= 2;
                 //Load Text on Information
 
                 break;
             case 4:
                 //Second Sugar Price Crash
                 //Decrease Sugar Price
-                currentCropPrices[8] *= 0.5f;
+                CurrentCropPrices[8] *= 0.5f;
                 //Load Text on Information
                 break;
             case 5:
                 //Price Rise in Wheat
                 //Increase Wheat Price
-                currentCropPrices[6] *= 1.5f;
+                CurrentCropPrices[6] *= 1.5f;
                 //Load Text on Information
                 break;
             default:

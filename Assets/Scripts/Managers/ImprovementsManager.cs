@@ -6,124 +6,124 @@ using TMPro;
 
 public class ImprovementsManager : MonoBehaviour
 {
-    public static ImprovementsManager inst;
+    public static ImprovementsManager S_inst;
 
     [SerializeField]
-    private GameObject gameManagerObject;
+    private GameObject _gameManagerObject;
 
-    private int currentImprovement;
-    private GameManager gameManager;
-    private UIManager uIManager;
+    private int _currentImprovement;
+    private GameManager _gameManager;
+    private UIManager _uiManager;
 
-    ImprovementsTreeNode[] NodesData;
+    private ImprovementsTreeNode[] _nodesData;
     [SerializeField]
-    Button[] ImprovementButtons;
+    private Button[] _improvementButtons;
     [SerializeField]
-    TextMeshProUGUI[] ImprovementTurnText;
+    private TextMeshProUGUI[] _improvementTurnText;
     [SerializeField]
-    TextMeshProUGUI[] ImprovementCostText;
+    private TextMeshProUGUI[] _improvementCostText;
     [SerializeField]
-    TextMeshProUGUI[] ImprovementTitle;
+    private TextMeshProUGUI[] _improvementTitle;
 
     [SerializeField]
-    Material Finished;
+    private Material _finishedMaterial;
     [SerializeField]
-    Material Available;
+    private Material _availableMaterial;
     [SerializeField]
-    Material InProgress;
+    private Material _inProgressMaterial;
     [SerializeField]
-    Material Locked;
+    private Material _lockedMaterial;
 
-    static Dictionary<int, ImprovementsTreeNode> IMPROVEMENT_NODES;
-    public static int ROOT_ID = 0;
+    static Dictionary<int, ImprovementsTreeNode> S_IMPROVEMENT_NODES;
+    public static int S_ROOT_ID = 0;
 
     void Awake()
     {
-        inst = this;
+        S_inst = this;
 
-        gameManager = gameManagerObject.GetComponent<GameManager>();
-        uIManager = gameManagerObject.GetComponent<UIManager>();
-        currentImprovement = 0;
+        _gameManager = _gameManagerObject.GetComponent<GameManager>();
+        _uiManager = _gameManagerObject.GetComponent<UIManager>();
+        _currentImprovement = 0;
 
-        NodesData = Resources.LoadAll<ImprovementsTreeNode>("NodeData");
-        IMPROVEMENT_NODES = new Dictionary<int, ImprovementsTreeNode>();
+        _nodesData = Resources.LoadAll<ImprovementsTreeNode>("NodeData");
+        S_IMPROVEMENT_NODES = new Dictionary<int, ImprovementsTreeNode>();
 
-        foreach (ImprovementsTreeNode NodeData in NodesData)
+        foreach (ImprovementsTreeNode NodeData in _nodesData)
         {
-            IMPROVEMENT_NODES[NodeData.ID] = NodeData;
-            IMPROVEMENT_NODES[NodeData.ID].ResetValues();
+            S_IMPROVEMENT_NODES[NodeData.ID] = NodeData;
+            S_IMPROVEMENT_NODES[NodeData.ID].ResetValues();
         }
 
-        foreach(Button button in ImprovementButtons)
+        foreach(Button button in _improvementButtons)
         {
             button.interactable = false;
         }
 
-        for(int i = 0; i < ImprovementTurnText.Length; i++)
+        for(int i = 0; i < _improvementTurnText.Length; i++)
         {
-            ImprovementTurnText[i].text = IMPROVEMENT_NODES[i].ImprovementTime.ToString();
-            ImprovementCostText[i].text = IMPROVEMENT_NODES[i].ImprovementCost.ToString();
-            ImprovementTitle[i].text = IMPROVEMENT_NODES[i].DisplayName;
+            _improvementTurnText[i].text = S_IMPROVEMENT_NODES[i].ImprovementTime.ToString();
+            _improvementCostText[i].text = S_IMPROVEMENT_NODES[i].ImprovementCost.ToString();
+            _improvementTitle[i].text = S_IMPROVEMENT_NODES[i].DisplayName;
         }
 
-        UnlockNodes(IMPROVEMENT_NODES[ROOT_ID]);
-        ImprovementButtons[ROOT_ID].GetComponent<Image>().material = Finished;
+        UnlockNodes(S_IMPROVEMENT_NODES[S_ROOT_ID]);
+        _improvementButtons[S_ROOT_ID].GetComponent<Image>().material = _finishedMaterial;
 
-        for (int i = 0; i < ImprovementButtons.Length; i++)
+        for (int i = 0; i < _improvementButtons.Length; i++)
         {
             int tempNum = i; //Needed for C#
-            ImprovementButtons[i].onClick.AddListener(delegate { StartImprovement(tempNum); });
+            _improvementButtons[i].onClick.AddListener(delegate { StartImprovement(tempNum); });
         }
     }
 
     public void AccessMenu()
     {
-        uIManager.DisableMenus();
+        _uiManager.DisableMenus();
         gameObject.SetActive(true);
     }
 
     public void ResearchImprovement()
     {          
-        if(IMPROVEMENT_NODES[currentImprovement].bIsUnlock && !IMPROVEMENT_NODES[currentImprovement].bIsFinished)
+        if(S_IMPROVEMENT_NODES[_currentImprovement].IsUnlock && !S_IMPROVEMENT_NODES[_currentImprovement].IsFinished)
         {
-            IMPROVEMENT_NODES[currentImprovement].ImprovementTime--;
-            if(IMPROVEMENT_NODES[currentImprovement].ImprovementTime == 0)
+            S_IMPROVEMENT_NODES[_currentImprovement].ImprovementTime--;
+            if(S_IMPROVEMENT_NODES[_currentImprovement].ImprovementTime == 0)
             {
-                ApplyEffects(currentImprovement);
-                UnlockNodes(IMPROVEMENT_NODES[currentImprovement]);
+                ApplyEffects(_currentImprovement);
+                UnlockNodes(S_IMPROVEMENT_NODES[_currentImprovement]);
             }
         }
     }
 
     public void StartImprovement(int index) //index Passed from Button
     {
-        foreach(ImprovementsTreeNode node in NodesData)
+        foreach(ImprovementsTreeNode node in _nodesData)
         {
-            if(!node.bIsFinished && node.bIsUnlock)
+            if(!node.IsFinished && node.IsUnlock)
             {
-                ImprovementButtons[node.ID].GetComponent<Image>().material = Available;
+                _improvementButtons[node.ID].GetComponent<Image>().material = _availableMaterial;
             }
         }
 
-        currentImprovement = index;
-        gameManager.cash -= IMPROVEMENT_NODES[currentImprovement].ImprovementCost;
-        ImprovementButtons[index].GetComponent<Image>().material = InProgress;
+        _currentImprovement = index;
+        _gameManager.Cash -= S_IMPROVEMENT_NODES[_currentImprovement].ImprovementCost;
+        _improvementButtons[index].GetComponent<Image>().material = _inProgressMaterial;
     }
 
     void ApplyEffects(int index)
     {
-        IMPROVEMENT_NODES[index].bIsFinished = true;
+        S_IMPROVEMENT_NODES[index].IsFinished = true;
         ImprovementNodeActioners.Apply(index-1);
-        ImprovementButtons[index].GetComponent<Image>().material = Finished;
+        _improvementButtons[index].GetComponent<Image>().material = _finishedMaterial;
     }
 
     void UnlockNodes(ImprovementsTreeNode Node)
     {
         foreach (ImprovementsTreeNode NodeData in Node.Children)
         {
-            NodeData.bIsUnlock = true;
-            ImprovementButtons[NodeData.ID].interactable = true;
-            ImprovementButtons[NodeData.ID].GetComponent<Image>().material = Available; 
+            NodeData.IsUnlock = true;
+            _improvementButtons[NodeData.ID].interactable = true;
+            _improvementButtons[NodeData.ID].GetComponent<Image>().material = _availableMaterial; 
         }
     }
 }

@@ -7,8 +7,6 @@ using TMPro;
 
 public class ScoreDisplay : MonoBehaviour
 {
-    public GameSceneManager gameSceneManagerObject;
-
     private TextMeshProUGUI _finalScoreText;
     private TextMeshProUGUI _turnNumScoreText;
     private TextMeshProUGUI _cashNumScoreText;
@@ -29,10 +27,10 @@ public class ScoreDisplay : MonoBehaviour
     private void Awake()
     {
         _finalScoreText = GetComponent<TextMeshProUGUI>();
-        _finalScore = GameSceneManager.FinalScore;
-        _turnNumScore = GameSceneManager.TurnNumScore;
-        _cashNumScore = GameSceneManager.CashNumScore;
-        _communityNumScore = GameSceneManager.CommunityNumScore;
+        _finalScore = GameSceneManager.S_FinalScore;
+        _turnNumScore = GameSceneManager.S_TurnNumScore;
+        _cashNumScore = GameSceneManager.S_CashNumScore;
+        _communityNumScore = GameSceneManager.S_CommunityNumScore;
 
         _finalTipsArray = LoadData.LoadCSVToStringArray(_finalTips);
     }
@@ -43,8 +41,6 @@ public class ScoreDisplay : MonoBehaviour
         _turnNumScoreText.text = "Turn Number Score: " + _turnNumScore.ToString();
         _cashNumScoreText.text = "Cash Score: " + _cashNumScore.ToString();
         _communityScoreText.text = "Community Score: " + _communityNumScore.ToString();
-
-
     }
 
     private void SelectFinalTip()

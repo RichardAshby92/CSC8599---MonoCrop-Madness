@@ -12,14 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e260761660219484ca2f1447360546b9, type: 3}
   m_Name: CompanionCropping
   m_EditorClassIdentifier: 
-  ID: 8
-  DisplayName: Companion Cropping
-  ImprovementCost: 800
+  <ID>k__BackingField: 8
+  <DisplayName>k__BackingField: Companion Cropping
+  <ImprovementCost>k__BackingField: 800
   IntialImprovementTime: 12
   bIntialIsUnlock: 0
   bIntialIsFinished: 0
-  ImprovementTime: 12
-  bIsUnlock: 0
-  bIsFinished: 0
   Children: []
   Parent: {fileID: 11400000, guid: 46d08158356d19249aa3fb104a24756e, type: 2}

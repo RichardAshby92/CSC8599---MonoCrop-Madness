@@ -5,40 +5,37 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
-    private int cameraSpeed;
+    private int _cameraSpeed;
     [SerializeField]
-    private float HeightY;
+    private float _heightY;
     [SerializeField]
-    private float MoveX;
+    private float _minXLimit;
     [SerializeField]
-    private float MoveZ;
+    private float _maxXLimit;
+    [SerializeField]
+    private float _minZLimit;
+    [SerializeField]
+    private float _maxZLimit;
 
-    [SerializeField]
-    float MinXLimit;
-    [SerializeField]
-    float MaxXLimit;
-    [SerializeField]
-    float MinZLimit;
-    [SerializeField]
-    float MaxZLimit;
-
-    private Vector3 cameraMovement;
+    private float _moveX;
+    private float _moveZ;
+    private Vector3 _cameraMovement;
     private void Awake()
     {
-        cameraMovement = new Vector3(MoveX, HeightY, MoveZ);
+        _cameraMovement = new Vector3(_moveX, _heightY, _moveZ);
     }
     private void FixedUpdate()
     {
         //Translation
-        MoveX = transform.position.x;
-        MoveZ = transform.position.z;
-        MoveX += Input.GetAxisRaw("Horizontal") * cameraSpeed;
-        MoveZ += Input.GetAxisRaw("Vertical") * cameraSpeed;
-        MoveX = Mathf.Clamp(MoveX, -MinXLimit, MaxXLimit);
-        MoveZ = Mathf.Clamp(MoveZ, -MinZLimit, MaxZLimit);
+        _moveX = transform.position.x;
+        _moveZ = transform.position.z;
+        _moveX += Input.GetAxisRaw("Horizontal") * _cameraSpeed;
+        _moveZ += Input.GetAxisRaw("Vertical") * _cameraSpeed;
+        _moveX = Mathf.Clamp(_moveX, -_minXLimit, _maxXLimit);
+        _moveZ = Mathf.Clamp(_moveZ, -_minZLimit, _maxZLimit);
 
-        cameraMovement.Set(MoveX, HeightY, MoveZ);
-        transform.position = cameraMovement;
+        _cameraMovement.Set(_moveX, _heightY, _moveZ);
+        transform.position = _cameraMovement;
     }
 
 }

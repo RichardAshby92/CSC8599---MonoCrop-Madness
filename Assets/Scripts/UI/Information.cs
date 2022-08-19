@@ -6,10 +6,11 @@ using TMPro;
 
 public class Information : MonoBehaviour
 {
-    public GameObject gameManagerObject;
+    [SerializeField]
+    private GameObject _gameManagerObject;
 
-    private GameManager gameManager;
-    private UIManager uIManager;
+    private GameManager _gameManager;
+    private UIManager _uiManager;
 
     [SerializeField]
     private TextAsset _tipFile;
@@ -30,8 +31,8 @@ public class Information : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = gameManagerObject.GetComponent<GameManager>();
-        uIManager = gameManagerObject.GetComponent<UIManager>();
+        _gameManager = _gameManagerObject.GetComponent<GameManager>();
+        _uiManager = _gameManagerObject.GetComponent<UIManager>();
 
         _tipString = LoadData.LoadCSVToStringArray(_tipFile);
 
@@ -60,7 +61,7 @@ public class Information : MonoBehaviour
 
     public void AccessMenu()
     {
-        uIManager.DisableMenus();
+        _uiManager.DisableMenus();
         gameObject.SetActive(true);
     }
 
@@ -68,7 +69,7 @@ public class Information : MonoBehaviour
     {
         if(!_informationNodes[iD].IsUnlocked)
         {
-            gameManager.cash -= _informationNodes[iD].Cost;
+            _gameManager.Cash -= _informationNodes[iD].Cost;
             _informationNodes[iD].IsUnlocked = true;
             _tipButtons[iD].GetComponent<Image>().material = _unlockedColour;
 
@@ -78,11 +79,11 @@ public class Information : MonoBehaviour
                 return;
             }
             _tipButtons[iD + 1].interactable = true;
-            uIManager.UpdateUIText();
+            _uiManager.UpdateUIText();
         }
 
         _tipImage.SetActive(true);
-        uIManager._level2Menu = true;
+        _uiManager._level2Menu = true;
         _TitleText.text = _tipString[iD + 1, 2];
         _BodyText.text = _tipString[iD + 2, 3];
     }

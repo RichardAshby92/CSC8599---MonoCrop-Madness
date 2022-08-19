@@ -6,26 +6,26 @@ using UnityEngine.EventSystems;
 public class SlashAndBurn : MonoBehaviour
 {
     [SerializeField]
-    private GameObject NewFieldPrefab;
+    private GameObject _newFieldPrefab;
     [SerializeField]
-    private GameObject GameManagerObject;
+    private GameObject _gameManagerObject;
     [SerializeField]
-    private GameObject FieldHealthObject;
+    private GameObject _fieldHealthObject;
     [SerializeField]
-    private GameObject MarketGameObject;
+    private GameObject _marketGameObject;
 
-    private FieldProperties fieldProperties;
-    private FieldActions fieldActions;
-    private CommunityManager CommunityManager;
-    private UIManager uIManager;
-    private GameManager gameManager;
+    private FieldProperties _fieldProperties;
+    private FieldActions _fieldActions;
+    private CommunityManager _communityManager;
+    private UIManager _uiManager;
+    private GameManager _gameManager;
 
-    public static bool ImprovementUnlocked { get; set; }
+    public static bool S_ImprovementUnlocked { get; set; }
     void Awake()
     {
-        CommunityManager = GameManagerObject.GetComponent<CommunityManager>();
-        uIManager = GameManagerObject.GetComponent<UIManager>();
-        gameManager = GameManagerObject.GetComponent<GameManager>();
+        _communityManager = _gameManagerObject.GetComponent<CommunityManager>();
+        _uiManager = _gameManagerObject.GetComponent<UIManager>();
+        _gameManager = _gameManagerObject.GetComponent<GameManager>();
     }
 
     private void OnMouseDown()
@@ -35,40 +35,40 @@ public class SlashAndBurn : MonoBehaviour
             return;
         }
 
-        uIManager.DisableMenus();
-        uIManager.newFieldMenu.SetActive(true);
-        if (!ImprovementUnlocked)
+        _uiManager.DisableMenus();
+        _uiManager.NewFieldMenu.SetActive(true);
+        if (!S_ImprovementUnlocked)
         {
-            uIManager.newFieldButton.interactable = false;
+            _uiManager.NewFieldButton.interactable = false;
             return;
         }
         else
         {
-            uIManager.newFieldButton.interactable = true;
+            _uiManager.NewFieldButton.interactable = true;
         }
 
-        uIManager.newFieldButton.onClick.AddListener(BurnField);
+        _uiManager.NewFieldButton.onClick.AddListener(BurnField);
     }
 
     public void BurnField()
     {
-        CommunityManager.communityHealth -= 20;
-        CommunityManager.TopLimit -= 20;
+        _communityManager.CommunityHealth -= 20;
+        _communityManager.TopLimit -= 20;
 
         //Add Burn Effect
-        gameManager.remainingActions -= 4;
+        _gameManager.RemainingActions -= 4;
 
-        NewFieldPrefab = Instantiate(NewFieldPrefab, transform.position, transform.rotation);
+        _newFieldPrefab = Instantiate(_newFieldPrefab, transform.position, transform.rotation);
 
-        NewFieldPrefab.GetComponent<FieldProperties>().gameManagerObject = GameManagerObject;
-        NewFieldPrefab.GetComponent<FieldActions>().gameManagerObject = GameManagerObject;
-        NewFieldPrefab.GetComponent<FieldActions>().fieldHealthObject = FieldHealthObject;
-        NewFieldPrefab.GetComponent<FieldActions>().MarketGameObject = MarketGameObject;
+        _newFieldPrefab.GetComponent<FieldProperties>().GameManagerObject = _gameManagerObject;
+        _newFieldPrefab.GetComponent<FieldActions>().GameManagerObject = _gameManagerObject;
+        _newFieldPrefab.GetComponent<FieldActions>().FieldHealthObject = _fieldHealthObject;
+        _newFieldPrefab.GetComponent<FieldActions>().MarketGameObject = _marketGameObject;
 
-        NewFieldPrefab.GetComponent<FieldProperties>().Intialise();
-        NewFieldPrefab.GetComponent<FieldActions>().Intialise();
+        _newFieldPrefab.GetComponent<FieldProperties>().Intialise();
+        _newFieldPrefab.GetComponent<FieldActions>().Intialise();
 
-        gameManager.AddField(NewFieldPrefab);
+        _gameManager.AddField(_newFieldPrefab);
 
         Destroy(gameObject);
     }

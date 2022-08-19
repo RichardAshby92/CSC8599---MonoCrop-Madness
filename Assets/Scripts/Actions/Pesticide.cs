@@ -6,42 +6,42 @@ using UnityEngine;
 public class Pesticide : MonoBehaviour
 {
     [SerializeField]
-    private GameObject GameManagerObject;
+    private GameObject _gameManagerObject;
     [SerializeField]
-    private GameObject MarketGameObject;
+    private GameObject _marketGameObject;
 
-    private GameManager gameManager;
-    private CommunityManager communityManager;
-    private Market market;
-    private UIManager uIManager;
+    private GameManager _gameManager;
+    private CommunityManager _communityManager;
+    private Market _market;
+    private UIManager _uiManager;
 
     [SerializeField]
     private int PesticideEffect;
 
     public void Awake()
     {
-        gameManager = GameManagerObject.GetComponent<GameManager>();
-        communityManager = GameManagerObject.GetComponent<CommunityManager>();
-        market = GameManagerObject.GetComponent<Market>();
-        uIManager = GameManagerObject.GetComponent<UIManager>();
-        market = MarketGameObject.GetComponent<Market>();
+        _gameManager = _gameManagerObject.GetComponent<GameManager>();
+        _communityManager = _gameManagerObject.GetComponent<CommunityManager>();
+        _market = _gameManagerObject.GetComponent<Market>();
+        _uiManager = _gameManagerObject.GetComponent<UIManager>();
+        _market = _marketGameObject.GetComponent<Market>();
     }
 
     public void UsePesticide()
     {
-        if(gameManager.ActionRemaining(1))
+        if(_gameManager.ActionRemaining(1))
         {
             //Instantiate Effects
 
-            market.marketInventory.Pesticide--;
-            gameManager.numPollinators -= PesticideEffect;
-            communityManager.communityHealth -= PesticideEffect;
+            _market.MarketInventory.Pesticide--;
+            _gameManager.NumPollinators -= PesticideEffect;
+            _communityManager.CommunityHealth -= PesticideEffect;
 
-            for (int i = 0; i < gameManager.numPests.Length; i++)
+            for (int i = 0; i < _gameManager.NumPests.Length; i++)
             {
-                gameManager.numPests[i] -= PesticideEffect;
+                _gameManager.NumPests[i] -= PesticideEffect;
             }
-            uIManager.UpdateUIText();
+            _uiManager.UpdateUIText();
         }
     }
 }

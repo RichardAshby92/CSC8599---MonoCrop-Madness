@@ -12,15 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e260761660219484ca2f1447360546b9, type: 3}
   m_Name: DiverseCashCrops
   m_EditorClassIdentifier: 
-  ID: 2
-  DisplayName: Diverse Cash Crops
-  ImprovementCost: 100
+  <ID>k__BackingField: 2
+  <DisplayName>k__BackingField: Diverse Cash Crops
+  <ImprovementCost>k__BackingField: 100
   IntialImprovementTime: 2
   bIntialIsUnlock: 1
   bIntialIsFinished: 0
-  ImprovementTime: 2
-  bIsUnlock: 1
-  bIsFinished: 0
   Children:
   - {fileID: 11400000, guid: 46d08158356d19249aa3fb104a24756e, type: 2}
   - {fileID: 11400000, guid: 761fc1b35ea6a944fa93621695b555de, type: 2}

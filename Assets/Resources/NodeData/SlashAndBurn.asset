@@ -12,15 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e260761660219484ca2f1447360546b9, type: 3}
   m_Name: SlashAndBurn
   m_EditorClassIdentifier: 
-  ID: 3
-  DisplayName: Slash and Burn
-  ImprovementCost: 200
+  <ID>k__BackingField: 3
+  <DisplayName>k__BackingField: Slash and Burn
+  <ImprovementCost>k__BackingField: 200
   IntialImprovementTime: 5
-  bIntialIsUnlock: 0
+  bIntialIsUnlock: 1
   bIntialIsFinished: 0
-  ImprovementTime: 5
-  bIsUnlock: 1
-  bIsFinished: 0
   Children:
   - {fileID: 11400000, guid: 71e13d1eb88b6b543a1836cfa40272b9, type: 2}
   Parent: {fileID: 11400000, guid: 16c417e6abecb6b40b1b2541003eb5e0, type: 2}

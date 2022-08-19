@@ -12,14 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e260761660219484ca2f1447360546b9, type: 3}
   m_Name: NitrogenFixingCrop
   m_EditorClassIdentifier: 
-  ID: 9
-  DisplayName: Nitrogen Fixing Crops
-  ImprovementCost: 600
+  <ID>k__BackingField: 9
+  <DisplayName>k__BackingField: Nitrogen Fixing Crops
+  <ImprovementCost>k__BackingField: 600
   IntialImprovementTime: 10
   bIntialIsUnlock: 0
   bIntialIsFinished: 0
-  ImprovementTime: 10
-  bIsUnlock: 0
-  bIsFinished: 0
   Children: []
   Parent: {fileID: 11400000, guid: 761fc1b35ea6a944fa93621695b555de, type: 2}

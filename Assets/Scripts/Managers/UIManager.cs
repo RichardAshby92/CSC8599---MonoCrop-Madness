@@ -6,75 +6,84 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager inst;
-    private GameManager gameManager;
-    private EconomyManager economy;
-    private Market market;
+    public static UIManager S_inst;
+    private GameManager _gameManager;
+    private EconomyManager _economy;
+    private Market _market;
 
-    public GameObject CommunityMenu;
-    public GameObject MarketMenu;
-    public GameObject NewspaperMenu;
-    public GameObject ActionMenu;
-    public GameObject CropMenu;
-    public GameObject toolsMenu;
-    public GameObject newFieldMenu;
-    public GameObject FieldHealthMenu;
-    public GameObject ImprovementsMenu;
-    public GameObject _tipImageObject;
+    [field:SerializeField]
+    public GameObject CommunityMenu { get; set; }
+    [field:SerializeField]
+    public GameObject MarketMenu { get; set; }
+    [field:SerializeField]
+    public GameObject TipsMenu { get; set; }
+    [field:SerializeField]
+    public GameObject ActionMenu { get; set; }
+    [field:SerializeField]
+    public GameObject CropMenu { get; set; }
+    [field:SerializeField]
+    public GameObject ToolsMenu { get; set; }
+    [field:SerializeField]
+    public GameObject NewFieldMenu { get; set; }
+    [field:SerializeField]
+    public GameObject FieldHealthMenu { get; set; }
+    [field:SerializeField]
+    public GameObject ImprovementsMenu { get; set; }
+    private GameObject _tipImageObject;
 
-    public Button[] actionButtons;
-    public Button[] cropMenuButtons;
-    public Button[] toolsButtons;
-    public Button newFieldButton;
-    public Button usePesticideButton;
+    public Button[] ActionButtons { get; set; }
+    public Button[] CropMenuButtons { get; set; }
+    public Button[] ToolsButtons { get; set; }
+    public Button NewFieldButton { get; set; }
+    public Button UsePesticideButton { get; set; }
 
     [SerializeField]
-    private GameObject cashUIObject;
+    private GameObject _cashUIObject;
     [SerializeField]
-    private GameObject turnValueUIObject;
+    private GameObject _turnValueUIObject;
     [SerializeField]
-    private GameObject seasonValueUIObject;
+    private GameObject _seasonValueUIObject;
     [SerializeField]
-    private GameObject fertilserUIObject;
+    private GameObject _fertilserUIObject;
     [SerializeField]
-    private GameObject pesticideUIObject;
+    private GameObject _pesticideUIObject;
     [SerializeField]
-    private GameObject actionRemainingUIObject;
+    private GameObject _actionRemainingUIObject;
 
-    private TextMeshProUGUI cashValueText;
-    private TextMeshProUGUI turnValueText;
-    private TextMeshProUGUI seasonValueText;
-    private TextMeshProUGUI fertiliserValueText;
-    private TextMeshProUGUI pesticideValueText;
-    private TextMeshProUGUI actionRemainingValueText;
+    private TextMeshProUGUI _cashValueText;
+    private TextMeshProUGUI _turnValueText;
+    private TextMeshProUGUI _seasonValueText;
+    private TextMeshProUGUI _fertiliserValueText;
+    private TextMeshProUGUI _pesticideValueText;
+    private TextMeshProUGUI _actionRemainingValueText;
     [SerializeField]
-    private TextMeshProUGUI[] PriceText;
-    private string[] DefaultPriceText;
+    private TextMeshProUGUI[] _priceText;
+    private string[] _defaultPriceText;
 
     public bool _level2Menu { get; set; }
 
     public void Awake()
     {
-        inst = this;
+        S_inst = this;
 
-        gameManager = GetComponent<GameManager>();
-        market = MarketMenu.GetComponent<Market>();
-        economy = GetComponent<EconomyManager>();
+        _gameManager = GetComponent<GameManager>();
+        _market = MarketMenu.GetComponent<Market>();
+        _economy = GetComponent<EconomyManager>();
 
-        actionButtons = ActionMenu.GetComponentsInChildren<Button>();
-        cropMenuButtons = CropMenu.GetComponentsInChildren<Button>();
-        toolsButtons = toolsMenu.GetComponentsInChildren<Button>();
+        ActionButtons = ActionMenu.GetComponentsInChildren<Button>();
+        CropMenuButtons = CropMenu.GetComponentsInChildren<Button>();
+        ToolsButtons = ToolsMenu.GetComponentsInChildren<Button>();
 
-        cashValueText = cashUIObject.GetComponent<TextMeshProUGUI>();
-        turnValueText = turnValueUIObject.GetComponent<TextMeshProUGUI>();
-        seasonValueText = seasonValueUIObject.GetComponent<TextMeshProUGUI>();
-        fertiliserValueText = fertilserUIObject.GetComponent<TextMeshProUGUI>();
-        pesticideValueText = pesticideUIObject.GetComponent<TextMeshProUGUI>();
-        actionRemainingValueText = actionRemainingUIObject.GetComponent<TextMeshProUGUI>();
+        _cashValueText = _cashUIObject.GetComponent<TextMeshProUGUI>();
+        _turnValueText = _turnValueUIObject.GetComponent<TextMeshProUGUI>();
+        _seasonValueText = _seasonValueUIObject.GetComponent<TextMeshProUGUI>();
+        _fertiliserValueText = _fertilserUIObject.GetComponent<TextMeshProUGUI>();
+        _pesticideValueText = _pesticideUIObject.GetComponent<TextMeshProUGUI>();
+        _actionRemainingValueText = _actionRemainingUIObject.GetComponent<TextMeshProUGUI>();
 
         UpdateUIText();
 
-        DefaultPriceText = new string[10];
+        _defaultPriceText = new string[10];
 
         _level2Menu = false;
     }
@@ -85,7 +94,7 @@ public class UIManager : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            DefaultPriceText[i] = PriceText[i].text;
+            _defaultPriceText[i] = _priceText[i].text;
         }
 
         UpdateCropPriceDisplay();
@@ -106,17 +115,17 @@ public class UIManager : MonoBehaviour
             }           
 
             //if statement to reduce work
-            for (int i = 0; i < actionButtons.Length; i++)
+            for (int i = 0; i < ActionButtons.Length; i++)
             {
-                actionButtons[i].onClick.RemoveAllListeners();
+                ActionButtons[i].onClick.RemoveAllListeners();
             }
 
-            for (int i = 0; i < cropMenuButtons.Length; i++)
+            for (int i = 0; i < CropMenuButtons.Length; i++)
             {
-                cropMenuButtons[i].onClick.RemoveAllListeners();
+                CropMenuButtons[i].onClick.RemoveAllListeners();
             }
 
-            newFieldButton.onClick.RemoveAllListeners();
+            NewFieldButton.onClick.RemoveAllListeners();
         }
     }
 
@@ -124,23 +133,23 @@ public class UIManager : MonoBehaviour
     {
         CommunityMenu.SetActive(false);
         MarketMenu.SetActive(false);
-        NewspaperMenu.SetActive(false);
+        TipsMenu.SetActive(false);
         ActionMenu.SetActive(false);
         CropMenu.SetActive(false);
-        toolsMenu.SetActive(false);
-        newFieldMenu.SetActive(false);
+        ToolsMenu.SetActive(false);
+        NewFieldMenu.SetActive(false);
         FieldHealthMenu.SetActive(false);
         ImprovementsMenu.SetActive(false);
     }
 
     public void DisableActionButtons()
     {
-        foreach (Button child in actionButtons)
+        foreach (Button child in ActionButtons)
         {
             child.interactable = false;
         }
 
-        foreach (Button child in cropMenuButtons)
+        foreach (Button child in CropMenuButtons)
         {
             child.interactable = false;
         }
@@ -148,12 +157,12 @@ public class UIManager : MonoBehaviour
 
     public void ReenableActionButtons()
     {
-        foreach (Button child in actionButtons)
+        foreach (Button child in ActionButtons)
         {
             child.interactable = true;
         }
 
-        foreach (Button child in cropMenuButtons)
+        foreach (Button child in CropMenuButtons)
         {
             child.interactable = true;
         }
@@ -161,34 +170,34 @@ public class UIManager : MonoBehaviour
 
     public void UpdateUIText()
     {
-        if(gameManager.cash > 1000)
+        if(_gameManager.Cash > 1000)
         {
-            cashValueText.color = Color.green;
+            _cashValueText.color = Color.green;
         }
-        if(gameManager.cash < 200)
+        if(_gameManager.Cash < 200)
         {
-            cashValueText.color = Color.yellow;
+            _cashValueText.color = Color.yellow;
         }
 
-        cashValueText.text = "Cash: $" + gameManager.cash.ToString();
-        turnValueText.text = "Turn Number: " + gameManager.turnNum.ToString();
-        fertiliserValueText.text = "Fertiliser Left: " + market.marketInventory.Fertiliser.ToString();
-        pesticideValueText.text = "Pesticides Left: " + market.marketInventory.Pesticide.ToString();
-        actionRemainingValueText.text = "Actions Remaining: " + gameManager.remainingActions.ToString();
+        _cashValueText.text = "Cash: $" + _gameManager.Cash.ToString();
+        _turnValueText.text = "Turn Number: " + _gameManager.TurnNum.ToString();
+        _fertiliserValueText.text = "Fertiliser Left: " + _market.MarketInventory.Fertiliser.ToString();
+        _pesticideValueText.text = "Pesticides Left: " + _market.MarketInventory.Pesticide.ToString();
+        _actionRemainingValueText.text = "Actions Remaining: " + _gameManager.RemainingActions.ToString();
 
-        if (gameManager.DrySeason)
+        if (_gameManager.DrySeason)
         {
-            seasonValueText.text = "Season: Dry";
+            _seasonValueText.text = "Season: Dry";
         }
         else
         {
-            seasonValueText.text = "Season: Rainy";
+            _seasonValueText.text = "Season: Rainy";
         }
     }
 
     public void DisableToolButton(int i)
     {
-        toolsButtons[i].interactable = false;
+        ToolsButtons[i].interactable = false;
     }
 
     public void UpdateCropPriceDisplay()
@@ -196,7 +205,7 @@ public class UIManager : MonoBehaviour
         for(int i = 0; i < 10; i++)
         {
             //Price Colour Change
-            PriceText[i].text = DefaultPriceText[i] +  economy.currentCropPrices[i].ToString("0.00");
+            _priceText[i].text = _defaultPriceText[i] +  _economy.CurrentCropPrices[i].ToString("0.00");
         }
     }
 

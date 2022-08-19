@@ -7,65 +7,60 @@ using TMPro;
 public class FieldHealth : MonoBehaviour
 {
     [SerializeField]
-    private GameObject gameManagerObject;
+    private GameObject _gameManagerObject;
 
-    private EconomyManager economyManager;
-    private GameManager gameManager;
-    private UIManager uIManager;
-
-    [SerializeField]
-    private TextMeshProUGUI HealthTextObject;
+    private EconomyManager _economyManager;
+    private GameManager _gameManager;
+    private UIManager _uiManager;
 
     [SerializeField]
-    private TextMeshProUGUI valueText;
+    private TextMeshProUGUI _healthTextObject;
     [SerializeField]
-    private TextMeshProUGUI cropTypeText;
+    private TextMeshProUGUI _valueText;
     [SerializeField]
-    private TextMeshProUGUI cropAgeText;
+    private TextMeshProUGUI _cropTypeText;
+    [SerializeField]
+    private TextMeshProUGUI _cropAgeText;
 
-    private float price;
-    private float health;
-    private int cropAge;
+    private float _price;
+    private float _health;
+    private int _cropAge;
 
     [SerializeField]
-    private string GoodHealthText;
+    private string _goodHealthText;
     [SerializeField]
-    private string MediumHealthText;
+    private string _mediumHealthText;
     [SerializeField]
-    private string LowHealthText;
-
-    //possibly Image
+    private string _lowHealthText;
 
     private void Awake()
     {
-        if(gameManagerObject)
+        if(_gameManagerObject)
         {
-            economyManager = gameManagerObject.GetComponent<EconomyManager>();
-            gameManager = gameManagerObject.GetComponent<GameManager>();
-            uIManager = gameManagerObject.GetComponent<UIManager>();
+            _economyManager = _gameManagerObject.GetComponent<EconomyManager>();
+            _uiManager = _gameManagerObject.GetComponent<UIManager>();
         }
     }
 
     public void Intialise(ref FieldProperties currentField)
     {
-        price = economyManager.currentCropPrices[currentField.crop.idNum];
-        health = currentField.fieldHealth;
-        cropAge = currentField.cropAge;
-        gameManager.ActionRemaining(1);
+        _price = _economyManager.CurrentCropPrices[currentField.crop.IdNum];
+        _health = currentField.FieldHealth;
+        _cropAge = currentField.CropAge;
         
-        valueText.text = "Current Price: " + price.ToString("0.00");
-        cropTypeText.text = "Crop Type: " + currentField.crop.displayName;
-        cropAgeText.text = "Crop Age: " + cropAge;
+        _valueText.text = "Current Price: " + _price.ToString("0.00");
+        _cropTypeText.text = "Crop Type: " + currentField.crop.DisplayName;
+        _cropAgeText.text = "Crop Age: " + _cropAge;
         
-        if(health >= 100)
+        if(_health >= 100)
         {
-            HealthTextObject.text = GoodHealthText;
+            _healthTextObject.text = _goodHealthText;
         }
         else
         {
-            HealthTextObject.text = MediumHealthText;
+            _healthTextObject.text = _mediumHealthText;
         }
 
-        uIManager.UpdateUIText();
+        _uiManager.UpdateUIText();
     }
 }

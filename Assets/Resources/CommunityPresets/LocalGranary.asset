@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ccb99da94c31054abd8dfd2ee9dc689, type: 3}
   m_Name: LocalGranary
   m_EditorClassIdentifier: 
-  <idNum>k__BackingField: 3
+  <IdNum>k__BackingField: 2
   <DisplayName>k__BackingField: Local Granary
-  <cost>k__BackingField: 400
-  <building>k__BackingField: {fileID: 1910058417610948613, guid: 33532fcb9d45ae4419141643c4a2f345, type: 3}
+  <Cost>k__BackingField: 400
+  <Building>k__BackingField: {fileID: 1910058417610948613, guid: 33532fcb9d45ae4419141643c4a2f345, type: 3}
   <Position>k__BackingField: {x: -575, y: 0, z: -50}

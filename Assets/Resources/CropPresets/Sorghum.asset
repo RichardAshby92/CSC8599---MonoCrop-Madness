@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240431e4447e7664daaff61b41f6b1f7, type: 3}
   m_Name: Sorghum
   m_EditorClassIdentifier: 
-  displayName: Sorghum
-  idNum: 7
-  cost: 5
-  waterUsedPerTurn: 1
-  turnsToGrow: 4
-  soilChange: 0
-  foodCrop: 1
-  ripePrefab: {fileID: 4606573363414729299, guid: e6fc2407b04f7bc4298f4fe59d220dda, type: 3}
-  unripePrefab: {fileID: 5644002945254127645, guid: f26e9e7d0ade454458612b5d7bc8051a, type: 3}
+  <DisplayName>k__BackingField: Sorghum
+  <IdNum>k__BackingField: 7
+  <Cost>k__BackingField: 400
+  <WaterUsedPerTurn>k__BackingField: 5
+  <TurnsToGrow>k__BackingField: 5
+  <SoilChange>k__BackingField: 0
+  <FoodCrop>k__BackingField: 1
+  <RipePrefab>k__BackingField: {fileID: 4606573363414729299, guid: e6fc2407b04f7bc4298f4fe59d220dda, type: 3}
+  <UnripePrefab>k__BackingField: {fileID: 5644002945254127645, guid: f26e9e7d0ade454458612b5d7bc8051a, type: 3}

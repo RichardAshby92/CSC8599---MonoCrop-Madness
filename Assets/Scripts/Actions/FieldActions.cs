@@ -6,22 +6,24 @@ using UnityEngine.EventSystems;
 
 public class FieldActions : MonoBehaviour
 {
+    [field:SerializeField]
+    public GameObject GameManagerObject { get; set; }
+    [field:SerializeField]
+    public GameObject FieldHealthObject { get; set; }
+    [field: SerializeField]
+    public GameObject MarketGameObject { get; set; }
 
-    public GameObject gameManagerObject;
+    private GameManager _gameManager;
+    private EconomyManager _economyManager;
+    private CommunityManager _communityManager;
+    private UIManager _uiManager;
+    private Market _market;
+    private FieldHealth _fieldHealth;
+
     [SerializeField]
-    public GameObject fieldHealthObject;
+    private FieldProperties _crop;
     [SerializeField]
-    public GameObject MarketGameObject;
-
-    private GameManager gameManager;
-    private EconomyManager economyManager;
-    private CommunityManager communityManager;
-    private UIManager uIManager;
-    private Market market;
-    private FieldProperties crop;
-    private FieldHealth fieldHealth;
-
-    private int foodCropAffect;
+    private int _foodCropAffect;
 
 
     private void Awake()
@@ -31,23 +33,23 @@ public class FieldActions : MonoBehaviour
 
     public void Intialise()
     {
-        if (gameManagerObject)
+        if (GameManagerObject)
         {
-            gameManager = gameManagerObject.GetComponent<GameManager>();
-            uIManager = gameManagerObject.GetComponent<UIManager>();
-            economyManager = gameManagerObject.GetComponent<EconomyManager>();          
-            communityManager = gameManagerObject.GetComponent<CommunityManager>();
-            crop = GetComponent<FieldProperties>();
+            _gameManager = GameManagerObject.GetComponent<GameManager>();
+            _uiManager = GameManagerObject.GetComponent<UIManager>();
+            _economyManager = GameManagerObject.GetComponent<EconomyManager>();          
+            _communityManager = GameManagerObject.GetComponent<CommunityManager>();
+            _crop = GetComponent<FieldProperties>();
         }
 
-        if (fieldHealthObject)
+        if (FieldHealthObject)
         {
-            fieldHealth = fieldHealthObject.GetComponent<FieldHealth>();
+            _fieldHealth = FieldHealthObject.GetComponent<FieldHealth>();
         }
 
         if(MarketGameObject)
         {
-            market = MarketGameObject.GetComponent<Market>();
+            _market = MarketGameObject.GetComponent<Market>();
         }
     }
 
@@ -58,31 +60,31 @@ public class FieldActions : MonoBehaviour
             return;
         }
 
-        uIManager.DisableMenus();
-        uIManager.ActionMenu.SetActive(true);
+        _uiManager.DisableMenus();
+        _uiManager.ActionMenu.SetActive(true);
 
-        uIManager.actionButtons[0].onClick.AddListener(InspectCrop);
-        uIManager.actionButtons[1].onClick.AddListener(PlantField);
-        uIManager.actionButtons[2].onClick.AddListener(AddFertiliser);
-        uIManager.actionButtons[3].onClick.AddListener(HarvestField);
+        _uiManager.ActionButtons[0].onClick.AddListener(InspectCrop);
+        _uiManager.ActionButtons[1].onClick.AddListener(PlantField);
+        _uiManager.ActionButtons[2].onClick.AddListener(AddFertiliser);
+        _uiManager.ActionButtons[3].onClick.AddListener(HarvestField);
         
 
-        if (!crop.isCropRipe)
+        if (!_crop.IsCropRipe)
         {
-            uIManager.actionButtons[3].interactable = false;
+            _uiManager.ActionButtons[3].interactable = false;
         }
         else
         {
-            uIManager.actionButtons[3].interactable = true;
+            _uiManager.ActionButtons[3].interactable = true;
         }
 
-        if(market.marketInventory.Fertiliser <= 0)
+        if(_market.MarketInventory.Fertiliser <= 0)
         {
-            uIManager.actionButtons[2].interactable = false;
+            _uiManager.ActionButtons[2].interactable = false;
         }
         else
         {
-            uIManager.actionButtons[2].interactable = true;
+            _uiManager.ActionButtons[2].interactable = true;
         }
 
         //Check Planting Field Actions
@@ -91,16 +93,16 @@ public class FieldActions : MonoBehaviour
     public void PlantField()
     {
         //Enable Menu of Crops
-        for (int i = 0; i < uIManager.cropMenuButtons.Length; i++)
+        for (int i = 0; i < _uiManager.CropMenuButtons.Length; i++)
         {
             int tempNum = i + 1; //Needed for C#
-            uIManager.cropMenuButtons[i].onClick.AddListener(delegate { PlantCrop(tempNum); });
+            _uiManager.CropMenuButtons[i].onClick.AddListener(delegate { PlantCrop(tempNum); });
             if (!ImprovementNodeActioners.CheckUnlocked(i))
             {
-                uIManager.cropMenuButtons[i].interactable = false;
+                _uiManager.CropMenuButtons[i].interactable = false;
             }
         }
-        uIManager.CropMenu.SetActive(true);
+        _uiManager.CropMenu.SetActive(true);
     }
 
     public void PlantCrop(int x)
@@ -109,56 +111,56 @@ public class FieldActions : MonoBehaviour
         switch (x)
         {
             case 1:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Carnations");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/Carnations");
                 break;
             case 2:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Cassava");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/Cassava");
                 break;
             case 3:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Cotton");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/Cotton");
                 break;
             case 4:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Maize");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/Maize");
                 break;
             case 5:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/RedVelvetBean");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/RedVelvetBean");
                 break;
             case 6:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Wheat");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/Wheat");
                 break;
             case 7:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Sorghum");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/Sorghum");
                 break;
             case 8:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/SugarCane");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/SugarCane");
                 break;
             case 9:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Tobacco");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/Tobacco");
                 break;
             case 10:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Tomatoes");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/Tomatoes");
                 break;
             default:
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
                 break;
         }
 
         int actionsNeeded = 2;
 
-        if (market.marketInventory.tools[crop.crop.idNum-1])
+        if (_market.MarketInventory.Tools[_crop.crop.IdNum-1])
         {
             actionsNeeded = 1;
         }
 
-        if(gameManager.ActionRemaining(actionsNeeded))
+        if(_gameManager.ActionRemaining(actionsNeeded))
         {
-            gameManager.cash -= crop.crop.cost;
-            crop.cropAge = 0;
-            crop.timesPlanted[crop.crop.idNum]++;
+            _gameManager.Cash -= _crop.crop.Cost;
+            _crop.CropAge = 0;
+            _crop.TimesPlanted[_crop.crop.IdNum]++;
             Destroy(transform.GetChild(0).gameObject);
-            Instantiate(crop.crop.unripePrefab, this.transform);
-            crop.CalculateMaterial();
-            uIManager.UpdateUIText();
+            Instantiate(_crop.crop.UnripePrefab, this.transform);
+            _crop.CalculateMaterial();
+            _uiManager.UpdateUIText();
         }
         else
         {
@@ -169,19 +171,19 @@ public class FieldActions : MonoBehaviour
 
     public void AddFertiliser()
     {
-        if (gameManager.ActionRemaining(1) && market.marketInventory.Fertiliser > 0)
+        if (_gameManager.ActionRemaining(1) && _market.MarketInventory.Fertiliser > 0)
         {
-            market.marketInventory.Fertiliser--;
-            crop.soilQuality += 50;
-            crop.CalculateSoilQuality();
+            _market.MarketInventory.Fertiliser--;
+            _crop._soilQuality += 50;
+            _crop.CalculateSoilQuality();
 
-            if (market.marketInventory.Fertiliser >= 0)
+            if (_market.MarketInventory.Fertiliser >= 0)
             {
-                uIManager.actionButtons[1].interactable = false;
+                _uiManager.ActionButtons[1].interactable = false;
             }
 
-            communityManager.communityHealth--;
-            uIManager.UpdateUIText();
+            _communityManager.CommunityHealth--;
+            _uiManager.UpdateUIText();
         }
         else
         {
@@ -192,25 +194,25 @@ public class FieldActions : MonoBehaviour
 
     public void HarvestField()
     {
-        if (GetComponent<FieldProperties>().isCropRipe) //Probably not needed, checked twice
+        if (GetComponent<FieldProperties>().IsCropRipe) //Probably not needed, checked twice
         {
-            if(gameManager.ActionRemaining(1))
+            if(_gameManager.ActionRemaining(1))
             {
-                float AmountHarvested =  crop.fieldHealth;
-                AmountHarvested *= economyManager.currentCropPrices[crop.crop.idNum];
-                gameManager.cash += ((int)AmountHarvested);
+                float AmountHarvested =  _crop.FieldHealth;
+                AmountHarvested *= _economyManager.CurrentCropPrices[_crop.crop.IdNum];
+                _gameManager.Cash += ((int)AmountHarvested);
 
-                crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
-                uIManager.UpdateUIText();
-                crop.isCropRipe = false;
-                if(crop.crop.foodCrop)
+                _crop.crop = Resources.Load<CropPreset>("CropPresets/Barren");
+                _uiManager.UpdateUIText();
+                _crop.IsCropRipe = false;
+                if(_crop.crop.FoodCrop)
                 {
-                    communityManager.communityHealth += foodCropAffect;
+                    _communityManager.CommunityHealth += _foodCropAffect;
                 }
 
                 Destroy(transform.GetChild(0).gameObject);
-                Instantiate(crop.crop.unripePrefab, this.transform);
-                crop.CalculateMaterial();
+                Instantiate(_crop.crop.UnripePrefab, this.transform);
+                _crop.CalculateMaterial();
             }
             else
             {
@@ -223,10 +225,10 @@ public class FieldActions : MonoBehaviour
 
     public void InspectCrop()
     {
-        if(gameManager.ActionRemaining(1))
+        if(_gameManager.ActionRemaining(1))
         {
-            uIManager.FieldHealthMenu.SetActive(true);
-           fieldHealth.Intialise(ref crop);
+            _uiManager.FieldHealthMenu.SetActive(true);
+           _fieldHealth.Intialise(ref _crop);
         }      
     }
 }

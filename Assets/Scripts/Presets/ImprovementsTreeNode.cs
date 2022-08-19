@@ -6,24 +6,24 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "Improvements Preset", menuName = "New Improvements Node")]
 public class ImprovementsTreeNode : ScriptableObject
 {
-    [SerializeField]
-    public int ID;
-    [SerializeField]
-    public string DisplayName;
-    [SerializeField]
-    public int ImprovementCost;
+    [field:SerializeField]
+    public int ID { get; set; }
+    [field:SerializeField]
+    public string DisplayName { get; set; }
+    [field:SerializeField]
+    public int ImprovementCost { get; set; }
 
 
-    [SerializeField]
+    [field:SerializeField]
     private int IntialImprovementTime;
-    [SerializeField]
+    [field:SerializeField]
     private bool bIntialIsUnlock;
-    [SerializeField]
+    [field:SerializeField]
     private bool bIntialIsFinished;
 
-    public int ImprovementTime;
-    public bool bIsUnlock;
-    public bool bIsFinished;
+    public int ImprovementTime { get; set; }
+    public bool IsUnlock { get; set; }
+    public bool IsFinished { get; set; }
 
     [SerializeField]
     public List<ImprovementsTreeNode> Children;
@@ -32,7 +32,7 @@ public class ImprovementsTreeNode : ScriptableObject
     public void ResetValues()
     {
         ImprovementTime = IntialImprovementTime;
-        bIsUnlock = bIntialIsUnlock;
-        bIsFinished = bIntialIsFinished;
+        IsUnlock = bIntialIsUnlock;
+        IsFinished = bIntialIsFinished;
     }
 }

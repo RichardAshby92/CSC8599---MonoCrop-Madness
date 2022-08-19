@@ -5,80 +5,79 @@ using UnityEngine.UI;
 
 public class CommunityManager : MonoBehaviour
 {
-    public static CommunityManager inst;
+    public static CommunityManager S_inst;
 
-    private GameManager gameManager;
+    private GameManager _gameManager;
 
     [field: SerializeField]
-    public int communityHealth { get; set; }
+    public int CommunityHealth { get; set; }
     [field: SerializeField]
     public int TopLimit { get; set; }
 
     [SerializeField]
-    private CommunityPresets[] CommunityImprovement;
+    private CommunityPresets[] _communityImprovement;
     [SerializeField]
-    private Button[] CommunityButtons;
+    private Button[] _communityButtons;
 
-    private TerrainLayer[] TerrainLayers;
+    private TerrainLayer[] _terrainLayers;
     [SerializeField]
-    GameObject Lake;
+    private GameObject _lake;
     [SerializeField]
-    GameObject River;
-
-    [SerializeField]
-    Vector3[] BuildingSpawnPositions; 
+    private GameObject _river;
 
     [SerializeField]
-    private Texture2D GoodGrass;
+    private Vector3[] _buildingSpawnPositions; 
+
     [SerializeField]
-    private Texture2D AverageGrass;
+    private Texture2D _goodGrass;
     [SerializeField]
-    private Texture2D DeadGrass;
+    private Texture2D _averageGrass;
     [SerializeField]
-    private Material GoodWater;
+    private Texture2D _deadGrass;
     [SerializeField]
-    private Material AverageWater;
+    private Material _goodWater;
     [SerializeField]
-    private Material BadWater;
+    private Material _averageWater;
+    [SerializeField]
+    private Material _badWater;
 
     void Awake()
     {
-        inst = this;
-        gameManager = GetComponent<GameManager>();
+        S_inst = this;
+        _gameManager = GetComponent<GameManager>();
 
-        TerrainLayers = Terrain.activeTerrain.terrainData.terrainLayers;
-        TerrainLayers[0].diffuseTexture = AverageGrass;
+        _terrainLayers = Terrain.activeTerrain.terrainData.terrainLayers;
+        _terrainLayers[0].diffuseTexture = _averageGrass;
 
         int tempNum = 0;
-        foreach (Button button in CommunityButtons)
+        foreach (Button button in _communityButtons)
         {
             tempNum++;
             button.onClick.AddListener(delegate { AddImprovement(tempNum); });
-        }
-       
+        }      
     }
 
     public void CheckHealth()
     {
-        communityHealth++;
-        communityHealth = Mathf.Clamp(communityHealth, 0, TopLimit);
+        CommunityHealth++;
+        CommunityHealth = Mathf.Clamp(CommunityHealth, 0, TopLimit);
 
-        switch (communityHealth)
+        switch (CommunityHealth)
         {
             case int n when n >= 80:
-                ChangeHealth(GoodWater, GoodGrass);
+                ChangeHealth(_goodWater, _goodGrass);
                 break;
             case int n when n >= 60:
-                ChangeHealth(AverageWater, GoodGrass);
+                ChangeHealth(_averageWater, _goodGrass);
                 break;
             case int n when n >= 40:
-                ChangeHealth(AverageWater, AverageGrass);
+                ChangeHealth(_averageWater, _averageGrass);
                 break;
             case int n when n >= 20:
-                ChangeHealth(BadWater, AverageGrass);
+                ChangeHealth(_badWater, _averageGrass);
                 break;
             case int n when n >= 0:
-                ChangeHealth(BadWater, DeadGrass);
+                ChangeHealth(_badWater, _deadGrass);
                 break;
             default:
                 break;
@@ -87,15 +86,15 @@ public class CommunityManager : MonoBehaviour
 
     void ChangeHealth(Material water, Texture2D grass)
     {
-        Lake.GetComponent<Renderer>().material = water;
-        River.GetComponent<Renderer>().material = water;
-        TerrainLayers[0].diffuseTexture = grass;
+        _lake.GetComponent<Renderer>().material = water;
+        _river.GetComponent<Renderer>().material = water;
+        _terrainLayers[0].diffuseTexture = grass;
     }
 
     public void AddImprovement(int index)
     {
-        gameManager.cash -= CommunityImprovement[index].cost;
-        GameObject Building = CommunityImprovement[index].building;
-        Instantiate(Building, BuildingSpawnPositions[index], transform.rotation);
+        _gameManager.Cash -= _communityImprovement[index].Cost;
+        GameObject Building = _communityImprovement[index].Building;
+        Instantiate(Building, _buildingSpawnPositions[index], transform.rotation);
     }
 }

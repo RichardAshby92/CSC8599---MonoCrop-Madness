@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class InformationNode : MonoBehaviour
 {
-    public InformationNode Child;
-    public InformationNode Parent;
+    public InformationNode Child { get; set; }
+    public InformationNode Parent { get; set; }
 
-    public bool IsUnlocked;
-    public int Cost;
-    public string TitleText;
-    public string BodyText;
+    public bool IsUnlocked { get; set; }
+    public int Cost { get; set; }
+    public string TitleText { get; set; }
+    public string BodyText { get; set; }
 }

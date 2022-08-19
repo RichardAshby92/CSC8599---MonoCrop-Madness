@@ -4,67 +4,67 @@ using UnityEngine;
 
 public class Market : MonoBehaviour
 {
-    public GameObject gameManagerObject;
+    public GameObject _gameManagerObject;
 
-    private GameManager gameManager;
-    private UIManager uIManager;
+    private GameManager _gameManager;
+    private UIManager _uiManager;
 
     [field: SerializeField]
-    public int fertiliserPrice { get; set; }
+    public int FertiliserPrice { get; set; }
     [field: SerializeField]
-    public int pesticidePrice { get; set; }
+    public int PesticidePrice { get; set; }
     [SerializeField]
-    private int toolCost;
+    private int _toolCost;
 
-    public MarketInventory marketInventory;
+    public MarketInventory MarketInventory;
 
     private void Awake()
     {
-        gameManager = gameManagerObject.GetComponent<GameManager>();
-        uIManager = gameManagerObject.GetComponent<UIManager>();
+        _gameManager = _gameManagerObject.GetComponent<GameManager>();
+        _uiManager = _gameManagerObject.GetComponent<UIManager>();
 
-        for (int i = 0; i < uIManager.toolsButtons.Length; i++)
+        for (int i = 0; i < _uiManager.ToolsButtons.Length; i++)
         {
             int tempNum = i; //Needed for C#
-            uIManager.toolsButtons[i].onClick.AddListener(delegate { BuyTools(tempNum); });
+            _uiManager.ToolsButtons[i].onClick.AddListener(delegate { BuyTools(tempNum); });
         }
 
-        uIManager.DisableToolButton(7);
+        _uiManager.DisableToolButton(7);
     }
 
     public void AccessMenu()
     {
-        uIManager.DisableMenus();
+        _uiManager.DisableMenus();
         gameObject.SetActive(true);
     }
 
     public void BuyToolsMenu()
     {
         //enable tools list
-        uIManager.toolsMenu.SetActive(true);
+        _uiManager.ToolsMenu.SetActive(true);
 
     }
 
     public void BuyTools(int idnum)
     {
-        marketInventory.tools[idnum] = true;
-        uIManager.DisableToolButton(idnum);
-        gameManager.cash -= toolCost;
-        uIManager.UpdateUIText();
+        MarketInventory.Tools[idnum] = true;
+        _uiManager.DisableToolButton(idnum);
+        _gameManager.Cash -= _toolCost;
+        _uiManager.UpdateUIText();
     }
 
     public void BuyFertiliser()
     {
-        marketInventory.Fertiliser++;
-        gameManager.cash -= fertiliserPrice;
-        uIManager.UpdateUIText();
+        MarketInventory.Fertiliser++;
+        _gameManager.Cash -= FertiliserPrice;
+        _uiManager.UpdateUIText();
     }
 
     public void BuyPesticides()
     {
-        marketInventory.Pesticide++;
-        gameManager.cash -= pesticidePrice;
-        uIManager.UpdateUIText();
+        MarketInventory.Pesticide++;
+        _gameManager.Cash -= PesticidePrice;
+        _uiManager.UpdateUIText();
     }
 }
 
@@ -76,5 +76,5 @@ public struct MarketInventory
     [field: SerializeField]
     public int Fertiliser { get; set; }
     [field: SerializeField]
-    public bool[] tools { get; set; }
+    public bool[] Tools { get; set; }
 }

@@ -12,14 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e260761660219484ca2f1447360546b9, type: 3}
   m_Name: ExpandedTradingBlock
   m_EditorClassIdentifier: 
-  ID: 4
-  DisplayName: Expanded Trading Block
-  ImprovementCost: 1000
+  <ID>k__BackingField: 4
+  <DisplayName>k__BackingField: Expanded Trading Block
+  <ImprovementCost>k__BackingField: 1000
   IntialImprovementTime: 16
   bIntialIsUnlock: 0
   bIntialIsFinished: 0
-  ImprovementTime: 16
-  bIsUnlock: 0
-  bIsFinished: 0
   Children: []
   Parent: {fileID: 11400000, guid: 2bf43c1fbc78bbd4aa37125c254915a0, type: 2}

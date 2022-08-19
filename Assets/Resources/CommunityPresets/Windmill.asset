@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ccb99da94c31054abd8dfd2ee9dc689, type: 3}
   m_Name: Windmill
   m_EditorClassIdentifier: 
-  <idNum>k__BackingField: 2
+  <IdNum>k__BackingField: 1
   <DisplayName>k__BackingField: Windmill
-  <cost>k__BackingField: 400
-  <building>k__BackingField: {fileID: 6892615195314960650, guid: 0cf21a727592e8c4cb43d4fab04b7d67, type: 3}
+  <Cost>k__BackingField: 400
+  <Building>k__BackingField: {fileID: 6892615195314960650, guid: 0cf21a727592e8c4cb43d4fab04b7d67, type: 3}
   <Position>k__BackingField: {x: 30, y: 10, z: -350}

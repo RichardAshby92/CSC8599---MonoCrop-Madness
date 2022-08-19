@@ -6,29 +6,29 @@ using UnityEngine.SceneManagement;
 
 public class GameSceneManager : MonoBehaviour
 {
-    public static GameSceneManager inst;
+    public static GameSceneManager S_inst;
 
-    public static int FinalScore;
-    public static int TurnNumScore;
-    public static int CashNumScore;
-    public static int CommunityNumScore;
+    public static int S_FinalScore;
+    public static int S_TurnNumScore;
+    public static int S_CashNumScore;
+    public static int S_CommunityNumScore;
 
-    private GameManager gameManager;
-    private CommunityManager communityManager;
+    private GameManager _gameManager;
+    private CommunityManager _communityManager;
 
     void Awake()
     {
-        inst = this;
-        gameManager = GetComponent<GameManager>();
-        communityManager = GetComponent<CommunityManager>();
+        S_inst = this;
+        _gameManager = GetComponent<GameManager>();
+        _communityManager = GetComponent<CommunityManager>();
     }
 
     public void StartGame()
     {
-        FinalScore = 0;
-        TurnNumScore = 0;
-        CashNumScore = 0;
-        CommunityNumScore = 0;
+        S_FinalScore = 0;
+        S_TurnNumScore = 0;
+        S_CashNumScore = 0;
+        S_CommunityNumScore = 0;
         SceneManager.LoadScene("Main Scene");
     }
 
@@ -40,11 +40,11 @@ public class GameSceneManager : MonoBehaviour
 
     private void CalculateScore()
     {
-        TurnNumScore = Mathf.Clamp(gameManager.turnNum, 0, 100);
-        CashNumScore = gameManager.cash; //Add Scaling Function;
-        CommunityNumScore = communityManager.communityHealth;
+        S_TurnNumScore = Mathf.Clamp(_gameManager.TurnNum, 0, 100);
+        S_CashNumScore = _gameManager.Cash; //Add Scaling Function;
+        S_CommunityNumScore = _communityManager.CommunityHealth;
 
-        FinalScore = TurnNumScore + CashNumScore + CommunityNumScore;
+        S_FinalScore = S_TurnNumScore + S_CashNumScore + S_CommunityNumScore;
         //Community Health + Money (Scaled) + turnNum (Clamped 100) 
     }
 }

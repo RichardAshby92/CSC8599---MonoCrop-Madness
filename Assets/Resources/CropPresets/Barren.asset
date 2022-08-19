@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240431e4447e7664daaff61b41f6b1f7, type: 3}
   m_Name: Barren
   m_EditorClassIdentifier: 
-  displayName: Barren
-  idNum: 0
-  cost: 0
-  waterUsedPerTurn: 0
-  turnsToGrow: 0
-  soilChange: 5
-  ripePrefab: {fileID: 8661405600781301488, guid: 9fd335138cf411e4e964a2b55d7f86b3, type: 3}
-  unripePrefab: {fileID: 8661405600781301488, guid: 9fd335138cf411e4e964a2b55d7f86b3, type: 3}
+  <DisplayName>k__BackingField: Barren
+  <IdNum>k__BackingField: 0
+  <Cost>k__BackingField: 0
+  <WaterUsedPerTurn>k__BackingField: 0
+  <TurnsToGrow>k__BackingField: 0
+  <SoilChange>k__BackingField: 0
+  <FoodCrop>k__BackingField: 0
+  <RipePrefab>k__BackingField: {fileID: 8661405600781301488, guid: 9fd335138cf411e4e964a2b55d7f86b3, type: 3}
+  <UnripePrefab>k__BackingField: {fileID: 8661405600781301488, guid: 9fd335138cf411e4e964a2b55d7f86b3, type: 3}

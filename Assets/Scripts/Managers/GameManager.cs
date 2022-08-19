@@ -6,75 +6,76 @@ using UnityEngine.VFX;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager inst;
+    public static GameManager S_inst;
 
     [SerializeField]
-    GameObject ImprovementsObject;
+    private GameObject _improvementsObject;
     [SerializeField]
-    GameObject RainEmitter;
+    private GameObject _rainEmitter;
 
-    private UIManager uIManager;
-    private EconomyManager economyManager;
-    private GameSceneManager gameSceneManager;
-    private CommunityManager communityManager;
-    private ImprovementsManager Improvements;
-    private List<FieldProperties> fieldProperties;
-    private VisualEffect RainEffect;
+    private UIManager _uiManager;
+    private EconomyManager _economyManager;
+    private GameSceneManager _gameSceneManager;
+    private CommunityManager _communityManager;
+    private ImprovementsManager _improvements;
+    private List<FieldProperties> _fieldProperties;
+    private VisualEffect _rainEffect;
 
     [SerializeField]
-    private GameObject Lake;
+    private GameObject _lake;
     [SerializeField]
-    private GameObject Information; //Wrong PLace
+    private GameObject _information; //Wrong PLace
     [SerializeField]
-    private GameObject[] fields;
+    private GameObject[] _fields;
 
     [field:SerializeField]
-    public int turnNum { set;  get; }
+    public int TurnNum { set;  get; }
     [field:SerializeField]
-    public int remainingActions { set; get; }
+    public int RemainingActions { set; get; }
     [field:SerializeField]
     public bool DrySeason { set; get; }
     [field:SerializeField]
-    public int rain { set;  get; }
+    public int Rain { set;  get; }
     [field:SerializeField]
-    public int cash { get; set; }
+    public int Cash { get; set; }
     [field:SerializeField]
-    public int waterLevel { get; set; } //1 - 100 Percentage
+    public int WaterLevel { get; set; } //1 - 100 Percentage
     [field:SerializeField]
-    public int numPollinators { get; set; } //1 - 100 Percentage
+    public int NumPollinators { get; set; } //1 - 100 Percentage
     [field:SerializeField]
-    public int[] numPests { get; set; } //1 - 100 Percentage
+    public int[] NumPests { get; set; } //1 - 100 Percentage
 
     [SerializeField]
-    private int loanRepayment;
+    private int _loanRepayment;
+    [SerializeField]
+    private int _minLakeHeight;
+    [SerializeField]
+    private int _maxLakeheight;
+
+    const int _improvementID = 7;
+
     public static int MaximumTurns { get; set; }
-    [SerializeField]
-    private int MinLakeHeight;
-    [SerializeField]
-    private int MaxLakeheight;
-
-    const int ImprovementID = 7;
-    public static bool[] UnlockedCrops { get; set; }
+    public static bool[] S_UnlockedCrops { get; set; }
 
     private void Awake()
     {
-        inst = this;
-        uIManager = GetComponent<UIManager>();
-        economyManager = GetComponent<EconomyManager>();
-        gameSceneManager = GetComponent<GameSceneManager>();
-        communityManager = GetComponent<CommunityManager>();
-        Improvements = ImprovementsObject.GetComponent<ImprovementsManager>();
-        RainEffect = RainEmitter.GetComponent<VisualEffect>();
+        S_inst = this;
+        _uiManager = GetComponent<UIManager>();
+        _economyManager = GetComponent<EconomyManager>();
+        _gameSceneManager = GetComponent<GameSceneManager>();
+        _communityManager = GetComponent<CommunityManager>();
+        _improvements = _improvementsObject.GetComponent<ImprovementsManager>();
+        _rainEffect = _rainEmitter.GetComponent<VisualEffect>();
 
-        fieldProperties = new List<FieldProperties>();
+        _fieldProperties = new List<FieldProperties>();
 
-        for (int i = 0; i < fields.Length; i++)
+        for (int i = 0; i < _fields.Length; i++)
         {
-            fieldProperties.Add(fields[i].GetComponent<FieldProperties>());
+            _fieldProperties.Add(_fields[i].GetComponent<FieldProperties>());
         }
 
-        UnlockedCrops = new bool[10];
-        UnlockedCrops[7] = true;
+        S_UnlockedCrops = new bool[10];
+        S_UnlockedCrops[7] = true;
 
         MaximumTurns = 120;
     }
@@ -91,47 +92,47 @@ public class GameManager : MonoBehaviour
         CalculateFieldHealth();
         GrowCrops();
         CalculatePests();
-        economyManager.SimulateEnconomy();
+        _economyManager.SimulateEnconomy();
         ResetActions();
-        uIManager.UpdateUIText();
-        uIManager.UpdateCropPriceDisplay();
-        communityManager.CheckHealth();
-        Improvements.ResearchImprovement();
+        _uiManager.UpdateUIText();
+        _uiManager.UpdateCropPriceDisplay();
+        _communityManager.CheckHealth();
+        _improvements.ResearchImprovement();
 
         System.GC.Collect();
     }
 
     void CountTurn()
     {
-        turnNum++;
-        if (turnNum > MaximumTurns)
+        TurnNum++;
+        if (TurnNum > MaximumTurns)
         {
-            gameSceneManager.LoadEndGame();
+            _gameSceneManager.LoadEndGame();
         }
     }
 
     void LoanRepayment()
     {
-        cash -= loanRepayment;
+        Cash -= _loanRepayment;
 
-        if (cash <= 0)
+        if (Cash <= 0)
         {
-            gameSceneManager.LoadEndGame();
+            _gameSceneManager.LoadEndGame();
         }
     }
 
     void CalculateSeason()
     {
-        int season = turnNum % 12;
+        int season = TurnNum % 12;
 
         if(season < 4 || season > 10)
         {
-            RainEffect.Stop();
+            _rainEffect.Stop();
             DrySeason = true;
         }
         else
         {
-            RainEffect.Play();
+            _rainEffect.Play();
             DrySeason = false;
         }
     }
@@ -140,36 +141,36 @@ public class GameManager : MonoBehaviour
     {
         if(DrySeason)
         {
-            rain = Random.Range(1, 10);
+            Rain = Random.Range(1, 10);
         }
         else
         {
-            rain = Random.Range(8, 20);
+            Rain = Random.Range(8, 20);
         }
     }
 
     void CalculateNewWaterLevel()
     {
         float totalWaterUsed = 0;
-        float ImprovementMultiplier = ImprovementNodeActioners.GetMultiplier(ImprovementID);
+        float ImprovementMultiplier = ImprovementNodeActioners.GetMultiplier(_improvementID);
 
-        foreach(FieldProperties fieldProperty in fieldProperties)
+        foreach(FieldProperties fieldProperty in _fieldProperties)
         {
-            totalWaterUsed += fieldProperty.crop.waterUsedPerTurn;
+            totalWaterUsed += fieldProperty.crop.WaterUsedPerTurn;
         }
 
         totalWaterUsed *= 1/ImprovementMultiplier;
-        waterLevel += (rain - (int)totalWaterUsed);
-        waterLevel = Mathf.Clamp(waterLevel, MinLakeHeight, MaxLakeheight);
-        Vector3 waterHeight = Lake.transform.position;
-        waterHeight.y = waterLevel;
+        WaterLevel += (Rain - (int)totalWaterUsed);
+        WaterLevel = Mathf.Clamp(WaterLevel, _minLakeHeight, _maxLakeheight);
+        Vector3 waterHeight = _lake.transform.position;
+        waterHeight.y = WaterLevel;
 
-        Lake.transform.position = waterHeight;
+        _lake.transform.position = waterHeight;
     }
 
     void CalculateSoilQuality()
     {
-        foreach(FieldProperties fieldProperty in fieldProperties)
+        foreach(FieldProperties fieldProperty in _fieldProperties)
         {
             fieldProperty.CalculateSoilQuality();
         }
@@ -177,7 +178,7 @@ public class GameManager : MonoBehaviour
 
     void CalculateFieldHealth()
     {
-        foreach(FieldProperties fieldProperty in fieldProperties)
+        foreach(FieldProperties fieldProperty in _fieldProperties)
         {
             fieldProperty.CalculateFieldHealth();
         }      
@@ -185,7 +186,7 @@ public class GameManager : MonoBehaviour
 
     void GrowCrops()
     {
-        foreach(FieldProperties fieldProperty in fieldProperties)
+        foreach(FieldProperties fieldProperty in _fieldProperties)
         {
             fieldProperty.GrowCrops();
         }
@@ -193,7 +194,7 @@ public class GameManager : MonoBehaviour
 
     void CalculatePests()
     {
-        foreach(FieldProperties fieldProperty in fieldProperties)
+        foreach(FieldProperties fieldProperty in _fieldProperties)
         {
             fieldProperty.CalculatePests();
         }
@@ -201,22 +202,22 @@ public class GameManager : MonoBehaviour
 
     void ResetActions()
     {
-        remainingActions = 4;
-        uIManager.ReenableActionButtons();
+        RemainingActions = 4;
+        _uiManager.ReenableActionButtons();
     }
 
     public bool ActionRemaining(int actionsTaken)
     {
-        if((remainingActions - actionsTaken) < 0)
+        if((RemainingActions - actionsTaken) < 0)
         {
             return false;
         }
 
-        remainingActions = remainingActions - actionsTaken;
+        RemainingActions = RemainingActions - actionsTaken;
 
-        if (remainingActions <= 0)
+        if (RemainingActions <= 0)
         {
-            uIManager.DisableActionButtons();
+            _uiManager.DisableActionButtons();
         }
 
         return true;
@@ -224,7 +225,7 @@ public class GameManager : MonoBehaviour
 
     public void AddField(GameObject newField)
     {
-        fieldProperties.Add(newField.GetComponent<FieldProperties>());
+        _fieldProperties.Add(newField.GetComponent<FieldProperties>());
     }
 
 

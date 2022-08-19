@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240431e4447e7664daaff61b41f6b1f7, type: 3}
   m_Name: Tobacco
   m_EditorClassIdentifier: 
-  displayName: Tobacco
-  idNum: 9
-  cost: 20
-  waterUsedPerTurn: 3
-  turnsToGrow: 4
-  soilChange: -4
-  foodCrop: 0
-  ripePrefab: {fileID: 3176091892977102661, guid: 11125f17fee454e4898e036690548b18, type: 3}
-  unripePrefab: {fileID: 5644002945254127645, guid: f26e9e7d0ade454458612b5d7bc8051a, type: 3}
+  <DisplayName>k__BackingField: Tobacco
+  <IdNum>k__BackingField: 9
+  <Cost>k__BackingField: 800
+  <WaterUsedPerTurn>k__BackingField: 3
+  <TurnsToGrow>k__BackingField: 4
+  <SoilChange>k__BackingField: -4
+  <FoodCrop>k__BackingField: 0
+  <RipePrefab>k__BackingField: {fileID: 3176091892977102661, guid: 11125f17fee454e4898e036690548b18, type: 3}
+  <UnripePrefab>k__BackingField: {fileID: 5644002945254127645, guid: f26e9e7d0ade454458612b5d7bc8051a, type: 3}

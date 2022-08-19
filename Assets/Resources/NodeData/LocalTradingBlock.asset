@@ -12,15 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e260761660219484ca2f1447360546b9, type: 3}
   m_Name: LocalTradingBlock
   m_EditorClassIdentifier: 
-  ID: 1
-  DisplayName: Local Trading Block
-  ImprovementCost: 800
+  <ID>k__BackingField: 1
+  <DisplayName>k__BackingField: Local Trading Block
+  <ImprovementCost>k__BackingField: 800
   IntialImprovementTime: 5
-  bIntialIsUnlock: 0
+  bIntialIsUnlock: 1
   bIntialIsFinished: 0
-  ImprovementTime: 5
-  bIsUnlock: 1
-  bIsFinished: 0
   Children:
   - {fileID: 11400000, guid: 1ad3e244c42e3f94ebf0231ec13b2ca3, type: 2}
   Parent: {fileID: 11400000, guid: 16c417e6abecb6b40b1b2541003eb5e0, type: 2}

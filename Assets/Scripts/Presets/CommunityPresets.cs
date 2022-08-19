@@ -8,13 +8,13 @@ using UnityEditor;
 public class CommunityPresets : ScriptableObject
 {
     [field: SerializeField]
-    public int idNum { get; set; }
+    public int IdNum { get; set; }
     [field: SerializeField]
     public string DisplayName { get; set; }
     [field: SerializeField]
-    public int cost {get; set;}
+    public int Cost {get; set;}
     [field: SerializeField]
-    public GameObject building { get; set; }
+    public GameObject Building { get; set; }
     [field: SerializeField]
     public Vector3 Position{get; set;}
 }

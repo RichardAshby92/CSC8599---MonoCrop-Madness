@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 12273222}
   - component: {fileID: 12273224}
   m_Layer: 5
-  m_Name: Community
+  m_Name: CommunityMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -406,12 +406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &19843415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,18 +1503,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bb3252b82f63643bbaffb3b01470b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soilQuality: 150
-  fieldHealth: 100
-  leaching: 5
-  cropAge: 8
-  isCropRipe: 1
-  timesPlanted: 
-  _maximumSoilQuality: 200
-  gameManagerObject: {fileID: 493119310}
-  goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
-  averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
-  badSoilMaterial: {fileID: 2100000, guid: adc18e80467f77442a24ebb7ba7cedc3, type: 2}
+  GameManagerObject: {fileID: 493119310}
   crop: {fileID: 11400000, guid: cfbc576125e4b6b49ba90f297a9b052a, type: 2}
+  <FieldHealth>k__BackingField: 100
+  <IsCropRipe>k__BackingField: 1
+  <CropAge>k__BackingField: 8
+  <TimesPlanted>k__BackingField: 
+  <_soilQuality>k__BackingField: 150
+  _leaching: 5
+  _maximumSoilQuality: 200
+  _goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
+  _averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
+  _badSoilMaterial: {fileID: 2100000, guid: adc18e80467f77442a24ebb7ba7cedc3, type: 2}
 --- !u!114 &69777109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1533,9 +1527,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341a39ce185e6404e90d729dd0ac9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerObject: {fileID: 493119310}
-  fieldHealthObject: {fileID: 527794773}
-  MarketGameObject: {fileID: 2099352224}
+  <GameManagerObject>k__BackingField: {fileID: 493119310}
+  <FieldHealthObject>k__BackingField: {fileID: 527794773}
+  <MarketGameObject>k__BackingField: {fileID: 2099352224}
+  _crop: {fileID: 0}
+  _foodCropAffect: 5
 --- !u!65 &69777110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2119,12 +2115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &135962357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2670,12 +2660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &189960532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10626,10 +10610,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2785552c348f4e8d2d4c979795a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewFieldPrefab: {fileID: 7824965466239892557, guid: a5ef1320693fda3498f4f60f0b947743, type: 3}
-  GameManagerObject: {fileID: 493119310}
-  FieldHealthObject: {fileID: 527794773}
-  MarketGameObject: {fileID: 2099352224}
+  _newFieldPrefab: {fileID: 8661405600781301488, guid: 9fd335138cf411e4e964a2b55d7f86b3, type: 3}
+  _gameManagerObject: {fileID: 493119310}
+  _fieldHealthObject: {fileID: 527794773}
+  _marketGameObject: {fileID: 2099352224}
 --- !u!4 &405639306
 Transform:
   m_ObjectHideFlags: 0
@@ -11503,12 +11487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &473549132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11695,26 +11673,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3d48cd16c35de4cb24a745b9813bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ImprovementsObject: {fileID: 601541394}
-  RainEmitter: {fileID: 601144661}
-  Lake: {fileID: 267656965}
-  Information: {fileID: 986916925}
-  fields:
-  - {fileID: 1346731865}
-  - {fileID: 2036804493}
-  - {fileID: 1684496461}
-  - {fileID: 69777104}
-  <turnNum>k__BackingField: 1
-  <remainingActions>k__BackingField: 4
+  _improvementsObject: {fileID: 601541394}
+  _rainEmitter: {fileID: 601144661}
+  _lake: {fileID: 267656965}
+  _information: {fileID: 986916925}
+  _fields: []
+  <TurnNum>k__BackingField: 1
+  <RemainingActions>k__BackingField: 4
   <DrySeason>k__BackingField: 0
-  <rain>k__BackingField: 0
-  <cash>k__BackingField: 5000
-  <waterLevel>k__BackingField: 100
-  <numPollinators>k__BackingField: 100
-  <numPests>k__BackingField: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  loanRepayment: 100
-  MinLakeHeight: 5
-  MaxLakeheight: 90
+  <Rain>k__BackingField: 0
+  <Cash>k__BackingField: 5000
+  <WaterLevel>k__BackingField: 100
+  <NumPollinators>k__BackingField: 100
+  <NumPests>k__BackingField: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  _loanRepayment: 100
+  _minLakeHeight: 5
+  _maxLakeheight: 90
 --- !u!114 &493119315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11739,28 +11713,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 292b813fd9c4cbd4f8afd45cc23b0a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CommunityMenu: {fileID: 12273220}
-  MarketMenu: {fileID: 2099352224}
-  NewspaperMenu: {fileID: 986916925}
-  ActionMenu: {fileID: 518263007}
-  CropMenu: {fileID: 408678744}
-  toolsMenu: {fileID: 2030682718}
-  newFieldMenu: {fileID: 574073789}
-  FieldHealthMenu: {fileID: 527794773}
-  ImprovementsMenu: {fileID: 601541394}
-  _tipImageObject: {fileID: 1662707156}
-  actionButtons: []
-  cropMenuButtons: []
-  toolsButtons: []
-  newFieldButton: {fileID: 298953550}
-  usePesticideButton: {fileID: 1838005018}
-  cashUIObject: {fileID: 1162917504}
-  turnValueUIObject: {fileID: 1336869811}
-  seasonValueUIObject: {fileID: 423826244}
-  fertilserUIObject: {fileID: 1904514205}
-  pesticideUIObject: {fileID: 1211218388}
-  actionRemainingUIObject: {fileID: 243102947}
-  PriceText:
+  <CommunityMenu>k__BackingField: {fileID: 12273220}
+  <MarketMenu>k__BackingField: {fileID: 2099352224}
+  <TipsMenu>k__BackingField: {fileID: 986916925}
+  <ActionMenu>k__BackingField: {fileID: 518263007}
+  <CropMenu>k__BackingField: {fileID: 408678744}
+  <ToolsMenu>k__BackingField: {fileID: 2030682718}
+  <NewFieldMenu>k__BackingField: {fileID: 574073789}
+  <FieldHealthMenu>k__BackingField: {fileID: 527794773}
+  <ImprovementsMenu>k__BackingField: {fileID: 601541394}
+  _cashUIObject: {fileID: 1162917504}
+  _turnValueUIObject: {fileID: 1336869811}
+  _seasonValueUIObject: {fileID: 423826244}
+  _fertilserUIObject: {fileID: 1904514205}
+  _pesticideUIObject: {fileID: 1211218388}
+  _actionRemainingUIObject: {fileID: 243102947}
+  _priceText:
   - {fileID: 1963737955}
   - {fileID: 1623986991}
   - {fileID: 1658412149}
@@ -11783,8 +11751,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97012e5f7e316cd4d89306721691a7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCropPrices: 03000000080000000200000006000000040000000200000004000000040000000a0000000800000006000000
-  currentCropPrices:
+  _baseCropPrices: 03000000080000000200000006000000040000000200000004000000040000000a0000000800000006000000
+  <CurrentCropPrices>k__BackingField:
   - 0
   - 0
   - 0
@@ -11796,7 +11764,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  marketShocks: 
 --- !u!114 &493119319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11821,19 +11788,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033cb822d47ba6d4bb239f7ab486197b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <communityHealth>k__BackingField: 50
+  <CommunityHealth>k__BackingField: 50
   <TopLimit>k__BackingField: 100
-  CommunityImprovement: []
-  CommunityButtons: []
-  Lake: {fileID: 267656965}
-  River: {fileID: 1782689541}
-  BuildingSpawnPositions: []
-  GoodGrass: {fileID: 2800000, guid: 5678a5b8fa5a3b1459da5fd2f0a4c8f8, type: 3}
-  AverageGrass: {fileID: 2800000, guid: dc02f36d2eefc9b44b6273e19fd57728, type: 3}
-  DeadGrass: {fileID: 2800000, guid: cabfd5f694d93a34680c9f80e5f4b241, type: 3}
-  GoodWater: {fileID: 2100000, guid: 1008ca5c2ee8d6641ab30a7ea200d5d0, type: 2}
-  AverageWater: {fileID: 2100000, guid: 542933eff71526847b17b816a20f0c95, type: 2}
-  BadWater: {fileID: 2100000, guid: 07157371252c0d94192e00a6df4bd781, type: 2}
+  _communityImprovement:
+  - {fileID: 11400000, guid: 221b2dbb468c85447b22263e15920522, type: 2}
+  - {fileID: 11400000, guid: 80cacffb5a264a04aaed2dd13325d9bb, type: 2}
+  - {fileID: 11400000, guid: e761fbcc0bd77e94cbe54292cee79a3c, type: 2}
+  - {fileID: 11400000, guid: 0ca024ef3c4c0cd4a94c0e2ec9e7810b, type: 2}
+  - {fileID: 11400000, guid: 3d160f8e69d999c449e7d511790b73e9, type: 2}
+  _communityButtons: []
+  _lake: {fileID: 267656965}
+  _river: {fileID: 1782689541}
+  _buildingSpawnPositions:
+  - {x: -475, y: 0, z: 0}
+  - {x: 30, y: 10, z: -350}
+  - {x: -575, y: 0, z: -50}
+  - {x: 50, y: 10, z: -190}
+  - {x: -450, y: 10, z: 350}
+  _goodGrass: {fileID: 2800000, guid: 5678a5b8fa5a3b1459da5fd2f0a4c8f8, type: 3}
+  _averageGrass: {fileID: 2800000, guid: dc02f36d2eefc9b44b6273e19fd57728, type: 3}
+  _deadGrass: {fileID: 2800000, guid: cabfd5f694d93a34680c9f80e5f4b241, type: 3}
+  _goodWater: {fileID: 2100000, guid: 1008ca5c2ee8d6641ab30a7ea200d5d0, type: 2}
+  _averageWater: {fileID: 2100000, guid: 542933eff71526847b17b816a20f0c95, type: 2}
+  _badWater: {fileID: 2100000, guid: 07157371252c0d94192e00a6df4bd781, type: 2}
 --- !u!4 &496645997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4971149878005340081, guid: 89757306dbcb4c24cb4055b8e22c6206, type: 3}
@@ -12153,12 +12130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &505426682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12596,14 +12567,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a182f87dd29d35c4b963edb28517f96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerObject: {fileID: 493119310}
-  HealthTextObject: {fileID: 350770354}
-  valueText: {fileID: 1765585971}
-  cropTypeText: {fileID: 1979827359}
-  cropAgeText: {fileID: 1190144634}
-  GoodHealthText: Your Crops Are Looking Healthy
-  MediumHealthText: Your Crops Are Looking a Little Sickly
-  LowHealthText: Your Crops Are Close to Dying
+  _gameManagerObject: {fileID: 493119310}
+  _healthTextObject: {fileID: 350770354}
+  _valueText: {fileID: 1765585971}
+  _cropTypeText: {fileID: 1979827359}
+  _cropAgeText: {fileID: 1190144634}
+  _goodHealthText: Your crops are looking healthy
+  _mediumHealthText: Your crops are looking a little sickly
+  _lowHealthText: Your crops are close to dying
 --- !u!1001 &528860501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13078,7 +13049,7 @@ GameObject:
   - component: {fileID: 601541397}
   - component: {fileID: 601541399}
   m_Layer: 5
-  m_Name: Improvements
+  m_Name: ImprovementsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13164,8 +13135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3d428116261b84c9fe6d48418abaf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerObject: {fileID: 493119310}
-  ImprovementButtons:
+  _gameManagerObject: {fileID: 493119310}
+  _improvementButtons:
   - {fileID: 1623044114}
   - {fileID: 768661740}
   - {fileID: 1874633813}
@@ -13177,7 +13148,7 @@ MonoBehaviour:
   - {fileID: 664730563}
   - {fileID: 700448005}
   - {fileID: 2032112006}
-  ImprovementTurnText:
+  _improvementTurnText:
   - {fileID: 1311221807}
   - {fileID: 1196899045}
   - {fileID: 611780484}
@@ -13189,7 +13160,7 @@ MonoBehaviour:
   - {fileID: 2120460747}
   - {fileID: 1365050076}
   - {fileID: 1660744097}
-  ImprovementCostText:
+  _improvementCostText:
   - {fileID: 1234334889}
   - {fileID: 674290047}
   - {fileID: 924934961}
@@ -13201,7 +13172,7 @@ MonoBehaviour:
   - {fileID: 1509936902}
   - {fileID: 1654568418}
   - {fileID: 369391843}
-  ImprovementTitle:
+  _improvementTitle:
   - {fileID: 746155560}
   - {fileID: 151314283}
   - {fileID: 343973905}
@@ -13213,10 +13184,10 @@ MonoBehaviour:
   - {fileID: 716987507}
   - {fileID: 1064634639}
   - {fileID: 1134775602}
-  Finished: {fileID: 2100000, guid: cd767de8067cfc143b8ed0d0469594f1, type: 2}
-  Available: {fileID: 2100000, guid: c9364cbe4da91944e8978fc37209b7e8, type: 2}
-  InProgress: {fileID: 2100000, guid: 8ce32d99c33cc9f4cad7ebc4357c6131, type: 2}
-  Locked: {fileID: 2100000, guid: cc3f702a55eae8a438b14dd0b01dabff, type: 2}
+  _finishedMaterial: {fileID: 2100000, guid: cd767de8067cfc143b8ed0d0469594f1, type: 2}
+  _availableMaterial: {fileID: 2100000, guid: c9364cbe4da91944e8978fc37209b7e8, type: 2}
+  _inProgressMaterial: {fileID: 2100000, guid: 8ce32d99c33cc9f4cad7ebc4357c6131, type: 2}
+  _lockedMaterial: {fileID: 2100000, guid: cc3f702a55eae8a438b14dd0b01dabff, type: 2}
 --- !u!1 &603289368
 GameObject:
   m_ObjectHideFlags: 0
@@ -15038,12 +15009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &695580488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22759,12 +22724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &866850563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23079,12 +23038,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &913866486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24133,7 +24086,7 @@ GameObject:
   - component: {fileID: 986916927}
   - component: {fileID: 986916929}
   m_Layer: 5
-  m_Name: Information
+  m_Name: TipsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24225,7 +24178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540104945df510f4db5b6828cfd34727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerObject: {fileID: 493119310}
+  _gameManagerObject: {fileID: 493119310}
   _tipFile: {fileID: 4900000, guid: 1cc21953bb7110c4d90330fe4b52e154, type: 3}
   _tipButtons:
   - {fileID: 135962357}
@@ -29196,12 +29149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &1343610605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29344,9 +29291,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341a39ce185e6404e90d729dd0ac9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerObject: {fileID: 493119310}
-  fieldHealthObject: {fileID: 527794773}
-  MarketGameObject: {fileID: 2099352224}
+  <GameManagerObject>k__BackingField: {fileID: 493119310}
+  <FieldHealthObject>k__BackingField: {fileID: 527794773}
+  <MarketGameObject>k__BackingField: {fileID: 2099352224}
+  _crop: {fileID: 0}
+  _foodCropAffect: 5
 --- !u!114 &1346731869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29359,18 +29308,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bb3252b82f63643bbaffb3b01470b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soilQuality: 150
-  fieldHealth: 100
-  leaching: 5
-  cropAge: 8
-  isCropRipe: 1
-  timesPlanted: 
-  _maximumSoilQuality: 200
-  gameManagerObject: {fileID: 493119310}
-  goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
-  averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
-  badSoilMaterial: {fileID: 2100000, guid: adc18e80467f77442a24ebb7ba7cedc3, type: 2}
+  GameManagerObject: {fileID: 493119310}
   crop: {fileID: 11400000, guid: cfbc576125e4b6b49ba90f297a9b052a, type: 2}
+  <FieldHealth>k__BackingField: 100
+  <IsCropRipe>k__BackingField: 1
+  <CropAge>k__BackingField: 8
+  <TimesPlanted>k__BackingField: 
+  <_soilQuality>k__BackingField: 150
+  _leaching: 5
+  _maximumSoilQuality: 200
+  _goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
+  _averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
+  _badSoilMaterial: {fileID: 2100000, guid: adc18e80467f77442a24ebb7ba7cedc3, type: 2}
 --- !u!1001 &1350216020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30661,12 +30610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &1449082494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30807,12 +30750,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &1496403742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31490,12 +31427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &1574559835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37760,10 +37691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2785552c348f4e8d2d4c979795a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewFieldPrefab: {fileID: 7824965466239892557, guid: a5ef1320693fda3498f4f60f0b947743, type: 3}
-  GameManagerObject: {fileID: 493119310}
-  FieldHealthObject: {fileID: 527794773}
-  MarketGameObject: {fileID: 2099352224}
+  _newFieldPrefab: {fileID: 8661405600781301488, guid: 9fd335138cf411e4e964a2b55d7f86b3, type: 3}
+  _gameManagerObject: {fileID: 493119310}
+  _fieldHealthObject: {fileID: 527794773}
+  _marketGameObject: {fileID: 2099352224}
 --- !u!65 &1649254880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38667,18 +38598,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bb3252b82f63643bbaffb3b01470b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soilQuality: 150
-  fieldHealth: 100
-  leaching: 5
-  cropAge: 8
-  isCropRipe: 1
-  timesPlanted: 
-  _maximumSoilQuality: 200
-  gameManagerObject: {fileID: 493119310}
-  goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
-  averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
-  badSoilMaterial: {fileID: 2100000, guid: adc18e80467f77442a24ebb7ba7cedc3, type: 2}
+  GameManagerObject: {fileID: 493119310}
   crop: {fileID: 11400000, guid: cfbc576125e4b6b49ba90f297a9b052a, type: 2}
+  <FieldHealth>k__BackingField: 100
+  <IsCropRipe>k__BackingField: 1
+  <CropAge>k__BackingField: 8
+  <TimesPlanted>k__BackingField: 
+  <_soilQuality>k__BackingField: 150
+  _leaching: 5
+  _maximumSoilQuality: 200
+  _goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
+  _averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
+  _badSoilMaterial: {fileID: 2100000, guid: adc18e80467f77442a24ebb7ba7cedc3, type: 2}
 --- !u!114 &1684496466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38691,9 +38622,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341a39ce185e6404e90d729dd0ac9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerObject: {fileID: 493119310}
-  fieldHealthObject: {fileID: 527794773}
-  MarketGameObject: {fileID: 2099352224}
+  <GameManagerObject>k__BackingField: {fileID: 493119310}
+  <FieldHealthObject>k__BackingField: {fileID: 527794773}
+  <MarketGameObject>k__BackingField: {fileID: 2099352224}
+  _crop: {fileID: 0}
+  _foodCropAffect: 5
 --- !u!65 &1684496467
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39989,12 +39922,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &1758021610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40936,12 +40863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &1804273923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41538,8 +41459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ceaa37f8804c64b8298a5dfa09e8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManagerObject: {fileID: 493119310}
-  MarketGameObject: {fileID: 2099352224}
+  _gameManagerObject: {fileID: 493119310}
+  _marketGameObject: {fileID: 2099352224}
   PesticideEffect: 20
 --- !u!114 &1838005018
 MonoBehaviour:
@@ -43732,12 +43653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d6159897e78754bacb15577c7d2fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Child: {fileID: 0}
-  Parent: {fileID: 0}
-  IsUnlocked: 0
-  Cost: 0
-  TitleText: 
-  BodyText: 
 --- !u!114 &1990796804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44211,18 +44126,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bb3252b82f63643bbaffb3b01470b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soilQuality: 150
-  fieldHealth: 100
-  leaching: 5
-  cropAge: 8
-  isCropRipe: 1
-  timesPlanted: 
-  _maximumSoilQuality: 200
-  gameManagerObject: {fileID: 493119310}
-  goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
-  averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
-  badSoilMaterial: {fileID: 2100000, guid: adc18e80467f77442a24ebb7ba7cedc3, type: 2}
+  GameManagerObject: {fileID: 493119310}
   crop: {fileID: 11400000, guid: cfbc576125e4b6b49ba90f297a9b052a, type: 2}
+  <FieldHealth>k__BackingField: 100
+  <IsCropRipe>k__BackingField: 1
+  <CropAge>k__BackingField: 8
+  <TimesPlanted>k__BackingField: 
+  <_soilQuality>k__BackingField: 150
+  _leaching: 5
+  _maximumSoilQuality: 200
+  _goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
+  _averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
+  _badSoilMaterial: {fileID: 2100000, guid: adc18e80467f77442a24ebb7ba7cedc3, type: 2}
 --- !u!114 &2036804498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44235,9 +44150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341a39ce185e6404e90d729dd0ac9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerObject: {fileID: 493119310}
-  fieldHealthObject: {fileID: 527794773}
-  MarketGameObject: {fileID: 2099352224}
+  <GameManagerObject>k__BackingField: {fileID: 493119310}
+  <FieldHealthObject>k__BackingField: {fileID: 527794773}
+  <MarketGameObject>k__BackingField: {fileID: 2099352224}
+  _crop: {fileID: 0}
+  _foodCropAffect: 5
 --- !u!65 &2036804499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45081,14 +44998,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2d163802b65d744a382162b8d26e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 10
-  HeightY: 250
-  MoveX: 0
-  MoveZ: 0
-  MinXLimit: 350
-  MaxXLimit: 250
-  MinZLimit: 500
-  MaxZLimit: 1000
+  _cameraSpeed: 10
+  _heightY: 250
+  _minXLimit: 350
+  _maxXLimit: 250
+  _minZLimit: 500
+  _maxZLimit: 1000
 --- !u!114 &2091185768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45411,7 +45326,7 @@ GameObject:
   - component: {fileID: 2099352226}
   - component: {fileID: 2099352228}
   m_Layer: 5
-  m_Name: Market
+  m_Name: MarketMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45491,14 +45406,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5c7ee98d025b948aa90626bc7d5d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerObject: {fileID: 493119310}
-  <fertiliserPrice>k__BackingField: 50
-  <pesticidePrice>k__BackingField: 100
-  toolCost: 200
-  marketInventory:
+  _gameManagerObject: {fileID: 493119310}
+  <FertiliserPrice>k__BackingField: 50
+  <PesticidePrice>k__BackingField: 100
+  _toolCost: 200
+  MarketInventory:
     <Pesticide>k__BackingField: 0
     <Fertiliser>k__BackingField: 0
-    <tools>k__BackingField: 00000000000000010000
+    <Tools>k__BackingField: 00000000000000000000
 --- !u!1001 &2108039885
 PrefabInstance:
   m_ObjectHideFlags: 0

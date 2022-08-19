@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240431e4447e7664daaff61b41f6b1f7, type: 3}
   m_Name: Cotton
   m_EditorClassIdentifier: 
-  displayName: Cotton
-  idNum: 3
-  cost: 20
-  waterUsedPerTurn: 4
-  turnsToGrow: 4
-  soilChange: -3
-  foodCrop: 0
-  ripePrefab: {fileID: 6937860555571184994, guid: 4e7211ff5e5531940b74ae862a5760c7, type: 3}
-  unripePrefab: {fileID: 5644002945254127645, guid: f26e9e7d0ade454458612b5d7bc8051a, type: 3}
+  <DisplayName>k__BackingField: Cotton
+  <IdNum>k__BackingField: 3
+  <Cost>k__BackingField: 600
+  <WaterUsedPerTurn>k__BackingField: 2
+  <TurnsToGrow>k__BackingField: 4
+  <SoilChange>k__BackingField: -3
+  <FoodCrop>k__BackingField: 0
+  <RipePrefab>k__BackingField: {fileID: 6937860555571184994, guid: 4e7211ff5e5531940b74ae862a5760c7, type: 3}
+  <UnripePrefab>k__BackingField: {fileID: 5644002945254127645, guid: f26e9e7d0ade454458612b5d7bc8051a, type: 3}
