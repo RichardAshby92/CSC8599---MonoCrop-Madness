@@ -7,13 +7,21 @@ using TMPro;
 
 public class ScoreDisplay : MonoBehaviour
 {
+    [SerializeField]
     private TextMeshProUGUI _finalScoreText;
+    [SerializeField]
     private TextMeshProUGUI _turnNumScoreText;
+    [SerializeField]
     private TextMeshProUGUI _cashNumScoreText;
+    [SerializeField]
     private TextMeshProUGUI _communityScoreText;
+    [SerializeField]
     private TextMeshProUGUI _tipSummaryText;
+    [SerializeField]
     private TextMeshProUGUI _tipTurnText;
+    [SerializeField]
     private TextMeshProUGUI _tipCashText;
+    [SerializeField]
     private TextMeshProUGUI _tipCommunityText;
 
     private int _finalScore;
@@ -26,7 +34,6 @@ public class ScoreDisplay : MonoBehaviour
 
     private void Awake()
     {
-        _finalScoreText = GetComponent<TextMeshProUGUI>();
         _finalScore = GameSceneManager.S_FinalScore;
         _turnNumScore = GameSceneManager.S_TurnNumScore;
         _cashNumScore = GameSceneManager.S_CashNumScore;
@@ -41,6 +48,8 @@ public class ScoreDisplay : MonoBehaviour
         _turnNumScoreText.text = "Turn Number Score: " + _turnNumScore.ToString();
         _cashNumScoreText.text = "Cash Score: " + _cashNumScore.ToString();
         _communityScoreText.text = "Community Score: " + _communityNumScore.ToString();
+
+        SelectFinalTip();
     }
 
     private void SelectFinalTip()
@@ -48,56 +57,56 @@ public class ScoreDisplay : MonoBehaviour
         //Final Summary
         if(_finalScore > 200)
         {
-            //_tipSummaryText.text = _finalTipsArray[];
+            _tipSummaryText.text = _finalTipsArray[0, 1];
         }
         if(_finalScore > 100 && _finalScore <= 200)
         {
-            //_tipSummaryText.text = _finalTipsArray[];
+            _tipSummaryText.text = _finalTipsArray[0, 2];
         }
         else
         {
-            //_tipSummaryText.text = _finalTipsArray[];
+            _tipSummaryText.text = _finalTipsArray[0, 3];
         }
 
         //Turn Number Summary
         if (_turnNumScore == GameManager.MaximumTurns)
         {
             //Successfully made it to the end
-            //_tipTurnText.text = _finalTipsArray[];
+            _tipTurnText.text = _finalTipsArray[1, 1];
         }
         else
         {
             //try Again
-            //_tipTurnText.text = _finalTipsArray[];
+            _tipTurnText.text = _finalTipsArray[1, 2];
         }
 
         //Community Score Summary
         if(_communityNumScore > 60)
         {
             //you Succeeded in preversing the community around you
-            //_tipCommunityText.text = _finaltipsArray[];
+            _tipCommunityText.text = _finalTipsArray[2, 1];
         }
         else
         {
             //you sacrfised to community to keep yourselves afloat
-            //_tipCommunityText.text = _finaltipsArray[];
+            _tipCommunityText.text = _finalTipsArray[2, 2];
         }
 
         //Cash Score Summary
         if(_cashNumScore > 80)
         {
             //You were able to make money
-            //_tipCashText.text = _finaltipsArray[];
+            _tipCashText.text = _finalTipsArray[3, 1];
         }
         if (_cashNumScore == 0)
         {
             //Bankruptcy Text
-            //_tipCashText.text = _finaltipsArray[];
+            _tipCashText.text = _finalTipsArray[3, 2];
         }
         else
         {
             //you managed to keep yourself afloat
-            //_tipCashText.text = _fianltipsArray[];
+            _tipCashText.text = _finalTipsArray[3, 3];
         }
     }      
 }
