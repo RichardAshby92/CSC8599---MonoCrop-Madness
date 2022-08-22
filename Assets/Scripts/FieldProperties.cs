@@ -66,7 +66,7 @@ public class FieldProperties : MonoBehaviour
         
         FieldHealth -= (_gameManager.NumPests[crop.IdNum] + _lackOfwater);
         FieldHealth *= _gameManager.NumPollinators / 100;
-        FieldHealth *= (float)(1.1 / Mathf.Exp(5 / _soilQuality));
+        FieldHealth *= (float)(1.1 / Mathf.Exp(10 / _soilQuality));
         print(FieldHealth);
 
         float ImprovementMultiplier = ImprovementNodeActioners.GetMultiplier(_improvementID);

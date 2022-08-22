@@ -8,6 +8,7 @@ public class CommunityManager : MonoBehaviour
     public static CommunityManager S_inst;
 
     private GameManager _gameManager;
+    private UIManager _uiManager;
 
     [field: SerializeField]
     public int CommunityHealth { get; set; }
@@ -26,9 +27,6 @@ public class CommunityManager : MonoBehaviour
     private GameObject _river;
 
     [SerializeField]
-    private Vector3[] _buildingSpawnPositions; 
-
-    [SerializeField]
     private Texture2D _goodGrass;
     [SerializeField]
     private Texture2D _averageGrass;
@@ -45,16 +43,10 @@ public class CommunityManager : MonoBehaviour
     {
         S_inst = this;
         _gameManager = GetComponent<GameManager>();
+        _uiManager = GetComponent<UIManager>();
 
         _terrainLayers = Terrain.activeTerrain.terrainData.terrainLayers;
-        _terrainLayers[0].diffuseTexture = _averageGrass;
-
-        int tempNum = 0;
-        foreach (Button button in _communityButtons)
-        {
-            tempNum++;
-            button.onClick.AddListener(delegate { AddImprovement(tempNum); });
-        }      
+        _terrainLayers[0].diffuseTexture = _averageGrass;   
     }
 
     public void CheckHealth()
@@ -94,7 +86,10 @@ public class CommunityManager : MonoBehaviour
     public void AddImprovement(int index)
     {
         _gameManager.Cash -= _communityImprovement[index].Cost;
+        CommunityHealth += 10;
         GameObject Building = _communityImprovement[index].Building;
-        Instantiate(Building, _buildingSpawnPositions[index], transform.rotation);
+        Instantiate(Building, _communityImprovement[index].Position, _communityImprovement[index].Rotation);
+        _communityButtons[index].interactable = false;
+        _uiManager.UpdateUIText();
     }
 }

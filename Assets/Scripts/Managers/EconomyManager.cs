@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class EconomyManager : MonoBehaviour
 {
@@ -9,12 +12,23 @@ public class EconomyManager : MonoBehaviour
     private Market _market;
 
     [SerializeField]
+    private GameObject _messageImage;
+    [SerializeField]
+    private TextMeshProUGUI _titleText;
+    [SerializeField]
+    private TextMeshProUGUI _bodyText;
+
+    [SerializeField]
     private int[] _baseCropPrices;
     private int[] _marketShocks;
     private int _currentShock = 0;
 
     [field:SerializeField]
     public float[] CurrentCropPrices { get; set; }
+
+    [SerializeField]
+    private TextAsset _economicShockData;
+    string[,] _economicShockText;
 
     const int _improvementID = 2;
 
@@ -35,16 +49,14 @@ public class EconomyManager : MonoBehaviour
             _marketShocks[i-1] = Random.Range((20*(i-1) +1), 20 *i);
         }
 
-        //Load Market Shocks from .csv File? 
+        _economicShockText = LoadData.LoadCSVToStringArray(_economicShockData);
     }
 
     public void SimulateEnconomy()
     {
         if(_marketShocks[_currentShock] == _gameManager.TurnNum)
         {
-            print("Market Shock");
             EconomicShock(_currentShock);
-            //Needs Messages takes from loadTexts Array
             _currentShock++;
         }
 
@@ -61,42 +73,51 @@ public class EconomyManager : MonoBehaviour
 
     private void EconomicShock(int i)
     {
+        _messageImage.SetActive(true);
+
         switch (i)
         {
             case 0:
                 //Demand for Sorghum
                 //Increase Sorghum Price
                 CurrentCropPrices[7] *= 2;
-                //Load Text on Information
+                _titleText.text = _economicShockText[1, 0];
+                _bodyText.text = _economicShockText[1, 1];
+
                 break;
             case 1:
                 //Sugar Price Crash
                 //Decrease Sugar Price
                 CurrentCropPrices[8] *= 0.75f;
-                //Load Text on Information
+                _titleText.text = _economicShockText[2, 0];
+                _bodyText.text = _economicShockText[2, 1];
                 break;
             case 2:
                 //Fertiliser Shortage
                 _market.FertiliserPrice *= 2;
-                //Load Text on Information
+                _titleText.text = _economicShockText[3, 0];
+                _bodyText.text = _economicShockText[3, 1];
                 break;
             case 3:
                 //Pesticide Shortage
                 _market.PesticidePrice *= 2;
-                //Load Text on Information
+                _titleText.text = _economicShockText[4, 0];
+                _bodyText.text = _economicShockText[4, 1];
 
                 break;
             case 4:
                 //Second Sugar Price Crash
                 //Decrease Sugar Price
                 CurrentCropPrices[8] *= 0.5f;
-                //Load Text on Information
+                _titleText.text = _economicShockText[5, 0];
+                _bodyText.text = _economicShockText[5, 1];
                 break;
             case 5:
                 //Price Rise in Wheat
                 //Increase Wheat Price
                 CurrentCropPrices[6] *= 1.5f;
-                //Load Text on Information
+                _titleText.text = _economicShockText[6, 0];
+                _bodyText.text = _economicShockText[6, 1];
                 break;
             default:
                 break;

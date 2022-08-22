@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _tipImageObject;
+    [SerializeField]
+    private GameObject _MessageImage;
 
     public Button[] ActionButtons { get; set; }
     public Button[] CropMenuButtons { get; set; }
@@ -143,6 +145,8 @@ public class UIManager : MonoBehaviour
         NewFieldMenu.SetActive(false);
         FieldHealthMenu.SetActive(false);
         ImprovementsMenu.SetActive(false);
+        _tipImageObject.SetActive(false);
+        _MessageImage.SetActive(false);
     }
 
     public void DisableActionButtons()

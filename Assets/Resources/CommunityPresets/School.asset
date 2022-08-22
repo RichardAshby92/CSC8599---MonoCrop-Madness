@@ -17,3 +17,4 @@ MonoBehaviour:
   <Cost>k__BackingField: 400
   <Building>k__BackingField: {fileID: 3150378363968388078, guid: 3664a37e7da5106418cd0a4d4a7d96c9, type: 3}
   <Position>k__BackingField: {x: -475, y: 0, z: 0}
+  <Rotation>k__BackingField: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
