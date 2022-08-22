@@ -29,11 +29,14 @@ public class UIManager : MonoBehaviour
     public GameObject FieldHealthMenu { get; set; }
     [field:SerializeField]
     public GameObject ImprovementsMenu { get; set; }
+
+    [SerializeField]
     private GameObject _tipImageObject;
 
     public Button[] ActionButtons { get; set; }
     public Button[] CropMenuButtons { get; set; }
     public Button[] ToolsButtons { get; set; }
+    [field:SerializeField]
     public Button NewFieldButton { get; set; }
     public Button UsePesticideButton { get; set; }
 
