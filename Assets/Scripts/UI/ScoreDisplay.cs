@@ -57,15 +57,15 @@ public class ScoreDisplay : MonoBehaviour
         //Final Summary
         if(_finalScore > 200)
         {
-            _tipSummaryText.text = _finalTipsArray[0, 1];
+            _tipSummaryText.text = _finalTipsArray[1, 0];
         }
         if(_finalScore > 100 && _finalScore <= 200)
         {
-            _tipSummaryText.text = _finalTipsArray[0, 2];
+            _tipSummaryText.text = _finalTipsArray[2, 0];
         }
         else
         {
-            _tipSummaryText.text = _finalTipsArray[0, 3];
+            _tipSummaryText.text = _finalTipsArray[3, 0];
         }
 
         //Turn Number Summary
@@ -77,14 +77,14 @@ public class ScoreDisplay : MonoBehaviour
         else
         {
             //try Again
-            _tipTurnText.text = _finalTipsArray[1, 2];
+            _tipTurnText.text = _finalTipsArray[2, 1];
         }
 
         //Community Score Summary
         if(_communityNumScore > 60)
         {
             //you Succeeded in preversing the community around you
-            _tipCommunityText.text = _finalTipsArray[2, 1];
+            _tipCommunityText.text = _finalTipsArray[1, 2];
         }
         else
         {
@@ -96,12 +96,12 @@ public class ScoreDisplay : MonoBehaviour
         if(_cashNumScore > 80)
         {
             //You were able to make money
-            _tipCashText.text = _finalTipsArray[3, 1];
+            _tipCashText.text = _finalTipsArray[1, 3];
         }
         if (_cashNumScore == 0)
         {
             //Bankruptcy Text
-            _tipCashText.text = _finalTipsArray[3, 2];
+            _tipCashText.text = _finalTipsArray[2, 3];
         }
         else
         {
