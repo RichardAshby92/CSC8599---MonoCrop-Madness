@@ -29,10 +29,13 @@ public class Pesticide : MonoBehaviour
 
     public void UsePesticide()
     {
+        if(_market.MarketInventory.Pesticide <= 0)
+        {
+            return;
+        }
+
         if(_gameManager.ActionRemaining(1))
         {
-            //Instantiate Effects
-
             _market.MarketInventory.Pesticide--;
             _gameManager.NumPollinators -= PesticideEffect;
             _communityManager.CommunityHealth -= PesticideEffect;

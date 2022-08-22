@@ -47,17 +47,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bb3252b82f63643bbaffb3b01470b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soilQuality: 400
-  fieldHealth: 100
-  leaching: 5
-  cropAge: 0
-  isCropRipe: 0
-  timesPlanted: 
-  gameManagerObject: {fileID: 0}
-  goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
-  averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
-  badSoilMaterial: {fileID: 2100000, guid: adc18e80467f77442a24ebb7ba7cedc3, type: 2}
+  GameManagerObject: {fileID: 0}
   crop: {fileID: 11400000, guid: 0b4a4b25fcaeab94fa7dbcd7309c08ad, type: 2}
+  <FieldHealth>k__BackingField: 100
+  <IsCropRipe>k__BackingField: 0
+  <CropAge>k__BackingField: 0
+  <TimesPlanted>k__BackingField: 
+  <_soilQuality>k__BackingField: 200
+  _leaching: 5
+  _maximumSoilQuality: 200
+  _goodSoilMaterial: {fileID: 2100000, guid: c8036bfd296f6b54494b9001050c8e70, type: 2}
+  _averageSoilMaterial: {fileID: 2100000, guid: 1152b6634fe35104a89f7a5f3f398fe2, type: 2}
+  _badSoilMaterial: {fileID: 2100000, guid: adc18e80467f77442a24ebb7ba7cedc3, type: 2}
 --- !u!114 &7824965466239892546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +71,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341a39ce185e6404e90d729dd0ac9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerObject: {fileID: 0}
+  <GameManagerObject>k__BackingField: {fileID: 0}
+  <FieldHealthObject>k__BackingField: {fileID: 0}
+  <MarketGameObject>k__BackingField: {fileID: 0}
+  _crop: {fileID: 0}
+  _foodCropAffect: 5
 --- !u!65 &7824965466239892547
 BoxCollider:
   m_ObjectHideFlags: 0
